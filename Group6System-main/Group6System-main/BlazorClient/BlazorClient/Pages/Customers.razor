@@ -1,0 +1,69 @@
+﻿@page "/Customers"
+@using BlazorClient.Models
+@using BlazorClient.Data.CustomerService
+@inject NavigationManager NavigationManager
+@inject ICustomerService service
+
+<h3>Register</h3>
+<EditForm Model="@newCustomer" OnValidSubmit="@RegisterCustomer">
+    <ValidationSummary/>
+    <DataAnnotationsValidator/>
+    <div class="col-sm-5">
+        CPR Number:<br/>
+        <InputNumber @bind-Value="newCustomer.CprNumber"/>
+    </div>
+    <br/>
+    <div class="col-sm-7">
+        <InputText id="Name" class="form-control" placeholder="Name"
+                   @bind-Value="newCustomer.Name"/>
+    </div>
+    <br/>
+    <div class="col-sm-7">
+        <InputText id="Address" class="form-control" placeholder="Address"
+                   @bind-Value="newCustomer.Address"/>
+    </div>
+    <br/>
+    <div class="col-sm-7">
+        <InputText id="Email" class="form-control" placeholder="Email"
+                   @bind-Value="newCustomer.Email"/>
+    </div>
+    <br/>
+    <div class="col-sm-7">
+        <InputText id="PhoneNumber" class="form-control" placeholder="PhoneNumber"
+                   @bind-Value="newCustomer.PhoneNumber"/>
+    </div>
+    <br/>
+    <div class="col-sm-7">
+        <InputText id="Nationality" class="form-control" placeholder="Nationality"
+                   @bind-Value="newCustomer.Nationality"/>
+    </div>
+    <br/>
+    <div class="col-sm-7">
+        <InputText id ="Residence" class="form-control" placeholder="Residence"
+                   @bind-Value="newCustomer.CountryOfResidence"/>
+    </div>
+   <br/>
+     <div class="col-sm-7">
+        <InputText id ="Username" class="form-control" placeholder="Username"
+                   @bind-Value="newCustomer.User.Username"/>
+    </div>
+    <br/>
+    <div class="col-sm-7">
+        <InputText id ="Password" class="form-control" placeholder="Password"
+                   @bind-Value="newCustomer.User.Password"/>
+    </div>
+    <br/>
+    <p class="action">
+           <button class="btn btn-outline-dark" type="submit">Register</button>
+       </p>
+</EditForm>
+
+
+@code {
+    private Customer newCustomer = new Customer();
+
+    private void RegisterCustomer()
+    {
+        service.AddCustomerAsync(newCustomer);
+    }
+}
