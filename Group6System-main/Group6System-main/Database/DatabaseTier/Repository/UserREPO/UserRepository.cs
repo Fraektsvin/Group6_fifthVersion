@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Persistence;
-using Microsoft.CSharp.RuntimeBinder;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseTier.Repository.UserREPO

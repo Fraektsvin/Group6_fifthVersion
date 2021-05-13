@@ -6,9 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class User {
-   public User(){
+   public User(){}
 
-    };
     @JsonProperty("username")
     private String username;
 

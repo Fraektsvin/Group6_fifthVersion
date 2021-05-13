@@ -48,8 +48,7 @@
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLoginAsync(username, password);
             username = "";
             password = "";
-           // NavMgr.NavigateTo("/");
-            errorMessage = "Logged in";
+            NavMgr.NavigateTo("/");
         }
         catch (Exception e)
         {
