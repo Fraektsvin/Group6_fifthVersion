@@ -23,7 +23,7 @@ namespace BlazorClient.Data.CustomerService
             StringContent content = new StringContent(
                 AsJson,Encoding.UTF8, "application/json");
             
-            HttpResponseMessage response = await _client.PostAsync($"{path}/createNewUser", content);
+            HttpResponseMessage response = await _client.PostAsync($"{path}/createNewCustomer", content);
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);

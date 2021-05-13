@@ -42,7 +42,7 @@
 
     public async Task PerformLogin()
     {
-        errorMessage = "";
+        
         try
         {
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLoginAsync(username, password);
@@ -73,6 +73,6 @@
 
     private void Signup()
     {
-        NavMgr.NavigateTo("/RegisterUser");
+        NavMgr.NavigateTo("/Customer");
     }
 }

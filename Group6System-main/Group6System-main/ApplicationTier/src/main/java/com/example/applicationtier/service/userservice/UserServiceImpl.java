@@ -20,6 +20,8 @@ public class UserServiceImpl implements UserService{
     public User validateUser(User user) {
         User loginUser = userDAO.validateUser(user);
         System.out.println(" step 2 --> from the service to dao " + user);
-        return loginUser;
+        if (loginUser != null) {
+            return loginUser;
+        } else throw new RuntimeException("Not found!");
     }
 }
