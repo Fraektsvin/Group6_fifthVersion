@@ -26,7 +26,10 @@ namespace DatabaseTier.Protocol
 
         private async void handleClient(SocketHandler handler)
         {
-            await handler.ExchangeMessages();
+            while (true)
+            {
+                await handler.ExchangeMessages();
+            }
         }
     }
 }

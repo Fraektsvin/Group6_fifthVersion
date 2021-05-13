@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NF9A6IsHK8OH/Fvns8kjzP4vHAUtv+qSWPA/yfFvOwIK7Xcbzjmbcon3AmpM2tzhL8HoMZT+hJcuCRd71o44zQ==",
+  "dgSpecHash": "ptrcDGFPc5DNn0jt3/ZomG1l93CeTA7D6JMDUT/m0XW1SOSXJDYl94lsHDUC4q9wCL2cOivc7zR891sV29VV7g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj",
+  "projectFilePath": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

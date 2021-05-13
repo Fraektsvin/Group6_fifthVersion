@@ -13,9 +13,12 @@ public class UserController {
 
     @GetMapping("/users")
     public User validateLogin(@RequestParam String username, @RequestParam String password) {
-        User toValidate = new User(username, password);
+        User toValidate = new User();
+        toValidate.setUsername(username);
+        toValidate.setPassword(password);
         System.out.println( "step 1 controller to service -->  " +  toValidate);
         User returnObj = service.validateUser(toValidate);
+
         return returnObj;
     }
 

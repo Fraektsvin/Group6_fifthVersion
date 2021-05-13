@@ -2,8 +2,9 @@ package com.example.applicationtier.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class User {
     @JsonProperty("username")
     private String username;
@@ -11,13 +12,6 @@ public class User {
     @JsonProperty("password")
     private String password;
 
-    public User(String username,
-                String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    @Required
     public String getUsername() {
         return username;
     }
@@ -26,9 +20,6 @@ public class User {
         this.username = username;
     }
 
-
-
-    @Required
     public String getPassword() {
         return password;
     }
@@ -40,8 +31,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                "username=" + username +
+                ", password=" + password +
                 '}';
     }
 
