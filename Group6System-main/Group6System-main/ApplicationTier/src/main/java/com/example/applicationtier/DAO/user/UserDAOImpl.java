@@ -13,7 +13,7 @@ public class UserDAOImpl implements UserDAO{
     private Handler handler;
 
     @Override
-    public User validateUser(User user) {
+    public User validateUser(User user) throws Exception{
 
         Request login = new Request("CheckLogin", user);
         handler.setObj(login);
@@ -25,6 +25,6 @@ public class UserDAOImpl implements UserDAO{
             System.out.println("Successfully logged in");
             return (User) login.getObj();
         }
-        else throw new RuntimeException("Not found!");
+        else throw new Exception((String) response.getObj());
     }
 }

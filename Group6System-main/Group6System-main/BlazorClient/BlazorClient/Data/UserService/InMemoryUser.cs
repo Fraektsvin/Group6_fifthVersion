@@ -17,16 +17,17 @@ namespace BlazorClient.Data.UserService
             Console.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("here it is now");
+               
                 string asJson = await response.Content.ReadAsStringAsync();
                 User login = JsonSerializer.Deserialize<User>(asJson, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 });
-                Console.WriteLine("Successfully logged in");
+                
                 return login;
             }
-            throw new Exception($"{HttpStatusCode.NotFound}");
+            Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
     }
 }

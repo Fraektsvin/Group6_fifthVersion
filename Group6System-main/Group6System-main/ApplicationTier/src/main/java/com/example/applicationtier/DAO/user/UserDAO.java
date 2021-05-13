@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface UserDAO {
-    User validateUser(User user);
+    User validateUser(User user) throws Exception;
 }
