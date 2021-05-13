@@ -61,7 +61,7 @@ namespace BlazorClient.Authentication
             } 
             catch (Exception e)
             {
-                throw e;
+                throw new Exception(e.Message);
             }
 
             NotifyAuthenticationStateChanged(

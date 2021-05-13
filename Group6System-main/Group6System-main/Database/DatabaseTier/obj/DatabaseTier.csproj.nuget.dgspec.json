@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj": {}
+    "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj": {
+    "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj",
         "projectName": "DatabaseTier",
-        "projectPath": "C:\\Users\\HP\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj",
+        "projectPath": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Group6System-main\\Database\\DatabaseTier\\obj\\",
+        "outputPath": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"

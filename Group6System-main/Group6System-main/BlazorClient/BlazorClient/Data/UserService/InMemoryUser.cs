@@ -15,8 +15,10 @@ namespace BlazorClient.Data.UserService
         public async Task<User> ValidateUserAsync(string username, string password)
         {
             HttpResponseMessage response = await _client.GetAsync($"{path}/users?username={username}&password={password}");
+            Console.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
+                Console.WriteLine("here it is now");
                 string AsJson = await response.Content.ReadAsStringAsync();
                 User login = JsonSerializer.Deserialize<User>(AsJson, new JsonSerializerOptions
                 {

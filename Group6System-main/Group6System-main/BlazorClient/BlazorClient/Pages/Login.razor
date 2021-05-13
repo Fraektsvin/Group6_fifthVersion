@@ -42,13 +42,14 @@
 
     public async Task PerformLogin()
     {
-        errorMessage = "";
+        
         try
         {
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLoginAsync(username, password);
             username = "";
             password = "";
-            NavMgr.NavigateTo("/");
+           // NavMgr.NavigateTo("/");
+            errorMessage = "Logged in";
         }
         catch (Exception e)
         {
@@ -73,6 +74,6 @@
 
     private void Signup()
     {
-        NavMgr.NavigateTo("/RegisterUser");
+        NavMgr.NavigateTo("/Customer");
     }
 }

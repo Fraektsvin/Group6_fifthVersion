@@ -21,8 +21,7 @@ namespace BlazorClient.Models
         public string CountryOfResidence { get; set; }
         [JsonPropertyName("user")]
         public User User { get; set; }
-
-
+        
         public Customer()
         {
             User = new User();
