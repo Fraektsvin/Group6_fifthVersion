@@ -3,69 +3,83 @@
 
 @namespace BlazorClient.Pages
 
-@inject AuthenticationStateProvider AuthenticationStateProvider
-@inject NavigationManager NavMgr
+@inject AuthenticationStateProvider _authenticationStateProvider
+@inject NavigationManager _navMgr
 
 <AuthorizeView>
     <NotAuthorized>
-        <div class="login">
+        <div class="card">
+            <h4 class="card-header">Login</h4>
+            <div class="card-body">
             <div class="form-group row">
                 <label class="col-form-label">Username:</label>
-                <input type="text" placeholder="username" @bind-value="username"/>
+                <input type="text" placeholder="username" @bind-value="_username"/>
             </div>
-            <div class="form-group row">
-                <label class="col-form-label">Password:</label>
-                <input type="password" placeholder="password" @bind-value="password"/>
-            </div>
-
-            <a href="" @onclick="PerformLogin">
-                Login
-            </a>
-            <div> <label>Don't have an account?</label>
-                <a href="" @onclick="Signup">  Register here</a>
-            </div>
+                <div class="form-group row">
+                    <label class="col-form-label">Password:</label>
+                    <input type="password" placeholder="password" @bind-value="_password"/>
+                </div>
+                <div style="color:red">@ErrorMessage</div>
+                <button disabled="@_loading" class="btn btn-light">
+                   <!-- @if (_loading) 
+                    {
+                       <span class="spinner-border spinner-border-sm mr-1"></span>
+                   }-->
+                   <a href="" @onclick="PerformLoginAsync">Login</a> 
+                </button>
+                
+                <div> <label>Don't have an account?</label>
+                    <button class="btn btn-light">
+                        <a href="" @onclick="Signup"> Register here</a>
+                    </button>
+                    
+                </div>
+                </div>
         </div>
-        <div style="color:red">@errorMessage</div>
+        
     </NotAuthorized>
    
     <Authorized>
-        <a href="" @onclick="PerformLogout">
+        <a href="" @onclick="PerformLogoutAsync">
             Logout
         </a>
     </Authorized>
 </AuthorizeView>
 
 @code {
-    private string username;
-    private string password;
-    private string errorMessage { get; set; }
+    private string _username;
+    private string _password;
+    private string ErrorMessage { get; set; }
+    private bool _loading;
 
-    public async Task PerformLogin()
+    public async Task PerformLoginAsync()
     {
+        _loading = true;
         try
         {
-            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLoginAsync(username, password);
-            username = "";
-            password = "";
-            NavMgr.NavigateTo("/index");
+            await ((CustomAuthenticationStateProvider) _authenticationStateProvider).ValidateLoginAsync(_username, _password);
+            _username = "";
+            _password = "";
+            _navMgr.NavigateTo("/Customers");
         }
         catch (Exception e)
         {
-            errorMessage = e.Message;
-            Console.WriteLine(errorMessage);
+            ErrorMessage = e.Message;
+            _loading = false;
+            Console.WriteLine(ErrorMessage);
         }
         
     }
 
-    public async Task PerformLogout()
+    public async Task PerformLogoutAsync()
     {
-        errorMessage = "";
-        username = "";
-        password = "";
+        ErrorMessage = "";
+        _username = "";
+        _password = "";
         try
         {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavMgr.NavigateTo("/Login");
+            ((CustomAuthenticationStateProvider) _authenticationStateProvider).Logout();
+            _navMgr.NavigateTo("/Login");
         }
         catch (Exception e)
         {
@@ -74,6 +88,6 @@
 
     private void Signup()
     {
-        NavMgr.NavigateTo("/Customers");
+        _navMgr.NavigateTo("/Customers");
     }
 }
