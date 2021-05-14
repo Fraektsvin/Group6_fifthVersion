@@ -25,9 +25,7 @@
                 <a href="" @onclick="Signup">  Register here</a>
             </div>
         </div>
-         <div style="color:red">
-             <label @bind=@errorMessage></label>
-             </div>
+        <div style="color:red">@errorMessage</div>
     </NotAuthorized>
    
     <Authorized>
@@ -49,12 +47,12 @@
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLoginAsync(username, password);
             username = "";
             password = "";
-            NavMgr.NavigateTo("/");
+            NavMgr.NavigateTo("/index");
         }
         catch (Exception e)
         {
             errorMessage = e.Message;
-            Console.WriteLine(errorMessage + "From blazor page");
+            Console.WriteLine(errorMessage);
         }
         
     }
