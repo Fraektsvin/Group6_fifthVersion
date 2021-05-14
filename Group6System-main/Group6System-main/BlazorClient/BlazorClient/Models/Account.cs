@@ -17,10 +17,10 @@ namespace BlazorClient.Models
         private int TransactionNr{ get; set; }
         [JsonPropertyName("username")]
         private string Username{ get; set; }
+        
         [JsonPropertyName("password")]
         private string password { get; set; }
-        private Account _account { get; set; }
-
+       
         public Account(int amount, int accountId, string date, int transactionNr, string username, string password)
         {
             this.amount = amount;
@@ -33,7 +33,6 @@ namespace BlazorClient.Models
 
         public Account()
         {
-            _account = new Account(); 
         }
     }
 }

@@ -33,6 +33,5 @@ namespace BlazorClient.Data.CustomerService
                 Console.WriteLine($@"Error: {response.StatusCode}, {response.ReasonPhrase}");
             }
         }
-        
     }
 }

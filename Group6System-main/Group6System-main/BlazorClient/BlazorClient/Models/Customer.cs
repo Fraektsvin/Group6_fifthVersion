@@ -2,7 +2,7 @@
 
 namespace BlazorClient.Models
 {
-    public class Customer
+    public class Customer 
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -21,7 +21,9 @@ namespace BlazorClient.Models
         public string CountryOfResidence { get; set; }
         [JsonPropertyName("user")]
         public User User { get; set; }
+        [JsonPropertyName("account")]
 
+        public Account Account{ get; set; }
 
         public Customer()
         {
