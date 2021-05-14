@@ -5,25 +5,26 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using BlazorClient.Models;
 
-namespace BlazorClient.Data.CustomerService
+namespace BlazorClient.Data.AccountService
 {
-    public class CustomerService:ICustomerService
+    public class AccountService : IAccount
     {
         private readonly HttpClient _client = new HttpClient();
         private string path = "http://localhost:8080";
-        
-        public async Task AddCustomerAsync(Customer user)
+
+
+        public async Task AddAccount(Account account)
         {
-            string AsJson = JsonSerializer.Serialize(user, new JsonSerializerOptions
+            string AsJson = JsonSerializer.Serialize(account, new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
-            
-            
+
+
             StringContent content = new StringContent(
-                AsJson,Encoding.UTF8, "application/json");
-            
-            HttpResponseMessage response = await _client.PostAsync($"{path}/createNewUser", content);
+                AsJson, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _client.PostAsync($"{path}/createNewAccount", content);
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);
@@ -33,6 +34,6 @@ namespace BlazorClient.Data.CustomerService
                 Console.WriteLine($@"Error: {response.StatusCode}, {response.ReasonPhrase}");
             }
         }
-        
     }
 }
+    
