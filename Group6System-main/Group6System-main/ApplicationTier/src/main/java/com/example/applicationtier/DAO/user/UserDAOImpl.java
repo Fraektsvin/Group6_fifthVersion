@@ -3,7 +3,6 @@ package com.example.applicationtier.DAO.user;
 import com.example.applicationtier.DAO.Handler;
 import com.example.applicationtier.models.Request;
 import com.example.applicationtier.models.User;
-import com.fasterxml.jackson.databind.JsonSerializable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +13,7 @@ public class UserDAOImpl implements UserDAO{
     private Handler handler;
 
     @Override
-    public User validateUser(User user) {
+    public User validateUser(User user) throws Exception{
 
         Request login = new Request("CheckLogin", user);
         handler.setObj(login);
@@ -24,15 +23,8 @@ public class UserDAOImpl implements UserDAO{
 
         if(response.getHeader().equals("CheckLogin")) {
             System.out.println("Successfully logged in");
-
-            //need a method to cast the obj to the user class
-            User userObj = (User) response.getObj();
-            return userObj;
+            return (User) login.getObj();
         }
-        else
-        {
-            System.out.println("Login not successful");
-            return null;
-        }
+        else throw new Exception((String) response.getObj());
     }
 }

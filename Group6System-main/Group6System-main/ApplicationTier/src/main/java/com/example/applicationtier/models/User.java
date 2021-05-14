@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class User {
+   public User(){}
+
     @JsonProperty("username")
     private String username;
 
@@ -31,7 +33,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username=" + username +
+                "username=" + username + '\'' +
                 ", password=" + password +
                 '}';
     }

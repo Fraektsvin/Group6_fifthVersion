@@ -8,7 +8,6 @@
 
 <AuthorizeView>
     <NotAuthorized>
-
         <div class="login">
             <div class="form-group row">
                 <label class="col-form-label">Username:</label>
@@ -18,7 +17,6 @@
                 <label class="col-form-label">Password:</label>
                 <input type="password" placeholder="password" @bind-value="password"/>
             </div>
-            <div style="color:red">@errorMessage</div>
 
             <a href="" @onclick="PerformLogin">
                 Login
@@ -27,7 +25,9 @@
                 <a href="" @onclick="Signup">  Register here</a>
             </div>
         </div>
+        <div style="color:red">@errorMessage</div>
     </NotAuthorized>
+   
     <Authorized>
         <a href="" @onclick="PerformLogout">
             Logout
@@ -38,23 +38,23 @@
 @code {
     private string username;
     private string password;
-    private string errorMessage;
+    private string errorMessage { get; set; }
 
     public async Task PerformLogin()
     {
-        
         try
         {
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLoginAsync(username, password);
             username = "";
             password = "";
-           // NavMgr.NavigateTo("/");
-            errorMessage = "Logged in";
+            NavMgr.NavigateTo("/index");
         }
         catch (Exception e)
         {
             errorMessage = e.Message;
+            Console.WriteLine(errorMessage);
         }
+        
     }
 
     public async Task PerformLogout()
@@ -74,6 +74,6 @@
 
     private void Signup()
     {
-        NavMgr.NavigateTo("/Customer");
+        NavMgr.NavigateTo("/Customers");
     }
 }

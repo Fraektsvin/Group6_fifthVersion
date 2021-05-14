@@ -102,23 +102,23 @@ using BlazorClient.Authentication;
        
     private string username;
     private string password;
-    private string errorMessage;
+    private string errorMessage { get; set; }
 
     public async Task PerformLogin()
     {
-        
         try
         {
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLoginAsync(username, password);
             username = "";
             password = "";
-           // NavMgr.NavigateTo("/");
-            errorMessage = "Logged in";
+            NavMgr.NavigateTo("/");
         }
         catch (Exception e)
         {
             errorMessage = e.Message;
+            ShowError(e.Message);
         }
+        
     }
 
     public async Task PerformLogout()
@@ -138,8 +138,14 @@ using BlazorClient.Authentication;
 
     private void Signup()
     {
-        NavMgr.NavigateTo("/Customer");
+        NavMgr.NavigateTo("/Customers");
     }
+
+    private void ShowError(object o)
+    {
+        errorMessage = (String)o;
+    }
+
 
 #line default
 #line hidden

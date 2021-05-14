@@ -17,9 +17,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User validateUser(User user) {
+    public User validateUser(User user) throws Exception {
         User loginUser = userDAO.validateUser(user);
         System.out.println(" step 2 --> from the service to dao " + user);
-        return loginUser;
+        if (loginUser != null) {
+            return loginUser;
+        }
+        return null;
     }
 }
