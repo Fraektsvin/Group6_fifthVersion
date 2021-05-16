@@ -20,13 +20,15 @@ namespace DatabaseTier.Models
         public string Nationality { get; set; }
         [JsonPropertyName("countryofresidence")]
         public string CountryOfResidence { get; set; }
-        
+       
+        public User User { get; set; }
         public Account CustomerAccount{ get; set; }
         public IList<SavedAccounts> SavedAccountsList { get; set; }
 
         public Customer()
         {
             Address = new Address();
+            User = new User();
             CustomerAccount = new Account();
             SavedAccountsList = new List<SavedAccounts>();
         }
@@ -43,6 +45,8 @@ namespace DatabaseTier.Models
                    "email=" + Email +
                    "nationality=" + Nationality +
                    "countryofresidence=" + CountryOfResidence +
+                   "username=" + User.Username +
+                   "password=" + User.Password +
                    "accountnumber=" + CustomerAccount.AccountNumber +
                    "balance" + CustomerAccount.Balance +
                    '}'; 
