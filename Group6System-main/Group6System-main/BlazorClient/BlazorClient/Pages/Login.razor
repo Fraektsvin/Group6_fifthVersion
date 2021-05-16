@@ -20,12 +20,11 @@
                     <input type="password" placeholder="password" @bind-value="_password"/>
                 </div>
                 <div style="color:red">@ErrorMessage</div>
-                <button disabled="@_loading" class="btn btn-light">
-                   <!-- @if (_loading) 
+                <button disabled="@_loading" class="btn btn-light" @onclick="PerformLoginAsync">Login
+                   @if (_loading) 
                     {
                        <span class="spinner-border spinner-border-sm mr-1"></span>
-                   }-->
-                   <a href="" @onclick="PerformLoginAsync">Login</a> 
+                   }
                 </button>
                 
                 <div> <label>Don't have an account?</label>
