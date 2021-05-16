@@ -12,14 +12,16 @@ namespace DatabaseTier.Repository.UserREPO
         {
             await using CloudContext context = new CloudContext();
             User validateUser = await context.UsersTable.FirstOrDefaultAsync(u =>
-                u.Username.Equals(user.Username) && u.Password.Equals(user.Password));
+                u.Username.Equals(user.Username));
             if (validateUser != null)
             {
-                Console.WriteLine("step 2 --> from the socket to the repo" + validateUser);
-                return validateUser;
+                if (validateUser.Password.Equals(user.Password))
+                {
+                    return validateUser;
+                }
+                throw new Exception("Incorrect password!");
             }
-
-            throw new Exception("Invalid Input!!");
+            throw new Exception("User not found!");
         }
     }
 }

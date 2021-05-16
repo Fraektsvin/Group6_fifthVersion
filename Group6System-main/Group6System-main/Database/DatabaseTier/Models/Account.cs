@@ -5,26 +5,18 @@ namespace DatabaseTier.Models
     public class Account
     {
         [JsonPropertyName("amount")]
-
         private int amount{ get; set; }
         [JsonPropertyName("accountID")]
-
         private int accountID{ get; set; }
         [JsonPropertyName("date")]
-
         private string date{ get; set; }
         [JsonPropertyName("TranasctionNR")]
-
         private int TransactionNr{ get; set; }
         [JsonPropertyName("username")]
-
         private string Username{ get; set; }
         [JsonPropertyName("password")]
-
         private string password { get; set; }
-        
-        
-        
+
         public override string ToString()
         {
             return "Account{" +
@@ -35,7 +27,6 @@ namespace DatabaseTier.Models
                    "username=" + Username +
                    "password=" + password +
                    '}';
-            
         }
 
 
