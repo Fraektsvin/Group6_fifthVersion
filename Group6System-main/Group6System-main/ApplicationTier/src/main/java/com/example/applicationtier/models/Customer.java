@@ -3,6 +3,8 @@ package com.example.applicationtier.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class Customer {
     @JsonProperty("name")
@@ -18,22 +20,15 @@ public class Customer {
     @JsonProperty("nationality")
     private String nationality;
     @JsonProperty("countryofresidence")
-
     private String countryOfResidence;
-    @JsonProperty("user")
 
+    @JsonProperty("user")
     private User user;
 
-    @JsonProperty("account")
-    private Account account;
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+    @JsonProperty("customeraccount")
+    private Account customerAccount;
+    @JsonProperty("savedaccounts")
+    private List<SavedAccounts> savedAccounts;
 
     public String getName() {
         return name;
@@ -99,17 +94,35 @@ public class Customer {
         this.user = user;
     }
 
+    public Account getCustomerAccount() {
+        return customerAccount;
+    }
+
+    public void setCustomerAccount(Account customerAccount) {
+        this.customerAccount = customerAccount;
+    }
+
+    public List<SavedAccounts> getSavedAccounts() {
+        return savedAccounts;
+    }
+
+    public void setSavedAccounts(List<SavedAccounts> savedAccounts) {
+        this.savedAccounts = savedAccounts;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
                 "name='" + name + '\'' +
-                ", cprNumber='" + cprNumber + '\'' +
+                ", cprNumber=" + cprNumber +
                 ", address='" + address + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", nationality='" + nationality + '\'' +
                 ", countryOfResidence='" + countryOfResidence + '\'' +
                 ", user=" + user +
+                ", customerAccount=" + customerAccount +
+                ", savedAccounts=" + savedAccounts +
                 '}';
     }
 }
