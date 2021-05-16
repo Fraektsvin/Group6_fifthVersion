@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ContentModelUserStore">
-    <attachedFolders />
-    <explicitIncludes />
-    <explicitExcludes />
-  </component>
   <component name="UserContentModel">
     <attachedFolders>
+      <Path>../../../../Group6_fifthVersion</Path>
       <Path>../../../Sep3.Project</Path>
       <Path>../../../Sep3Project</Path>
     </attachedFolders>

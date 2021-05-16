@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace DatabaseTier.Models
@@ -10,8 +11,7 @@ namespace DatabaseTier.Models
         [Key]
         [JsonPropertyName("cprnumber")]
         public int CprNumber { get; set; }
-        [JsonPropertyName("address")]
-        public string Address { get; set; }
+        public Address Address { get; set; }
         [JsonPropertyName("phonenumber")]
         public string PhoneNumber { get; set; }
         [JsonPropertyName("email")]
@@ -20,26 +20,32 @@ namespace DatabaseTier.Models
         public string Nationality { get; set; }
         [JsonPropertyName("countryofresidence")]
         public string CountryOfResidence { get; set; }
-        [JsonPropertyName("user")]
-        public User User { get; set; }
+        
+        public Account CustomerAccount{ get; set; }
+        public IList<SavedAccounts> SavedAccountsList { get; set; }
 
         public Customer()
         {
-            User = new User(); 
+            Address = new Address();
+            CustomerAccount = new Account();
+            SavedAccountsList = new List<SavedAccounts>();
         }
-
         public override string ToString()
         {
             return "Customer{" +
-                   "name='" + Name + '\'' +
-                   ", cprNumber='" + CprNumber + '\'' +
-                   ", address='" + Address + '\'' +
-                   ", phoneNumber=" + PhoneNumber +
-                   ", email='" + Email + '\'' +
-                   ", nationality='" + Nationality + '\'' +
-                   ", countryOfResidence='" + CountryOfResidence + '\'' +
-                   ", user=" + User +
-                   '}';
+                   "name=" + Name +
+                   "cprnumber=" + CprNumber +
+                   "streetname=" + Address.StreetName +
+                   "streetnumber=" + Address.StreetNumber +
+                   "zipcode=" + Address.City.ZipCode + 
+                   "cityname=" + Address.City.CityName +
+                   "phonenumber=" + PhoneNumber +
+                   "email=" + Email +
+                   "nationality=" + Nationality +
+                   "countryofresidence=" + CountryOfResidence +
+                   "accountnumber=" + CustomerAccount.AccountNumber +
+                   "balance" + CustomerAccount.Balance +
+                   '}'; 
         }
     }
 }
