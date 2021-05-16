@@ -2,81 +2,48 @@ package com.example.applicationtier.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Date;
+
 public class Account {
-    @JsonProperty("amount")
-    private int amount;
-    @JsonProperty("accountID")
-    private int accountID;
+    @JsonProperty("balance")
+    private double balance;
+    @JsonProperty("accountNumber")
+    private long accountNumber;
     @JsonProperty("date")
-    private String date;
-    @JsonProperty("TransactionNr")
-    private int TransactionNr;
-    @JsonProperty("username")
-    private String Username;
-    @JsonProperty("password")
-    private String password;
+    private Date date;
 
+    public Account(){};
 
-    public Account(int amount, int accountID, String date, int transactionNr, String username, String password, Account account) {
-        this.amount = amount;
-        this.accountID = accountID;
-        this.date = date;
-        TransactionNr = transactionNr;
-        Username = username;
-        this.password = password;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
-    public Account() {
+    public double getBalance() {
+        return balance;
     }
 
-    public int getAmount() {
-        return amount;
+    public void setAccountNumber(long accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public long getAccountNumber() {
+        return accountNumber;
     }
 
-    public int getAccountID() {
-        return accountID;
-    }
-
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
-    }
-
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public int getTransactionNr() {
-        return TransactionNr;
+    @Override
+    public String toString() {
+        return "Account{" +
+                "balance=" + balance +
+                ", accountLong=" + accountNumber +
+                ", date=" + date +
+                '}';
     }
-
-    public void setTransactionNr(int transactionNr) {
-        TransactionNr = transactionNr;
-    }
-
-    public String getUsername() {
-        return Username;
-    }
-
-    public void setUsername(String username) {
-        Username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-
 }
