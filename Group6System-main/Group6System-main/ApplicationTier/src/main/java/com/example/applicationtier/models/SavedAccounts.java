@@ -1,7 +1,9 @@
 package com.example.applicationtier.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SavedAccounts {
     @JsonProperty("saveaccount")
     private Account saveAccount;

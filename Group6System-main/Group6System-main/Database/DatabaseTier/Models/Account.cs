@@ -11,6 +11,8 @@ namespace DatabaseTier.Models
         [JsonPropertyName("balance")]
         public double  Balance{ get; set; }
         [JsonPropertyName("date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date{ get; set; }
 
         public override string ToString()

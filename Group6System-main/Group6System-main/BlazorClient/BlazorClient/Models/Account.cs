@@ -13,6 +13,8 @@ namespace BlazorClient.Models
         public long AccountNumber{ get; set; }
             
         [JsonPropertyName("date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date{ get; set; }
 
         public Account(double balance, long accountNumber, DateTime date)

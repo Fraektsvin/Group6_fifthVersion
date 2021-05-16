@@ -9,23 +9,20 @@ namespace DatabaseTier.Repository.CustomerREPO
 {
     public class CustomerRepository:ICustomerRepository
     {
-        private readonly CloudContext _context;
-
-        public CustomerRepository()
-        {
-            _context = new CloudContext(); 
-        }
         public async Task<IList<Customer>> GetAllAsync()
         {
-            return await _context.CustomersTable.ToListAsync();
+            await using CloudContext context = new CloudContext();
+            return await context.CustomersTable.ToListAsync();
         }
 
         public async Task<Customer> AddCustomerAsync(Customer customer)
         {
+            await using CloudContext context = new CloudContext();
             try
             {
-                var newAddedCustomer = await _context.CustomersTable.AddAsync(customer);
-                await _context.SaveChangesAsync();
+                var newAddedCustomer = await context.CustomersTable.AddAsync(customer);
+                Console.WriteLine("customer repo" + newAddedCustomer);
+                await context.SaveChangesAsync();
                 return newAddedCustomer.Entity;
             }
             catch (AggregateException e)
@@ -37,21 +34,23 @@ namespace DatabaseTier.Repository.CustomerREPO
 
         public async Task RemoveCustomerAsync(int cprNumber)
         {
-            Customer customerToRemove = await _context.CustomersTable.FirstOrDefaultAsync(c => c.CprNumber == cprNumber);
+            await using CloudContext context = new CloudContext();
+            Customer customerToRemove = await context.CustomersTable.FirstOrDefaultAsync(c => c.CprNumber == cprNumber);
             if (customerToRemove != null)
             {
-                _context.CustomersTable.Remove(customerToRemove);
-                await _context.SaveChangesAsync();
+                context.CustomersTable.Remove(customerToRemove);
+                await context.SaveChangesAsync();
             }
         }
 
         public async Task<Customer> UpdateCustomerAsync(Customer customer)
         {
+            await using CloudContext context = new CloudContext();
             try
             {
-                Customer customerToUpdate = await _context.CustomersTable.FirstAsync(c=> c.CprNumber == customer.CprNumber);
-                _context.Update(customerToUpdate);
-                await _context.SaveChangesAsync();
+                Customer customerToUpdate = await context.CustomersTable.FirstAsync(c=> c.CprNumber == customer.CprNumber);
+                context.Update(customerToUpdate);
+                await context.SaveChangesAsync();
                 return customerToUpdate;
             }
             catch (Exception e)

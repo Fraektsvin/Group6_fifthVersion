@@ -22,11 +22,15 @@ namespace DatabaseTier.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Address>().HasKey(a => new
-            {
-                a.StreetName, a.StreetNumber
-            });
-           
+            modelBuilder.Entity<Address>().HasOne(a => a.City);
+            modelBuilder.Entity<Customer>().HasOne(a => a.Address);
+            modelBuilder.Entity<Customer>().HasOne(c => c.User);
+            
+            // modelBuilder.Entity<Address>().HasKey(a => new
+            // {
+            //     a.StreetName, a.StreetNumber
+            // });
+
         }
     }
 }

@@ -1,9 +1,12 @@
 package com.example.applicationtier.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Address {
-
+    @JsonProperty("addressId")
+    private int addressId;
     @JsonProperty("city")
     private City city;
     @JsonProperty("streetname")

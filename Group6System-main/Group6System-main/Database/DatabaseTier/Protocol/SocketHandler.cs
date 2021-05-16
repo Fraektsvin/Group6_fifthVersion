@@ -13,15 +13,11 @@ namespace DatabaseTier.Protocol
     public class SocketHandler
     {
         private readonly NetworkStream _stream;
-        private readonly ICustomerRepository _customerRepo;
-        private readonly IUserRepo _userRepo;
         private readonly TcpClient _client;
         
         public SocketHandler(TcpClient client)
         {
             _client = client;
-            _userRepo = new UserRepository();
-            _customerRepo = new CustomerRepository();
             _stream = _client.GetStream();
         }
 
@@ -53,9 +49,8 @@ namespace DatabaseTier.Protocol
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 });
-                
-                byte[] sendToServer = Encoding.UTF8.GetBytes(readMessage);
-                _stream.Write(sendToServer, 0, sendToServer.Length);
+            byte[] sendToServer = Encoding.UTF8.GetBytes(readMessage);
+            _stream.Write(sendToServer, 0, sendToServer.Length);
         }
 
         private async Task<Request> Operation(Request request)
@@ -65,17 +60,18 @@ namespace DatabaseTier.Protocol
                 switch (request.Header)
                 {
                     case "CheckLogin":
-                        Console.WriteLine("step 1 --> from the socket"+request.Obj);
-                        return new Request("CheckLogin", await _userRepo.ValidateUserAsync(ToObject<User>((JsonElement) request.Obj)));
+                        //Console.WriteLine("step 1 --> from the socket"+request.Obj);
+                        return new Request("CheckLogin", await RepositoryFactory.GetUserRepository().ValidateUserAsync(ToObject<User>((JsonElement) request.Obj)));
                     case "GetAllCustomers":
-                       return new Request("GetAllCustomers", await _customerRepo.GetAllAsync());
+                       return new Request("GetAllCustomers", await RepositoryFactory.GetCustomerRepository().GetAllAsync());
                     case "AddCustomer":
-                        return new Request("AddCustomer", await _customerRepo.AddCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
+                        Console.WriteLine("inside the socketHandler" + request.Obj);
+                        return new Request("AddCustomer", await RepositoryFactory.GetCustomerRepository().AddCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
                     case "UpdateCustomer" :
                         return new Request("UpdateCustomer",
-                            await _customerRepo.UpdateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
+                            await RepositoryFactory.GetCustomerRepository().UpdateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
                     case "RemoveCustomerByCprNumber":
-                        await _customerRepo.RemoveCustomerAsync((int) request.Obj);
+                        await RepositoryFactory.GetCustomerRepository().RemoveCustomerAsync((int) request.Obj);
                         return new Request("RemoveCustomerByCprNumber", "User successfully removed");
                 }
 
