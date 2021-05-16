@@ -12,7 +12,7 @@ public class Customer {
     @JsonProperty("cprnumber")
     private int cprNumber;
     @JsonProperty("address")
-    private String address;
+    private Address address;
     @JsonProperty("phonenumber")
     private String phoneNumber;
     @JsonProperty("email")
@@ -46,11 +46,11 @@ public class Customer {
         this.cprNumber = cprNumber;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
