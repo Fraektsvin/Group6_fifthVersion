@@ -1,5 +1,6 @@
 package com.example.applicationtier.models;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Component;

@@ -1,46 +1,26 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace DatabaseTier.Models
 {
     public class Account
     {
-        [JsonPropertyName("amount")]
-
-        private int amount{ get; set; }
-        [JsonPropertyName("accountID")]
-
-        private int accountID{ get; set; }
+        [Key]
+        public long AccountNumber { get; set; }
+        [JsonPropertyName("balance")]
+        public double  Balance{ get; set; }
         [JsonPropertyName("date")]
+        public DateTime Date{ get; set; }
 
-        private string date{ get; set; }
-        [JsonPropertyName("TranasctionNR")]
-
-        private int TransactionNr{ get; set; }
-        [JsonPropertyName("username")]
-
-        private string Username{ get; set; }
-        [JsonPropertyName("password")]
-
-        private string password { get; set; }
-        
-        
-        
         public override string ToString()
         {
             return "Account{" +
-                   "amount=" + amount +
-                   "accountID=" + accountID +
-                   "date=" + date +
-                   "TranasctionNR=" + TransactionNr +
-                   "username=" + Username +
-                   "password=" + password +
+                   "accountnumber=" + AccountNumber +
+                   "balance=" + Balance +
                    '}';
             
         }
-
-
-        public Account()
-        {
-        }
+        
     }
 }
