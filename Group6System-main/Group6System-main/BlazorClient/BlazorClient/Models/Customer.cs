@@ -34,23 +34,6 @@ namespace BlazorClient.Models
 
         [JsonPropertyName("savedaccounts")]
         public IList<SavedAccounts> SavedAccounts { get; set; }
-
-        public Customer(string name, int cprNumber, Address address, string phoneNumber, string email, string nationality, string countryOfResidence, User user, Account account)
-        {
-            Name = name;
-            CprNumber = cprNumber;
-            Address = address;
-            PhoneNumber = phoneNumber;
-            Email = email;
-            Nationality = nationality;
-            CountryOfResidence = countryOfResidence;
-            User = user;
-            Account = account;
-            SavedAccounts = new List<SavedAccounts>();
-        }
-
-        public Customer()
-        {
-        }
+        
     }
 }

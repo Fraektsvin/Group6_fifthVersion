@@ -13,12 +13,5 @@ namespace BlazorClient.Models
         
         [JsonPropertyName("streetnumber")]
         public String StreetNumber { get; set; }
-        
-        public Address(City city, string streetName, string streetNumber)
-        {
-            City = city;
-            StreetName = streetName;
-            StreetNumber = streetNumber;
-        }
     }
 }

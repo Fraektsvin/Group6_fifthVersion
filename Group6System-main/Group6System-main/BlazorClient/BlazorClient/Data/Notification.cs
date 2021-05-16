@@ -8,7 +8,7 @@ namespace BlazorClient.Data
 {
     public class Notification
     {
-        private readonly HttpClient _client = new HttpClient();
+        /*private readonly HttpClient _client = new HttpClient();
         private string path = "http://localhost:8080";
 
         public async Task<String> GetNotifications(User username)
@@ -23,8 +23,8 @@ namespace BlazorClient.Data
                 });
                 return message;
             }
-            
+
             throw new Exception(response.Content.ReadAsStringAsync().Result);
-        }
+        }*/
     }
 }
