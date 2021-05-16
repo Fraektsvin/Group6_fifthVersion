@@ -541,7 +541,6 @@ C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6Syst
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\Customers.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
-C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
@@ -554,7 +553,6 @@ C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6Syst
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\Customers.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
-C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
