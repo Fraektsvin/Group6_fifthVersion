@@ -21,10 +21,10 @@
                 </div>
                 <div style="color:red">@ErrorMessage</div>
                 <button disabled="@_loading" class="btn btn-light">
-                   <!-- @if (_loading) 
+                    @if (_loading) 
                     {
                        <span class="spinner-border spinner-border-sm mr-1"></span>
-                   }-->
+                   }
                    <a href="" @onclick="PerformLoginAsync">Login</a> 
                 </button>
                 
@@ -54,7 +54,7 @@
 
     public async Task PerformLoginAsync()
     {
-        _loading = true;
+       _loading = true;
         try
         {
             await ((CustomAuthenticationStateProvider) _authenticationStateProvider).ValidateLoginAsync(_username, _password);

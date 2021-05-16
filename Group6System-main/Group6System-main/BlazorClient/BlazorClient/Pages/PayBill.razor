@@ -1,0 +1,47 @@
+﻿@page "/PayBill"
+
+<div class="card">
+    <h4 class="card-header">Pay Bill</h4>
+    <div class="card-body">
+        <div class="form-group row">
+            <label class="col-form-label">Account number:</label>
+            <input type="text" placeholder="account number" @bind-value="AccountNumber"/>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label">Reg no:</label>
+            <input type="password" placeholder="reg no" @bind-value="RegNo"/>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label">Account Holder's Name:</label>
+            <input type="password" placeholder="name" @bind-value="AccountName"/>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label">Invoice Number:</label>
+            <input type="password" placeholder="invoice number" @bind-value="InvoiceNumber"/>
+        </div>
+
+        <div style="color:red">@ErrorMessage</div>
+        <button disabled="@_loading" class="btn btn-light">
+            @if (_loading) 
+            {
+                <span class="spinner-border spinner-border-sm mr-1"></span>
+            }
+            <a href="" @onclick="PayBillAsync">Submit</a> 
+        </button>
+    </div>
+</div>
+
+@code {
+    private long AccountNumber;
+    private int RegNo;
+    private String AccountName;
+    private long InvoiceNumber;
+    private bool _loading;
+    private string ErrorMessage { get; set; }
+
+    private void PayBillAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+}
