@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Persistence;
-using DatabaseTier.Repository.CustomerREPO;
 using Microsoft.EntityFrameworkCore;
 
-namespace DatabaseTier.Repository
+namespace DatabaseTier.Repository.CustomerREPO
 {
     public class CustomerRepository:ICustomerRepository
     {
