@@ -14,5 +14,4 @@ public class ApplicationTierApplication  {
 
         SpringApplication.run(ApplicationTierApplication.class, args);
     }
-
 }

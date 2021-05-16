@@ -22,6 +22,8 @@ namespace DatabaseTier.Models
         public string CountryOfResidence { get; set; }
         [JsonPropertyName("user")]
         public User User { get; set; }
+        [JsonPropertyName("account")]
+        public Account Account{ get; set; }
 
         public Customer()
         {
@@ -39,6 +41,7 @@ namespace DatabaseTier.Models
                    ", nationality='" + Nationality + '\'' +
                    ", countryOfResidence='" + CountryOfResidence + '\'' +
                    ", user=" + User +
+                   ", account='" + Account +
                    '}';
         }
     }
