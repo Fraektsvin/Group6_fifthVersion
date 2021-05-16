@@ -38,7 +38,6 @@ namespace BlazorClient
             
             services.AddAuthorization(options =>
             {
-               
             });
         }
 

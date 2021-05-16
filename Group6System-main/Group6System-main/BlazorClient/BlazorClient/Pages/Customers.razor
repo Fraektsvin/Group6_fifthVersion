@@ -8,62 +8,106 @@
 <EditForm Model="@newCustomer" OnValidSubmit="@RegisterCustomer">
     <ValidationSummary/>
     <DataAnnotationsValidator/>
-    <div class="col-sm-5">
-        CPR Number:<br/>
-        <InputNumber @bind-Value="newCustomer.CprNumber"/>
+    <div class="card">
+        <h4 class="card-header">Register as a Customer</h4>
+        
+        <div class="card-body">
+            <div class="col-sm-5">
+                CPR Number:<br/>
+                <InputNumber @bind-Value="newCustomer.CprNumber"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id="Name" class="form-control" placeholder="Name"
+                           @bind-Value="newCustomer.Name"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id="StreetName" class="form-control" placeholder="Street name"
+                           @bind-Value="newCustomer.Address.StreetName"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id="StreetNumber" class="form-control" placeholder="Street number"
+                           @bind-Value="newCustomer.Address.StreetNumber"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id="ZipCode" class="form-control" placeholder="Zip Code"
+                           @bind-Value="newCustomer.Address.City.ZipCode"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id="CityName" class="form-control" placeholder="City name"
+                           @bind-Value="newCustomer.Address.City.CityName"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id="Email" class="form-control" placeholder="Email"
+                           @bind-Value="newCustomer.Email"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id="PhoneNumber" class="form-control" placeholder="PhoneNumber"
+                           @bind-Value="newCustomer.PhoneNumber"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id="Nationality" class="form-control" placeholder="Nationality"
+                           @bind-Value="newCustomer.Nationality"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id ="Residence" class="form-control" placeholder="Residence"
+                           @bind-Value="newCustomer.CountryOfResidence"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id ="Username" class="form-control" placeholder="Username"
+                           @bind-Value="newCustomer.User.Username"/>
+            </div>
+            <br/>
+            <div class="col-sm-7">
+                <InputText id ="Password" class="form-control" placeholder="Password"
+                           @bind-Value="newCustomer.User.Password"/>
+            </div>
+            <br/>
+            
+            <div style="color:red">@ErrorMessage</div>
+            
+            <button disabled="@_loading" class="btn btn-light" type="submit">Register
+                @if (_loading) 
+                {
+                    <span class="spinner-border spinner-border-sm mr-1"></span>
+                }
+            </button>
+            
+            @*<p class="action">
+                <button class="btn btn-outline-dark" >Register</button>
+            </p>*@
+            
+        </div>
     </div>
-    <br/>
-    <div class="col-sm-7">
-        <InputText id="Name" class="form-control" placeholder="Name"
-                   @bind-Value="newCustomer.Name"/>
-    </div>
-    <br/>
-    <div class="col-sm-7">
-        <InputText id="Address" class="form-control" placeholder="Address"
-                   @bind-Value="newCustomer.Address"/>
-    </div>
-    <br/>
-    <div class="col-sm-7">
-        <InputText id="Email" class="form-control" placeholder="Email"
-                   @bind-Value="newCustomer.Email"/>
-    </div>
-    <br/>
-    <div class="col-sm-7">
-        <InputText id="PhoneNumber" class="form-control" placeholder="PhoneNumber"
-                   @bind-Value="newCustomer.PhoneNumber"/>
-    </div>
-    <br/>
-    <div class="col-sm-7">
-        <InputText id="Nationality" class="form-control" placeholder="Nationality"
-                   @bind-Value="newCustomer.Nationality"/>
-    </div>
-    <br/>
-    <div class="col-sm-7">
-        <InputText id ="Residence" class="form-control" placeholder="Residence"
-                   @bind-Value="newCustomer.CountryOfResidence"/>
-    </div>
-   <br/>
-     <div class="col-sm-7">
-        <InputText id ="Username" class="form-control" placeholder="Username"
-                   @bind-Value="newCustomer.User.Username"/>
-    </div>
-    <br/>
-    <div class="col-sm-7">
-        <InputText id ="Password" class="form-control" placeholder="Password"
-                   @bind-Value="newCustomer.User.Password"/>
-    </div>
-    <br/>
-    <p class="action">
-           <button class="btn btn-outline-dark" type="submit">Register</button>
-       </p>
 </EditForm>
 
 
 @code {
     private Customer newCustomer = new Customer();
+    private string ErrorMessage { get; set; }
+    private bool _loading;
 
     private void RegisterCustomer()
     {
-        service.AddCustomerAsync(newCustomer);
+        _loading = true;
+        try
+        {
+            service.AddCustomerAsync(newCustomer);
+        }
+        catch (Exception e)
+        {
+            ErrorMessage = e.Message;
+            _loading = false;
+            Console.WriteLine(ErrorMessage);
+        }
     }
 }

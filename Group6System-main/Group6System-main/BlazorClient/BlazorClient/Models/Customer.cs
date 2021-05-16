@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BlazorClient.Models
 {
@@ -9,25 +10,47 @@ namespace BlazorClient.Models
         
         [JsonPropertyName("cprnumber")]
         public int CprNumber { get; set; }
+        
         [JsonPropertyName("address")]
-        public string Address { get; set; }
+        public Address Address { get; set; }
+        
         [JsonPropertyName("phonenumber")]
         public string PhoneNumber { get; set; }
+        
         [JsonPropertyName("email")]
         public string Email { get; set; }
+        
         [JsonPropertyName("nationality")]
         public string Nationality { get; set; }
+        
         [JsonPropertyName("countryofresidence")]
         public string CountryOfResidence { get; set; }
+        
         [JsonPropertyName("user")]
         public User User { get; set; }
+        
         [JsonPropertyName("account")]
-
         public Account Account{ get; set; }
+
+        [JsonPropertyName("savedaccounts")]
+        public IList<SavedAccounts> SavedAccounts { get; set; }
+
+        public Customer(string name, int cprNumber, Address address, string phoneNumber, string email, string nationality, string countryOfResidence, User user, Account account)
+        {
+            Name = name;
+            CprNumber = cprNumber;
+            Address = address;
+            PhoneNumber = phoneNumber;
+            Email = email;
+            Nationality = nationality;
+            CountryOfResidence = countryOfResidence;
+            User = user;
+            Account = account;
+            SavedAccounts = new List<SavedAccounts>();
+        }
 
         public Customer()
         {
-            User = new User();
         }
     }
 }

@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorClient.Shared
+namespace BlazorClient.Pages
 {
     #line hidden
     using System;
@@ -82,7 +82,8 @@ using BlazorClient.Shared;
 #line default
 #line hidden
 #nullable disable
-    public partial class MainLayout : LayoutComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/PayBill")]
+    public partial class PayBill : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -90,24 +91,24 @@ using BlazorClient.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 12 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Shared\MainLayout.razor"
- 
-    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+#line 34 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\PayBill.razor"
+       
+    private long AccountNumber;
+    private int RegNo;
+    private String AccountName;
+    private long InvoiceNumber;
+    private bool _loading;
+    private string ErrorMessage { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    private void PayBillAsync()
     {
-        await base.OnInitializedAsync();
-        var user = (await AuthStat).User;
-        if (!user.Identity.IsAuthenticated)
-        {
-           NavigationManager.NavigateTo($"/Login");
-        }
+        throw new NotImplementedException();
     }
+
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

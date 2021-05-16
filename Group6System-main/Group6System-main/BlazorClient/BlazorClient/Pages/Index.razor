@@ -1,7 +1,28 @@
 ﻿@page "/"
+@using BlazorClient.Data
+@using BlazorClient.Authentication
+@using BlazorClient.Models
 
-<h1>Hello, world!</h1>
+@inject Notification Notification
 
-Welcome to your new app.
+<h2> Sparekassen Kronjylland </h2>
 
-<SurveyPrompt Title="How is Blazor working for you?"/>
+<h4> Our doors are open </h4>
+
+<p>We are still happy to help you over the phone and email, so we can continue to take good care of each other.</p>
+
+<AuthorizeView>
+    <Authorized>
+        <button @onclick="@(ShowNotification)">Show Notification</button>
+    </Authorized>
+    
+    
+</AuthorizeView>
+
+@code {
+    
+    private void ShowNotification()
+    {
+       // Notification.GetNotifications();
+    }
+}
