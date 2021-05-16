@@ -1,9 +1,7 @@
 ﻿@page "/"
 @using BlazorClient.Data
-@using BlazorClient.Authentication
-@using BlazorClient.Models
 
-@inject Notification Notification
+
 
 <h2> Sparekassen Kronjylland </h2>
 
@@ -11,7 +9,7 @@
 
 <p>We are still happy to help you over the phone and email, so we can continue to take good care of each other.</p>
 
-<AuthorizeView>
+@*<AuthorizeView>
     <Authorized>
         <button @onclick="@(ShowNotification)">Show Notification</button>
     </Authorized>
@@ -25,4 +23,4 @@
     {
        // Notification.GetNotifications();
     }
-}
+}*@

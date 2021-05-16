@@ -8,7 +8,6 @@ namespace DatabaseTier.Models
         [Key]
         [JsonPropertyName("streetname")]
         public string StreetName { get; set; }
-        [Key]
         [JsonPropertyName("streetnumber")]
         public string StreetNumber { get; set; }
         

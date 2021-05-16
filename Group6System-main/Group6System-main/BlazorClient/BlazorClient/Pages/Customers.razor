@@ -5,7 +5,7 @@
 @inject ICustomerService service
 
 <h3>Register</h3>
-<EditForm Model="@newCustomer" OnValidSubmit="@RegisterCustomer">
+<EditForm Model="@_addNewCustomer" OnValidSubmit="@RegisterCustomer">
     <ValidationSummary/>
     <DataAnnotationsValidator/>
     <div class="card">
@@ -14,62 +14,62 @@
         <div class="card-body">
             <div class="col-sm-5">
                 CPR Number:<br/>
-                <InputNumber @bind-Value="newCustomer.CprNumber"/>
+                <InputNumber @bind-Value="_addNewCustomer.CprNumber"/>
             </div>
             <br/>
             <div class="col-sm-7">
                 <InputText id="Name" class="form-control" placeholder="Name"
-                           @bind-Value="newCustomer.Name"/>
+                           @bind-Value="_addNewCustomer.Name"/>
             </div>
             <br/>
             <div class="col-sm-7">
                 <InputText id="StreetName" class="form-control" placeholder="Street name"
-                           @bind-Value="newCustomer.Address.StreetName"/>
+                           @bind-Value="_newAddressToAdd.StreetName"/>
             </div>
             <br/>
             <div class="col-sm-7">
                 <InputText id="StreetNumber" class="form-control" placeholder="Street number"
-                           @bind-Value="newCustomer.Address.StreetNumber"/>
+                           @bind-Value="_newAddressToAdd.StreetNumber"/>
             </div>
             <br/>
-            <div class="col-sm-7">
-                <InputText id="ZipCode" class="form-control" placeholder="Zip Code"
-                           @bind-Value="newCustomer.Address.City.ZipCode"/>
+            <div class="col-sm-5">
+                ZipCode
+                <InputNumber @bind-Value="_newCityToAdd.ZipCode"/>
             </div>
             <br/>
             <div class="col-sm-7">
                 <InputText id="CityName" class="form-control" placeholder="City name"
-                           @bind-Value="newCustomer.Address.City.CityName"/>
+                           @bind-Value="_newCityToAdd.CityName"/>
             </div>
             <br/>
             <div class="col-sm-7">
                 <InputText id="Email" class="form-control" placeholder="Email"
-                           @bind-Value="newCustomer.Email"/>
+                           @bind-Value="_addNewCustomer.Email"/>
             </div>
             <br/>
             <div class="col-sm-7">
                 <InputText id="PhoneNumber" class="form-control" placeholder="PhoneNumber"
-                           @bind-Value="newCustomer.PhoneNumber"/>
+                           @bind-Value="_addNewCustomer.PhoneNumber"/>
             </div>
             <br/>
             <div class="col-sm-7">
                 <InputText id="Nationality" class="form-control" placeholder="Nationality"
-                           @bind-Value="newCustomer.Nationality"/>
+                           @bind-Value="_addNewCustomer.Nationality"/>
             </div>
             <br/>
             <div class="col-sm-7">
                 <InputText id ="Residence" class="form-control" placeholder="Residence"
-                           @bind-Value="newCustomer.CountryOfResidence"/>
+                           @bind-Value="_addNewCustomer.CountryOfResidence"/>
             </div>
             <br/>
             <div class="col-sm-7">
                 <InputText id ="Username" class="form-control" placeholder="Username"
-                           @bind-Value="newCustomer.User.Username"/>
+                           @bind-Value="_newUserToAdd.Username"/>
             </div>
             <br/>
             <div class="col-sm-7">
                 <InputText id ="Password" class="form-control" placeholder="Password"
-                           @bind-Value="newCustomer.User.Password"/>
+                           @bind-Value="_newUserToAdd.Password"/>
             </div>
             <br/>
             
@@ -82,9 +82,9 @@
                 }
             </button>
             
-            @*<p class="action">
+            <p class="action">
                 <button class="btn btn-outline-dark" >Register</button>
-            </p>*@
+            </p>
             
         </div>
     </div>
@@ -92,16 +92,23 @@
 
 
 @code {
-    private Customer newCustomer = new Customer();
+    private readonly Customer _addNewCustomer = new Customer();
+    private readonly Address _newAddressToAdd = new Address();
+    private readonly City _newCityToAdd = new City();
+    private readonly User _newUserToAdd = new User();
     private string ErrorMessage { get; set; }
     private bool _loading;
 
-    private void RegisterCustomer()
+    private async Task RegisterCustomer()
     {
         _loading = true;
         try
         {
-            service.AddCustomerAsync(newCustomer);
+            _newAddressToAdd.City = _newCityToAdd;
+            _addNewCustomer.Address = _newAddressToAdd;
+            _addNewCustomer.User = _newUserToAdd;
+            await service.AddCustomerAsync(_addNewCustomer);
+            Console.WriteLine("Register new client-----> " + _addNewCustomer);
         }
         catch (Exception e)
         {
