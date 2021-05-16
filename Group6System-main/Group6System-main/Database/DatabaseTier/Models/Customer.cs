@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace DatabaseTier.Models
@@ -20,7 +21,6 @@ namespace DatabaseTier.Models
         public string Nationality { get; set; }
         [JsonPropertyName("countryofresidence")]
         public string CountryOfResidence { get; set; }
-       
         public User User { get; set; }
         public Account CustomerAccount{ get; set; }
         public IList<SavedAccounts> SavedAccountsList { get; set; }

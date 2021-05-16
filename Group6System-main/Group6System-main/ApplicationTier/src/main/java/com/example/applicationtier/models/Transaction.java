@@ -1,9 +1,11 @@
 package com.example.applicationtier.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public class Transaction {
 
     @JsonProperty("sender")

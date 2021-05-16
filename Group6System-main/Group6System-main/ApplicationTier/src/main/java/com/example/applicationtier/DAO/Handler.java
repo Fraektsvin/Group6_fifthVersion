@@ -66,7 +66,7 @@ public class Handler implements Runnable {
             int bytesRead = input.read(dataFromClient, 0, dataFromClient.length);
             String readObj = new String(dataFromClient);
             Request finalObj = objectMapper.readValue(readObj, Request.class);
-            System.out.println("back from the db to the handler --> " + readObj);
+            //System.out.println("back from the db to the handler --> " + readObj);
             return finalObj; }
         catch (IOException e) {
             throw new RuntimeException(e.getMessage());

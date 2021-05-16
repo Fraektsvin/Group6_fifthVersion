@@ -5,6 +5,7 @@ namespace BlazorClient.Models
 {
     public class User
     {
+        public int Id { get; set; }
         [Required]
         [JsonPropertyName("username")]
         public string Username { get; set; }

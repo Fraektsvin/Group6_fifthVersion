@@ -5,7 +5,10 @@ namespace DatabaseTier.Models
 {
     public class User
     {
-        [Required, Key]
+        [Key]
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+        
         [JsonPropertyName("username")]
         public string Username { get; set; }
         [Required]
