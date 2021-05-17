@@ -32,8 +32,6 @@ namespace DatabaseTier.Models
         [JsonPropertyName("user")]
         public User User { get; set; }
         
-        [JsonPropertyName("account")]
-        public Account CustomerAccount{ get; set; }
         
         [JsonPropertyName("savedaccounts")]
         public IList<SavedAccounts> SavedAccountsList { get; set; }
@@ -42,7 +40,6 @@ namespace DatabaseTier.Models
         {
             Address = new Address();
             User = new User();
-            CustomerAccount = new Account();
             SavedAccountsList = new List<SavedAccounts>();
         }
         public override string ToString()
@@ -60,8 +57,6 @@ namespace DatabaseTier.Models
                    "countryofresidence=" + CountryOfResidence +
                    "username=" + User.Username +
                    "password=" + User.Password +
-                   "accountnumber=" + CustomerAccount.AccountNumber +
-                   "balance" + CustomerAccount.Balance +
                    '}'; 
         }
     }

@@ -59,14 +59,24 @@ namespace DatabaseTier.Protocol
             
                 switch (request.Header)
                 {
+                    //User
+                    //For login
                     case "CheckLogin":
-                        //Console.WriteLine("step 1 --> from the socket"+request.Obj);
                         return new Request("CheckLogin", await RepositoryFactory.GetUserRepository().ValidateUserAsync(ToObject<User>((JsonElement) request.Obj)));
-                    case "GetAllCustomers":
-                       return new Request("GetAllCustomers", await RepositoryFactory.GetCustomerRepository().GetAllAsync());
+                    
+                    //Customers
+                    // get customer with username
+                    case "GetCustomer":
+                       return new Request("GetCustomer", await RepositoryFactory.GetCustomerRepository().GetCustomer(ToObject<String>((JsonElement) request.Obj)));
+                    
+                    //get customer with cprnumber
+                    case "GetCustomerWithCpr":
+                        return new Request("GetCustomerWithCpr", await RepositoryFactory.GetCustomerRepository().GetCustomer(ToObject<int>((JsonElement) request.Obj)));
+                    
+                    //Add customer
                     case "AddCustomer":
-                        //Console.WriteLine("inside the socketHandler" + request.Obj);
                         return new Request("AddCustomer", await RepositoryFactory.GetCustomerRepository().AddCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
+                    
                     case "UpdateCustomer" :
                         return new Request("UpdateCustomer",
                             await RepositoryFactory.GetCustomerRepository().UpdateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));

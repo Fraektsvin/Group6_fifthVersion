@@ -8,7 +8,11 @@ namespace DatabaseTier.Models
     {
         [Key]
         public int TransactionNumber { get; set; }
-        public Customer Sender { get; set; }
+        
+        [JsonPropertyName("sender")]
+        public Account Sender { get; set; }
+        
+        [JsonPropertyName("receiver")]
         public Account Receiver { get; set; }
         [JsonPropertyName("amount")]
         public double Amount { get; set; }
@@ -20,14 +24,14 @@ namespace DatabaseTier.Models
 
         public Transaction()
         {
-            Sender = new Customer();
+            Sender = new Account();
             Receiver = new Account();
         }
         public override string ToString()
         {
             return "Transaction{" +
                    "transactionnumber=" + TransactionNumber +
-                   "sender=" + Sender.CustomerAccount +
+                   "sender=" + Sender.AccountNumber +
                    "receiver=" + Receiver.AccountNumber +
                    "amount=" + Amount +
                    "message=" + Message +

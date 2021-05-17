@@ -5,14 +5,27 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Address {
+    @JsonProperty("addressid")
+    private int id;
+
     @JsonProperty("city")
     private City city;
+
     @JsonProperty("streetname")
     private String streetName;
+
     @JsonProperty("streetnumber")
     private String streetNumber;
 
     public Address(){};
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public City getCity() {
         return city;
@@ -41,7 +54,8 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "city=" + city +
+                "id=" + id +
+                ", city=" + city +
                 ", streetName='" + streetName + '\'' +
                 ", streetNumber='" + streetNumber + '\'' +
                 '}';

@@ -5,6 +5,9 @@ namespace BlazorClient.Models
 {
     public class Address
     {
+        [JsonPropertyName("addressid")]
+        public int Id { get; set; }
+        
         [JsonPropertyName("city")]
         public City City { get; set; }
         
