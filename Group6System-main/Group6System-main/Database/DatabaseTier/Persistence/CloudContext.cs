@@ -7,11 +7,11 @@ namespace DatabaseTier.Persistence
     public class CloudContext:DbContext
     {
         public virtual DbSet<User> UsersTable { get; set; }
-        public virtual DbSet<Customer> CustomersTable { get; set; }
         public virtual DbSet<City> CityTable { get; set; }
         public virtual DbSet<Address> AddressTable { get; set;}
         public virtual DbSet<Account> AccountTable { get; set; }
         public virtual DbSet<SavedAccounts> SavedAccountsTable { get; set; }
+        public virtual DbSet<Customer> CustomersTable { get; set; }
         public virtual DbSet<Transaction> TransactionTable { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,10 +26,10 @@ namespace DatabaseTier.Persistence
             modelBuilder.Entity<Customer>().HasOne(a => a.Address);
             modelBuilder.Entity<Customer>().HasOne(c => c.User);
             
-            // modelBuilder.Entity<Address>().HasKey(a => new
-            // {
-            //     a.StreetName, a.StreetNumber
-            // });
+             modelBuilder.Entity<Address>().HasKey(a => new
+             {
+                 a.StreetName, a.StreetNumber
+             });
 
         }
     }

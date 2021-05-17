@@ -9,16 +9,22 @@ import java.util.List;
 public class Customer {
     @JsonProperty("name")
     private String name;
+
     @JsonProperty("cprnumber")
     private int cprNumber;
+
     @JsonProperty("address")
     private Address address;
+
     @JsonProperty("phonenumber")
     private String phoneNumber;
+
     @JsonProperty("email")
     private String email;
+
     @JsonProperty("nationality")
     private String nationality;
+
     @JsonProperty("countryofresidence")
     private String countryOfResidence;
 
@@ -27,6 +33,7 @@ public class Customer {
 
     @JsonProperty("customeraccount")
     private Account customerAccount;
+
     @JsonProperty("savedaccounts")
     private List<SavedAccounts> savedAccounts;
 
