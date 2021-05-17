@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorClient.Shared
+namespace BlazorClient.Pages
 {
     #line hidden
     using System;
@@ -83,13 +83,28 @@ using BlazorClient.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Shared\NavMenu.razor"
-using BlazorClient.Authentication;
+#line 3 "C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\AdminValidation.razor"
+using BlazorClient.Models;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 4 "C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\AdminValidation.razor"
+using BlazorClient.Data.CustomerService;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\AdminValidation.razor"
+           [Authorize(Policy = "admin")]
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/AdminValidation")]
+    public partial class AdminValidation : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -97,31 +112,47 @@ using BlazorClient.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 35 "C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Shared\NavMenu.razor"
+#line 76 "C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\AdminValidation.razor"
        
-    private bool collapseNavMenu = true;
+    private IList<Customer> _customersToShow = new List<Customer>();
+    private IList<Customer> _customers = new List<Customer>();
+    private bool? _filterByValidCustomers;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+    protected override async Task OnInitializedAsync()
     {
-        collapseNavMenu = !collapseNavMenu;
+        _customersToShow = await _service.GetAllCustomersAsync();
     }
 
-    private void PerformLogin()
+    private async Task RemoveCustomerAsync(int cprNumber)
     {
-        NavMgr.NavigateTo("/Login");
+        await _service.RemoveCustomerAsync(cprNumber);
+        Customer customerToRemove = _customers.FirstOrDefault(c => c.CprNumber == cprNumber);
+        _customersToShow.Remove(customerToRemove);
+        _customers.Remove(customerToRemove);
     }
-    
-    private void PerformLogout()
+
+    private async Task ValidateCustomerAsync(ChangeEventArgs evt, Customer customer)
     {
+       customer.IsValid = (bool) evt.Value;
+        await _service.UpdateCustomerAsync(customer);
+    }
+
+    private void ExecuteFilter()
+    {
+        _customersToShow = _customers.Where
+            (c => (_filterByValidCustomers != null && c.IsValid == _filterByValidCustomers)).ToList();
+    }
+
+    private async Task FilterByValidCustomers(ChangeEventArgs evt)
+    {
+         _filterByValidCustomers = null;
         try
         {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavMgr.NavigateTo("/Login");
+            _filterByValidCustomers = bool.Parse(evt.Value.ToString());
         }
         catch (Exception e)
         {
+            ExecuteFilter();
         }
     }
 
@@ -129,8 +160,8 @@ using BlazorClient.Authentication;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavMgr { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICustomerService _service { get; set; }
     }
 }
 #pragma warning restore 1591

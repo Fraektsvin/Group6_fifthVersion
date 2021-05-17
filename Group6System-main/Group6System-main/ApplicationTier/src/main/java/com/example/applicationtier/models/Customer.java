@@ -31,10 +31,21 @@ public class Customer {
     @JsonProperty("user")
     private User user;
 
+    @JsonProperty("isvalid")
+    private boolean isValid;
+
     @JsonProperty("savedaccounts")
     private List<SavedAccounts> savedAccounts;
 
     public Customer(){}
+
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
 
     public String getName() {
         return name;

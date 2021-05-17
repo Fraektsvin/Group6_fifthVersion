@@ -7,13 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class CustomerController {
     @Autowired
     private CustomerService service;
 
     @PostMapping("/createNewCustomer")
-    public ResponseEntity RegisterCustomer(@RequestBody Customer customer) {
+    public ResponseEntity registerCustomer(@RequestBody Customer customer) {
         /*try {
             String successMessage = service.registerCustomer(customer);
 
@@ -27,13 +29,19 @@ public class CustomerController {
         return new ResponseEntity<>(returnMessage, HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteCustomer")
-    public void deleteUser(@RequestHeader String name) {
-        service.deleteCustomer(name);
+    @GetMapping("/getCustomers")
+    public ResponseEntity getAllCustomers(){
+        List<Customer> allCustomers = service.getAllCustomers();
+        return new ResponseEntity<>(allCustomers, HttpStatus.OK);
+    }
+    @DeleteMapping("/removeCustomer")
+    public void deleteUser(@RequestHeader int cprNumber) {
+        service.removeCustomer(cprNumber);
     }
 
     @PutMapping("/updateCustomer")
-    public void updateUser(@RequestBody Customer customer){
-        service.updateCustomer(customer);
+    public ResponseEntity updateUser(@RequestBody Customer customer){
+        String message = service.updateCustomer(customer);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 }

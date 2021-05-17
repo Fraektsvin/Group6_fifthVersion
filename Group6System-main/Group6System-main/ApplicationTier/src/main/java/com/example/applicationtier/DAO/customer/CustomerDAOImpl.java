@@ -3,10 +3,13 @@ package com.example.applicationtier.DAO.customer;
 import com.example.applicationtier.DAO.Handler;
 import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.models.Request;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class CustomerDAOImpl implements CustomerDAO{
@@ -49,5 +52,17 @@ public class CustomerDAOImpl implements CustomerDAO{
             return customer;
         }
         return null;
+    }
+
+    @Override
+    public List<Customer> getAllCustomers() {
+        Request obj = new Request("GetAllCustomers");
+        handler.setObj(obj);
+
+        Request response = handler.messageExchange(obj);
+        List<Customer> customers = objectMapper.convertValue(response.getObj(),
+                new TypeReference<List<Customer>>() {
+        });
+        return customers;
     }
 }

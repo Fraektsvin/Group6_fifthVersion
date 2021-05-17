@@ -38,6 +38,8 @@ namespace BlazorClient
             
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("Admin", policy => 
+                    policy.RequireAuthenticatedUser().RequireClaim("Role", "admin"));
             });
         }
 

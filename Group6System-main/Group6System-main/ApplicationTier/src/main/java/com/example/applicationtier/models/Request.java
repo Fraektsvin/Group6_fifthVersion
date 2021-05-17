@@ -4,9 +4,11 @@ public class Request {
     private String header;
     private Object obj;
 
-    public Request(){
-
+    public Request(String header){
+        this.header = header;
+        obj = null;
     }
+    public Request(){}
 
     public Request(String header, Object obj) {
         this.header = header;
