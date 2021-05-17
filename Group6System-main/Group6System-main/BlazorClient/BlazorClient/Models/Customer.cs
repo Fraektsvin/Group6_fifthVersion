@@ -28,9 +28,6 @@ namespace BlazorClient.Models
         
         [JsonPropertyName("user")]
         public User User { get; set; }
-        
-        [JsonPropertyName("account")]
-        public Account Account{ get; set; }
 
         [JsonPropertyName("savedaccounts")]
         public IList<SavedAccounts> SavedAccounts { get; set; }

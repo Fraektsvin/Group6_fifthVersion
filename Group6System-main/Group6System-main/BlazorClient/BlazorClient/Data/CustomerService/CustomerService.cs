@@ -12,13 +12,12 @@ namespace BlazorClient.Data.CustomerService
         private readonly HttpClient _client = new HttpClient();
         private string path = "http://localhost:8080";
         
-        public async Task AddCustomerAsync(Customer user)
+        public async Task<String> AddCustomerAsync(Customer user)
         {
             string AsJson = JsonSerializer.Serialize(user, new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
-            
             
             StringContent content = new StringContent(
                 AsJson,Encoding.UTF8, "application/json");
@@ -28,10 +27,8 @@ namespace BlazorClient.Data.CustomerService
             {
                 Console.WriteLine(response.StatusCode);
             }
-            else
-            {
-                Console.WriteLine($@"Error: {response.StatusCode}, {response.ReasonPhrase}");
-            }
+
+            throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
     }
 }

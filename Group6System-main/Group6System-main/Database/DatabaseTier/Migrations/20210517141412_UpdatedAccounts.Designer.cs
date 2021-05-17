@@ -3,15 +3,17 @@ using System;
 using DatabaseTier.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DatabaseTier.Migrations
 {
     [DbContext(typeof(CloudContext))]
-    partial class CloudContextModelSnapshot : ModelSnapshot
+    [Migration("20210517141412_UpdatedAccounts")]
+    partial class UpdatedAccounts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,21 +41,16 @@ namespace DatabaseTier.Migrations
 
             modelBuilder.Entity("DatabaseTier.Models.Address", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int?>("CityZipCode")
-                        .HasColumnType("integer");
-
                     b.Property<string>("StreetName")
                         .HasColumnType("text");
 
                     b.Property<string>("StreetNumber")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("CityZipCode")
+                        .HasColumnType("integer");
+
+                    b.HasKey("StreetName", "StreetNumber");
 
                     b.HasIndex("CityZipCode");
 
@@ -82,8 +79,11 @@ namespace DatabaseTier.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("integer");
+                    b.Property<string>("AddressStreetName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AddressStreetNumber")
+                        .HasColumnType("text");
 
                     b.Property<string>("CountryOfResidence")
                         .HasColumnType("text");
@@ -105,9 +105,9 @@ namespace DatabaseTier.Migrations
 
                     b.HasKey("CprNumber");
 
-                    b.HasIndex("AddressId");
-
                     b.HasIndex("Username");
+
+                    b.HasIndex("AddressStreetName", "AddressStreetNumber");
 
                     b.ToTable("CustomersTable");
                 });
@@ -199,13 +199,13 @@ namespace DatabaseTier.Migrations
 
             modelBuilder.Entity("DatabaseTier.Models.Customer", b =>
                 {
-                    b.HasOne("DatabaseTier.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
                     b.HasOne("DatabaseTier.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("Username");
+
+                    b.HasOne("DatabaseTier.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressStreetName", "AddressStreetNumber");
 
                     b.Navigation("Address");
 

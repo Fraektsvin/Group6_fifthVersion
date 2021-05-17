@@ -105,7 +105,7 @@ using BlazorClient.Data.CustomerService;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 94 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\Customers.razor"
+#line 89 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\Customers.razor"
        
     private readonly Customer _addNewCustomer = new Customer();
     private readonly Address _newAddressToAdd = new Address();
@@ -122,16 +122,14 @@ using BlazorClient.Data.CustomerService;
             _newAddressToAdd.City = _newCityToAdd;
             _addNewCustomer.Address = _newAddressToAdd;
             _addNewCustomer.User = _newUserToAdd;
-            await service.AddCustomerAsync(_addNewCustomer);
-            Console.WriteLine("Register new client-----> " + _addNewCustomer.ToString());
-            ErrorMessage = "Registration Complete";
+            String SuccessMessage = await service.AddCustomerAsync(_addNewCustomer);
+            ErrorMessage = SuccessMessage;
             _loading = false;
         }
         catch (Exception e)
         {
             ErrorMessage = e.Message;
             _loading = false;
-            Console.WriteLine(ErrorMessage);
         }
     }
 

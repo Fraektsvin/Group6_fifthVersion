@@ -31,11 +31,10 @@ public class Customer {
     @JsonProperty("user")
     private User user;
 
-    @JsonProperty("customeraccount")
-    private Account customerAccount;
-
     @JsonProperty("savedaccounts")
     private List<SavedAccounts> savedAccounts;
+
+    public Customer(){}
 
     public String getName() {
         return name;
@@ -101,14 +100,6 @@ public class Customer {
         this.user = user;
     }
 
-    public Account getCustomerAccount() {
-        return customerAccount;
-    }
-
-    public void setCustomerAccount(Account customerAccount) {
-        this.customerAccount = customerAccount;
-    }
-
     public List<SavedAccounts> getSavedAccounts() {
         return savedAccounts;
     }
@@ -128,7 +119,6 @@ public class Customer {
                 ", nationality='" + nationality + '\'' +
                 ", countryOfResidence='" + countryOfResidence + '\'' +
                 ", user=" + user +
-                ", customerAccount=" + customerAccount +
                 ", savedAccounts=" + savedAccounts +
                 '}';
     }
