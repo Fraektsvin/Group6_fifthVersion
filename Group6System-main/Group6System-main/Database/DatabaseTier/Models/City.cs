@@ -6,6 +6,8 @@ namespace DatabaseTier.Models
     public class City
     {
         [Key, Required]
+        [JsonPropertyName("cityid")]
+        public int Id { get; set; }
         [JsonPropertyName("zipcode")]
         public int ZipCode { get; set; }
         

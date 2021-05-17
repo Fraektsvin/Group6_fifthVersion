@@ -18,6 +18,7 @@ namespace DatabaseTier.Persistence
         {
             optionsBuilder.UseNpgsql("Host = hattie.db.elephantsql.com; Port = 5432; Database = qjqcxidp; Username = qjqcxidp; Password = U2Tl52Z6pKPT4yr9THTkmLDkmCEwB02u",
                 options => options.UseAdminDatabase("qjqcxidp"));
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,7 +26,26 @@ namespace DatabaseTier.Persistence
             modelBuilder.Entity<Address>().HasOne(a => a.City);
             modelBuilder.Entity<Customer>().HasOne(a => a.Address);
             modelBuilder.Entity<Customer>().HasOne(c => c.User);
-
+            /*
+            modelBuilder.Entity<Address>(cus =>
+            {
+                cus.OwnsOne(a => a.City,
+                    add =>
+                    {
+                        add.Property(c => c.CityName).IsRequired();
+                        add.Property(c => c.ZipCode).IsRequired();
+                    });
+            });
+            
+            modelBuilder.Entity<Customer>(cus =>
+            {
+                cus.OwnsOne(a => a.Address,
+                    add =>
+                    {
+                        add.Property(c => c.StreetName).IsRequired();
+                        add.Property(c => c.StreetNumber).IsRequired();
+                    });
+            });*/
         }
     }
 }
