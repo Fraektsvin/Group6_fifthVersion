@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DatabaseTier.Migrations
 {
-    public partial class CreateTables : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,14 +26,13 @@ namespace DatabaseTier.Migrations
                 name: "CityTable",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    ZipCode = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ZipCode = table.Column<int>(type: "integer", nullable: false),
                     CityName = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CityTable", x => x.Id);
+                    table.PrimaryKey("PK_CityTable", x => x.ZipCode);
                 });
 
             migrationBuilder.CreateTable(
@@ -86,16 +85,16 @@ namespace DatabaseTier.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     StreetName = table.Column<string>(type: "text", nullable: true),
                     StreetNumber = table.Column<string>(type: "text", nullable: true),
-                    CityId = table.Column<int>(type: "integer", nullable: true)
+                    CityZipCode = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AddressTable", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AddressTable_CityTable_CityId",
-                        column: x => x.CityId,
+                        name: "FK_AddressTable_CityTable_CityZipCode",
+                        column: x => x.CityZipCode,
                         principalTable: "CityTable",
-                        principalColumn: "Id",
+                        principalColumn: "ZipCode",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -159,9 +158,9 @@ namespace DatabaseTier.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddressTable_CityId",
+                name: "IX_AddressTable_CityZipCode",
                 table: "AddressTable",
-                column: "CityId");
+                column: "CityZipCode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomersTable_AddressId",

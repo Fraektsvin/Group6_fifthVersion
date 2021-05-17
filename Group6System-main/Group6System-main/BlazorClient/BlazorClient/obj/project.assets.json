@@ -8,26 +8,24 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\const\\.nuget\\packages\\": {}
+    "C:\\Users\\fatem\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\const\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
+      "projectUniqueName": "C:\\Users\\fatem\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
       "projectName": "BlazorClient",
-      "projectPath": "C:\\Users\\const\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
-      "packagesPath": "C:\\Users\\const\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\const\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\obj\\",
+      "projectPath": "C:\\Users\\fatem\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
+      "packagesPath": "C:\\Users\\fatem\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\fatem\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\const\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\fatem\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -63,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
