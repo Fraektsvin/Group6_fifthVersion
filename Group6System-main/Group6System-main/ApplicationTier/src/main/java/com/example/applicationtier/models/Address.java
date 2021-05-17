@@ -5,8 +5,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Address {
-    @JsonProperty("addressId")
-    private int addressId;
     @JsonProperty("city")
     private City city;
     @JsonProperty("streetname")

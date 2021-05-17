@@ -9,6 +9,7 @@ public class City {
 
     @JsonProperty("zipcode")
     private int zipCode;
+
     @JsonProperty("cityname")
     private String cityName;
 

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DatabaseTier.Migrations
 {
-    public partial class CreateTables : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,29 +39,25 @@ namespace DatabaseTier.Migrations
                 name: "UsersTable",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Username = table.Column<string>(type: "text", nullable: true),
+                    Username = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UsersTable", x => x.Id);
+                    table.PrimaryKey("PK_UsersTable", x => x.Username);
                 });
 
             migrationBuilder.CreateTable(
                 name: "AddressTable",
                 columns: table => new
                 {
-                    AddressId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    StreetName = table.Column<string>(type: "text", nullable: true),
-                    StreetNumber = table.Column<string>(type: "text", nullable: true),
+                    StreetName = table.Column<string>(type: "text", nullable: false),
+                    StreetNumber = table.Column<string>(type: "text", nullable: false),
                     CityZipCode = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AddressTable", x => x.AddressId);
+                    table.PrimaryKey("PK_AddressTable", x => new { x.StreetName, x.StreetNumber });
                     table.ForeignKey(
                         name: "FK_AddressTable_CityTable_CityZipCode",
                         column: x => x.CityZipCode,
@@ -77,12 +73,13 @@ namespace DatabaseTier.Migrations
                     CprNumber = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
-                    AddressId = table.Column<int>(type: "integer", nullable: true),
+                    AddressStreetName = table.Column<string>(type: "text", nullable: true),
+                    AddressStreetNumber = table.Column<string>(type: "text", nullable: true),
                     PhoneNumber = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
                     Nationality = table.Column<string>(type: "text", nullable: true),
                     CountryOfResidence = table.Column<string>(type: "text", nullable: true),
-                    UserId = table.Column<int>(type: "integer", nullable: true),
+                    Username = table.Column<string>(type: "text", nullable: true),
                     CustomerAccountAccountNumber = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
@@ -95,16 +92,16 @@ namespace DatabaseTier.Migrations
                         principalColumn: "AccountNumber",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CustomersTable_AddressTable_AddressId",
-                        column: x => x.AddressId,
+                        name: "FK_CustomersTable_AddressTable_AddressStreetName_AddressStreet~",
+                        columns: x => new { x.AddressStreetName, x.AddressStreetNumber },
                         principalTable: "AddressTable",
-                        principalColumn: "AddressId",
+                        principalColumns: new[] { "StreetName", "StreetNumber" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CustomersTable_UsersTable_UserId",
-                        column: x => x.UserId,
+                        name: "FK_CustomersTable_UsersTable_Username",
+                        column: x => x.Username,
                         principalTable: "UsersTable",
-                        principalColumn: "Id",
+                        principalColumn: "Username",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -172,9 +169,9 @@ namespace DatabaseTier.Migrations
                 column: "CityZipCode");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomersTable_AddressId",
+                name: "IX_CustomersTable_AddressStreetName_AddressStreetNumber",
                 table: "CustomersTable",
-                column: "AddressId");
+                columns: new[] { "AddressStreetName", "AddressStreetNumber" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomersTable_CustomerAccountAccountNumber",
@@ -182,9 +179,9 @@ namespace DatabaseTier.Migrations
                 column: "CustomerAccountAccountNumber");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomersTable_UserId",
+                name: "IX_CustomersTable_Username",
                 table: "CustomersTable",
-                column: "UserId");
+                column: "Username");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SavedAccountsTable_CustomerCprNumber",

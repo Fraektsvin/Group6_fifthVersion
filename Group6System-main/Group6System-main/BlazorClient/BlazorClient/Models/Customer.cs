@@ -13,7 +13,7 @@ namespace BlazorClient.Models
         
         [JsonPropertyName("address")]
         public Address Address { get; set; }
-        
+
         [JsonPropertyName("phonenumber")]
         public string PhoneNumber { get; set; }
         
@@ -34,6 +34,7 @@ namespace BlazorClient.Models
 
         [JsonPropertyName("savedaccounts")]
         public IList<SavedAccounts> SavedAccounts { get; set; }
+        
         
     }
 }

@@ -7,10 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class User {
    public User(){}
-
-    @JsonProperty("id")
-    @JsonSetter
-    private int Id;
     @JsonProperty("username")
     @JsonSetter
     private String username;

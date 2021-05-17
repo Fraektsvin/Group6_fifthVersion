@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatabaseTier.Migrations
 {
     [DbContext(typeof(CloudContext))]
-    [Migration("20210516211543_CreateTables")]
-    partial class CreateTables
+    [Migration("20210517113549_UpdateCityTable")]
+    partial class UpdateCityTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,21 +41,16 @@ namespace DatabaseTier.Migrations
 
             modelBuilder.Entity("DatabaseTier.Models.Address", b =>
                 {
-                    b.Property<int>("AddressId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int?>("CityZipCode")
-                        .HasColumnType("integer");
-
                     b.Property<string>("StreetName")
                         .HasColumnType("text");
 
                     b.Property<string>("StreetNumber")
                         .HasColumnType("text");
 
-                    b.HasKey("AddressId");
+                    b.Property<int?>("CityZipCode")
+                        .HasColumnType("integer");
+
+                    b.HasKey("StreetName", "StreetNumber");
 
                     b.HasIndex("CityZipCode");
 
@@ -84,8 +79,11 @@ namespace DatabaseTier.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("integer");
+                    b.Property<string>("AddressStreetName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AddressStreetNumber")
+                        .HasColumnType("text");
 
                     b.Property<string>("CountryOfResidence")
                         .HasColumnType("text");
@@ -105,16 +103,16 @@ namespace DatabaseTier.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
 
                     b.HasKey("CprNumber");
 
-                    b.HasIndex("AddressId");
-
                     b.HasIndex("CustomerAccountAccountNumber");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("Username");
+
+                    b.HasIndex("AddressStreetName", "AddressStreetNumber");
 
                     b.ToTable("CustomersTable");
                 });
@@ -183,19 +181,14 @@ namespace DatabaseTier.Migrations
 
             modelBuilder.Entity("DatabaseTier.Models.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Username")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
+                    b.HasKey("Username");
 
                     b.ToTable("UsersTable");
                 });
@@ -211,17 +204,17 @@ namespace DatabaseTier.Migrations
 
             modelBuilder.Entity("DatabaseTier.Models.Customer", b =>
                 {
-                    b.HasOne("DatabaseTier.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
                     b.HasOne("DatabaseTier.Models.Account", "CustomerAccount")
                         .WithMany()
                         .HasForeignKey("CustomerAccountAccountNumber");
 
                     b.HasOne("DatabaseTier.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("Username");
+
+                    b.HasOne("DatabaseTier.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressStreetName", "AddressStreetNumber");
 
                     b.Navigation("Address");
 

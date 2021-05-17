@@ -108,7 +108,9 @@
             _addNewCustomer.Address = _newAddressToAdd;
             _addNewCustomer.User = _newUserToAdd;
             await service.AddCustomerAsync(_addNewCustomer);
-            Console.WriteLine("Register new client-----> " + _addNewCustomer);
+            Console.WriteLine("Register new client-----> " + _addNewCustomer.ToString());
+            ErrorMessage = "Registration Complete";
+            _loading = false;
         }
         catch (Exception e)
         {

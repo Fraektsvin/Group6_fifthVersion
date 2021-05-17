@@ -5,14 +5,13 @@ namespace DatabaseTier.Models
 {
     public class Address
     {
-        [Key]
-        [JsonPropertyName("addressid")]
-        public int AddressId { get; set; }
         [JsonPropertyName("streetname")]
         public string StreetName { get; set; }
+        
         [JsonPropertyName("streetnumber")]
         public string StreetNumber { get; set; }
         
+        [JsonPropertyName("city")]
         public City City { get; set; }
 
         public Address()

@@ -65,7 +65,7 @@ namespace DatabaseTier.Protocol
                     case "GetAllCustomers":
                        return new Request("GetAllCustomers", await RepositoryFactory.GetCustomerRepository().GetAllAsync());
                     case "AddCustomer":
-                        Console.WriteLine("inside the socketHandler" + request.Obj);
+                        //Console.WriteLine("inside the socketHandler" + request.Obj);
                         return new Request("AddCustomer", await RepositoryFactory.GetCustomerRepository().AddCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
                     case "UpdateCustomer" :
                         return new Request("UpdateCustomer",

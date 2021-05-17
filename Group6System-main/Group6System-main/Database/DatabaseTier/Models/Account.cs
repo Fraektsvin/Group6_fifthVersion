@@ -8,8 +8,10 @@ namespace DatabaseTier.Models
     {
         [Key]
         public long AccountNumber { get; set; }
+        
         [JsonPropertyName("balance")]
         public double  Balance{ get; set; }
+        
         [JsonPropertyName("date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

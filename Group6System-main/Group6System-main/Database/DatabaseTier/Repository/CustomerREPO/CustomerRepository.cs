@@ -17,18 +17,20 @@ namespace DatabaseTier.Repository.CustomerREPO
 
         public async Task<Customer> AddCustomerAsync(Customer customer)
         {
-            await using CloudContext context = new CloudContext();
-            try
+            using (CloudContext context = new CloudContext())
             {
-                var newAddedCustomer = await context.CustomersTable.AddAsync(customer);
-                Console.WriteLine("customer repo" + newAddedCustomer);
-                await context.SaveChangesAsync();
-                return newAddedCustomer.Entity;
-            }
-            catch (AggregateException e)
-            {
-                Console.WriteLine(e.StackTrace);
-                throw;
+                try
+                {
+                    var newAddedCustomer = await context.CustomersTable.AddAsync(customer);
+                    Console.WriteLine("customer repo " + newAddedCustomer);
+                    await context.SaveChangesAsync();
+                    return newAddedCustomer.Entity;
+                }
+                catch (AggregateException e)
+                {
+                    Console.WriteLine(e.Message);
+                    throw new Exception(e.Message);
+                }
             }
         }
 

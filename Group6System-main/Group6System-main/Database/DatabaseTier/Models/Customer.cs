@@ -9,20 +9,33 @@ namespace DatabaseTier.Models
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
+        
         [Key]
         [JsonPropertyName("cprnumber")]
         public int CprNumber { get; set; }
+        
+        [JsonPropertyName("address")]
         public Address Address { get; set; }
+
         [JsonPropertyName("phonenumber")]
         public string PhoneNumber { get; set; }
+        
         [JsonPropertyName("email")]
         public string Email { get; set; }
+        
         [JsonPropertyName("nationality")]
         public string Nationality { get; set; }
+        
         [JsonPropertyName("countryofresidence")]
         public string CountryOfResidence { get; set; }
+        
+        [JsonPropertyName("user")]
         public User User { get; set; }
+        
+        [JsonPropertyName("account")]
         public Account CustomerAccount{ get; set; }
+        
+        [JsonPropertyName("savedaccounts")]
         public IList<SavedAccounts> SavedAccountsList { get; set; }
 
         public Customer()
