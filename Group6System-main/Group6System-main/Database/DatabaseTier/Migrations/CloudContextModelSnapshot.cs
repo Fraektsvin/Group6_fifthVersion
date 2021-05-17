@@ -44,7 +44,7 @@ namespace DatabaseTier.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CityId")
+                    b.Property<int?>("CityZipCode")
                         .HasColumnType("integer");
 
                     b.Property<string>("StreetName")
@@ -55,14 +55,14 @@ namespace DatabaseTier.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CityId");
+                    b.HasIndex("CityZipCode");
 
                     b.ToTable("AddressTable");
                 });
 
             modelBuilder.Entity("DatabaseTier.Models.City", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ZipCode")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -70,10 +70,7 @@ namespace DatabaseTier.Migrations
                     b.Property<string>("CityName")
                         .HasColumnType("text");
 
-                    b.Property<int>("ZipCode")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
+                    b.HasKey("ZipCode");
 
                     b.ToTable("CityTable");
                 });
@@ -195,7 +192,7 @@ namespace DatabaseTier.Migrations
                 {
                     b.HasOne("DatabaseTier.Models.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityZipCode");
 
                     b.Navigation("City");
                 });
