@@ -7,16 +7,16 @@
 @inject ICustomerService Service
 @inject ISendMoneyService TransactionService
 
-<div class="card">
+<div class="card" xmlns="http://www.w3.org/1999/html">
     <h4 class="card-header">Pay Bill</h4>
     <div class="card-body">
         <div class="form-group row">
             <label class="col-form-label">Account number:</label>
-            <input type="number" placeholder="account number" @bind-value="AccountNumber"/>
+            <input type="number" placeholder="account number" @bind-value="AccountNumber">
         </div>
         <div class="form-group row">
             <label class="col-form-label">Account Holder's Name:</label>
-            <input type="text" placeholder="name" @bind-value="AccountName"/>
+            <input type="text" placeholder="name" @bind-value="AccountName">
         </div>
         <div class="form-group row">
             <label class="col-form-label">Invoice Number:</label>
@@ -24,14 +24,14 @@
         </div>
         <div class="form-group row">
             <label class="col-form-label">Amount:</label>
-            <input type="number" placeholder="amount" @bind-value="Amount"/>
+            <input type="number" placeholder="amount" @bind-value="Amount">
         </div>
         <div class="form-group row">
             <label class="col-form-label">Message:</label>
-            <input type="text" placeholder="message" @bind-value="Message"/>
+            <input type="text" placeholder="message" @bind-value="Message">
         </div>
         
-        <input type="checkbox" checked=@Save>Save Transaction</input>
+        <input type="checkbox" checked=@Save>Save Transaction>
 
         <div style="color:red">@ErrorMessage</div>
         <button disabled="@_loading" class="btn btn-light">

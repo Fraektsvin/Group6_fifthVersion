@@ -1,6 +1,5 @@
 package com.example.applicationtier.DAO.admin;
 
-import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import org.springframework.stereotype.Repository;
 

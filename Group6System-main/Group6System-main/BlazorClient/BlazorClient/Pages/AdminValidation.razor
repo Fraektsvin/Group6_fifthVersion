@@ -43,33 +43,38 @@
             <th scope="col">City</th>
             <th scope="col">Country of Residence</th>
             <th scope="col">Username</th>
+            <th scope="col">Remove</th>
+            <th scope="col">Is Valid</th>
         </tr>
         </thead>
+        <tbody>
+        @foreach (var c in _customersToShow)
+        {
+            <tr>
+                <td>@c.CprNumber</td>
+                <td>@c.Name</td>
+                <td>@c.PhoneNumber</td>
+                <td>@c.Email</td>
+                <td>@c.Nationality</td>
+                <td>@c.Address.StreetName</td>
+                <td>@c.Address.StreetNumber</td>
+                <td>@c.Address.City.ZipCode</td>
+                <td>@c.Address.City.CityName</td>
+                <td>@c.CountryOfResidence</td>
+                <td>@c.User.Username</td>
+                <td>
+                    <button @onclick="@(() => RemoveCustomerAsync(c.CprNumber))">
+                        <i class="oi oi-trash" style="color: red"/>
+                    </button>
+                </td>
+                <td>
+                    <input type="checkbox" checked=@c.IsValid @onchange="@((arg) => ValidateCustomerAsync(arg, c))"/>
+                </td>
+            </tr>
+        }
+        </tbody>
     </table>
-    @foreach (var c in _customersToShow)
-    {
-        <tr>
-            <td>@c.CprNumber</td>
-            <td>@c.Name</td>
-            <td>@c.PhoneNumber</td>
-            <td>@c.Email</td>
-            <td>@c.Nationality</td>
-            <td>@c.Address.StreetName</td>
-            <td>@c.Address.StreetNumber</td>
-            <td>@c.Address.City.ZipCode</td>
-            <td>@c.Address.City.CityName</td>
-            <td>@c.CountryOfResidence</td>
-            <td>@c.User.Username</td>
-            <td>
-                <button @onclick="@(() => RemoveCustomerAsync(c.CprNumber))">
-                    <i class="oi oi-trash" style="color: red"/>
-                </button>
-            </td>
-            <td>
-                <input type="checkbox" checked=@c.IsValid @onchange="@((arg) => ValidateCustomerAsync(arg, c))"/>
-            </td>
-        </tr>
-    }
+
 @*</Authorized>*@
 
 @code {
@@ -94,6 +99,7 @@
     {
         customer.IsValid = (bool) evt.Value;
         await _service.ValidateCustomerAsync(customer);
+        Console.WriteLine("client " + customer);
     }
 
     private void ExecuteFilter()

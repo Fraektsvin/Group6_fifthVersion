@@ -16,8 +16,8 @@ namespace DatabaseTier.Models
         [JsonPropertyName("customer")]
         public Customer Customer { get; set; }
         
-        [JsonPropertyName("transactions")]
-        public IList<Transaction> Transactions { get; set; }
+        // [JsonPropertyName("transactions")]
+        // public IList<Transaction> Transactions { get; set; }
         
         [JsonPropertyName("date")]
         [DataType(DataType.Date)]
@@ -29,8 +29,7 @@ namespace DatabaseTier.Models
             return "Account{" +
                    "accountnumber=" + AccountNumber +
                    "balance=" + Balance +
-                   "Customer: " + Customer + 
-                   "Transactions : " + Transactions +
+                   "Customer: " + Customer +
                    '}';
             
         }

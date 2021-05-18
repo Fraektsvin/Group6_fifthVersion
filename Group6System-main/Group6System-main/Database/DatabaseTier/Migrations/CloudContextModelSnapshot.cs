@@ -29,10 +29,15 @@ namespace DatabaseTier.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("double precision");
 
+                    b.Property<int?>("CustomerCprNumber")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("AccountNumber");
+
+                    b.HasIndex("CustomerCprNumber");
 
                     b.ToTable("AccountTable");
                 });
@@ -90,6 +95,9 @@ namespace DatabaseTier.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsValid")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
@@ -186,6 +194,15 @@ namespace DatabaseTier.Migrations
                     b.HasKey("Username");
 
                     b.ToTable("UsersTable");
+                });
+
+            modelBuilder.Entity("DatabaseTier.Models.Account", b =>
+                {
+                    b.HasOne("DatabaseTier.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerCprNumber");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("DatabaseTier.Models.Address", b =>
