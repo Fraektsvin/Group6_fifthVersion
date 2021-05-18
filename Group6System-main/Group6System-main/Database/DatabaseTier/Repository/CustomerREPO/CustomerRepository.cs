@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
@@ -10,25 +9,9 @@ namespace DatabaseTier.Repository.CustomerREPO
 {
     public class CustomerRepository:ICustomerRepository
     {
-        public async Task<IList<Customer>> GetAllAsync()
-        {
-            using (CloudContext context = new CloudContext())
-            {
-                try
-                {
-                    return await context.CustomersTable.ToListAsync();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    throw new Exception(e.Message);
-                }
-            }
-        }
-
         public async Task<Customer> AddCustomerAsync(Customer customer)
         {
-            using (CloudContext context = new CloudContext())
+            await using CloudContext context = new CloudContext();
             {
                 try
                 {
@@ -52,7 +35,7 @@ namespace DatabaseTier.Repository.CustomerREPO
 
         public async Task<Customer> GetCustomer(string username)
         {
-            using (CloudContext context = new CloudContext())
+            await using CloudContext context = new CloudContext();
             {
                 //var customer = await context.CustomersTable.FirstOrDefaultAsync(c => c.User.Username.Equals(username));
                 Customer customer = context.CustomersTable.FirstOrDefault(c => c.User.Username.Equals(username));
@@ -66,12 +49,12 @@ namespace DatabaseTier.Repository.CustomerREPO
             }
         }
 
-        public async Task<Customer> GetCustomer(int cprnumber)
+        public async Task<Customer> GetCustomer(int cprNumber)
         {
-            using (CloudContext context = new CloudContext())
+            await using CloudContext context = new CloudContext();
             {
                 //var customer = context.CustomersTable.FirstOrDefaultAsync(c => c.CprNumber == cprnumber);
-                Customer customer = context.CustomersTable.FirstOrDefault(c => c.CprNumber == cprnumber);
+                Customer customer = context.CustomersTable.FirstOrDefault(c => c.CprNumber == cprNumber);
                 if (customer != null)
                 {
                     Console.WriteLine(customer);
@@ -81,18 +64,7 @@ namespace DatabaseTier.Repository.CustomerREPO
                 throw new Exception("Customer not found!");
             }
         }
-
-        public async Task RemoveCustomerAsync(int cprNumber)
-        {
-            await using CloudContext context = new CloudContext();
-            Customer customerToRemove = await context.CustomersTable.FirstOrDefaultAsync(c => c.CprNumber == cprNumber);
-            if (customerToRemove != null)
-            {
-                context.CustomersTable.Remove(customerToRemove);
-                await context.SaveChangesAsync();
-            }
-        }
-
+        
         public async Task<Customer> UpdateCustomerAsync(Customer customer)
         {
             await using CloudContext context = new CloudContext();

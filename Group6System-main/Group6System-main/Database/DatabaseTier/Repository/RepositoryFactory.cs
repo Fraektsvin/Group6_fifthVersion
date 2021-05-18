@@ -1,10 +1,10 @@
-﻿using System.Runtime.InteropServices;
+﻿using DatabaseTier.Repository.AdminREPO;
 using DatabaseTier.Repository.CustomerREPO;
 using DatabaseTier.Repository.UserREPO;
 
 namespace DatabaseTier.Repository
 {
-    public class RepositoryFactory
+    public static class RepositoryFactory
     {
         public static IUserRepo GetUserRepository()
         {
@@ -14,6 +14,11 @@ namespace DatabaseTier.Repository
         public static ICustomerRepository GetCustomerRepository()
         {
             return new CustomerRepository();
+        }
+
+        public static IAdminRepository GetAdminRepository()
+        {
+            return new AdminRepository();
         }
     }
 }

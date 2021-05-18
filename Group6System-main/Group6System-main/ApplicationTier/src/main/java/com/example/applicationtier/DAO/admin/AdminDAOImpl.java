@@ -1,7 +1,6 @@
 package com.example.applicationtier.DAO.admin;
 
 import com.example.applicationtier.DAO.Handler;
-import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.models.Request;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -15,26 +14,28 @@ import java.util.List;
 public class AdminDAOImpl implements AdminDAO {
     @Autowired
     private Handler handler;
-    private ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper();
     @Override
     public boolean validateCustomer(Customer customer) {
-        Request obj = new Request("isValid", customer);
+        Request obj = new Request("IsValid", customer);
+        System.out.println("In Dao to db " + obj);
         handler.setObj(obj);
 
-        Request response;
-        return false;
+        Request response = handler.messageExchange(obj);
+        System.out.println("response to adminDAO" + response.getObj());
+        return true;
     }
 
     @Override
     public List<Customer> getAllCustomers() {
         Request obj = new Request("GetAllCustomers");
         handler.setObj(obj);
+        System.out.println("Inside dao " + obj);
 
         Request response = handler.messageExchange(obj);
-        List<Customer> customers = mapper.convertValue(response.getObj(),
-                new TypeReference<List<Customer>>() {
+        return mapper.convertValue(response.getObj(),
+                new TypeReference<>() {
                 });
-        return customers;
     }
 
     @Override

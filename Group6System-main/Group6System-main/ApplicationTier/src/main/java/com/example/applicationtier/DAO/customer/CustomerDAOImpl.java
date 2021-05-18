@@ -16,7 +16,7 @@ import java.util.List;
 public class CustomerDAOImpl implements CustomerDAO{
     @Autowired
     private Handler handler;
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public void addCustomer(Customer customer) {

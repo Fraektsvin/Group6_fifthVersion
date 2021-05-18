@@ -69,7 +69,7 @@ namespace DatabaseTier.Protocol
                     case "GetCustomer":
                        return new Request("GetCustomer", await RepositoryFactory.GetCustomerRepository().GetCustomer(ToObject<String>((JsonElement) request.Obj)));
                     
-                    //get customer with cprnumber
+                    //get customer with cprNumber
                     case "GetCustomerWithCpr":
                         return new Request("GetCustomerWithCpr", await RepositoryFactory.GetCustomerRepository().GetCustomer(ToObject<int>((JsonElement) request.Obj)));
                     
@@ -84,13 +84,20 @@ namespace DatabaseTier.Protocol
                     //Administrator
                     //Get all customers
                     case "GetAllCustomers":
-                        return new Request("GetAllCustomers", await RepositoryFactory.GetCustomerRepository()
-                            .GetAllAsync());
+                        var all = new Request("GetAllCustomers", await RepositoryFactory.GetAdminRepository().
+                            GetAllCustomersAsync());
+                        Console.WriteLine("Handler " + all);
+                        return all;
                     
                     //Remove customer
                     case "RemoveCustomerByCprNumber":
-                        await RepositoryFactory.GetCustomerRepository().RemoveCustomerAsync((int) request.Obj);
+                        await RepositoryFactory.GetAdminRepository().RemoveCustomerAsync((int) request.Obj);
                         return new Request("RemoveCustomerByCprNumber", "User successfully removed");
+                    
+                    //Validate Customer
+                    case "IsValid":
+                        await RepositoryFactory.GetAdminRepository().ValidateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj));
+                        return new Request("IsValid", "Customer successfully validated!");
                 }
 
                 return wrongRequest;
@@ -102,6 +109,5 @@ namespace DatabaseTier.Protocol
             var result = JsonSerializer.Deserialize<T>(json);
             return result;
         }
-      
     }
 }

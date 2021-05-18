@@ -3,12 +3,10 @@ package com.example.applicationtier.controller;
 import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.service.adminservice.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,10 +15,21 @@ public class AdminController {
     @Autowired
     private AdminService service;
 
+    @PostMapping("validateCustomer")
+    public ResponseEntity validateCustomer(Customer customer){
+        try {
+            boolean message = service.validateCustomer(customer);
+            System.out.println("Controller " + customer);
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
     @GetMapping("/getCustomers")
     public ResponseEntity getAllCustomers(){
         try {
             List<Customer> allCustomers = service.getAllCustomers();
+            System.out.println("Controller to service " + allCustomers);
             return new ResponseEntity<>(allCustomers, HttpStatus.OK);
         }
         catch(Exception e)
@@ -30,9 +39,13 @@ public class AdminController {
         }
     }
 
-
     @DeleteMapping("/removeCustomer")
-    public void deleteUser(@RequestHeader int cprNumber) {
-        service.removeCustomer(cprNumber);
+    public ResponseEntity deleteUser(@RequestHeader int cprNumber) {
+        try {
+            String message = service.removeCustomer(cprNumber);
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
