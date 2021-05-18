@@ -30,5 +30,24 @@ namespace BlazorClient.Data.SendMoney
 
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
+
+        public async Task<string> SendMoney(Transaction transaction)
+        {
+            string AsJson = JsonSerializer.Serialize(transaction, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+            
+            StringContent content = new StringContent(
+                AsJson,Encoding.UTF8, "application/json");
+            
+            HttpResponseMessage response = await client.PostAsync($"{path}/sendmoney", content);
+            if (response.IsSuccessStatusCode)
+            {
+                return response.Content.ReadAsStringAsync().Result;
+            }
+
+            throw new Exception(response.Content.ReadAsStringAsync().Result);
+        }
     }
 }

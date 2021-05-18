@@ -7,5 +7,7 @@ namespace BlazorClient.Data.SendMoney
     public interface ISendMoneyService
     {
         Task<String> PayBillAsync(Transaction transaction);
+
+        Task<String> SendMoney(Transaction transaction);
     }
 }
