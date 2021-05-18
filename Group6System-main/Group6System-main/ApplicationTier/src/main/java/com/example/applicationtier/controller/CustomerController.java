@@ -14,6 +14,7 @@ public class CustomerController {
     @Autowired
     private CustomerService service;
 
+
     @PostMapping("/createNewCustomer")
     public ResponseEntity RegisterCustomer(@RequestBody Customer customer) {
         /*try {
@@ -27,16 +28,6 @@ public class CustomerController {
         String returnMessage = service.registerCustomer(customer);
 
         return new ResponseEntity<>(returnMessage, HttpStatus.OK);
-    }
-
-    @GetMapping("/getCustomers")
-    public ResponseEntity getAllCustomers(){
-        List<Customer> allCustomers = service.getAllCustomers();
-        return new ResponseEntity<>(allCustomers, HttpStatus.OK);
-    }
-    @DeleteMapping("/removeCustomer")
-    public void deleteUser(@RequestHeader int cprNumber) {
-        service.removeCustomer(cprNumber);
     }
 
     @PutMapping("/updateCustomer")

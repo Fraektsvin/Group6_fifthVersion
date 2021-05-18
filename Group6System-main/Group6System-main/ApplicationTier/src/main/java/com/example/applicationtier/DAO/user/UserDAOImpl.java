@@ -4,9 +4,9 @@ import com.example.applicationtier.DAO.Handler;
 import com.example.applicationtier.models.Request;
 import com.example.applicationtier.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class UserDAOImpl implements UserDAO{
 
     @Autowired

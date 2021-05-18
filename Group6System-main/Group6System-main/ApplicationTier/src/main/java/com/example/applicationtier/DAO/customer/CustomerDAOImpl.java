@@ -8,10 +8,11 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+@Repository
 public class CustomerDAOImpl implements CustomerDAO{
     @Autowired
     private Handler handler;
@@ -27,6 +28,11 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
     @Override
+    public String updateCustomer(Customer customer) {
+        return null;
+    }
+    
+    @Override
     public Customer getCustomer(String username) {
         Request obj = new Request("GetCustomer", username);
         handler.setObj(obj);
@@ -41,8 +47,8 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
     @Override
-    public Customer getCustomer(int cprnumber) {
-        Request obj = new Request("GetCustomerWithCpr", cprnumber);
+    public Customer getCustomer(int cprNumber) {
+        Request obj = new Request("GetCustomerWithCpr", cprNumber);
         handler.setObj(obj);
 
         Request newObj = handler.messageExchange(obj);
@@ -52,16 +58,5 @@ public class CustomerDAOImpl implements CustomerDAO{
             return customer;
         }
         return null;
-    }
-    @Override
-    public List<Customer> getAllCustomers() {
-        Request obj = new Request("GetAllCustomers");
-        handler.setObj(obj);
-
-        Request response = handler.messageExchange(obj);
-        List<Customer> customers = objectMapper.convertValue(response.getObj(),
-                new TypeReference<List<Customer>>() {
-                });
-        return customers;
     }
 }
