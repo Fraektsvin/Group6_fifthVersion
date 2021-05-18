@@ -7,7 +7,7 @@ using BlazorClient.Models;
 
 namespace BlazorClient.Data.UserService
 {
-    public class InMemoryUser: IUserService
+    public class UserService: IUserService
     {
         private string path = "http://localhost:8080";
         public async Task<User> ValidateUserAsync(string username, string password)
