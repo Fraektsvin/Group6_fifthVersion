@@ -25,6 +25,16 @@ namespace BlazorClient.Models
         
         [JsonPropertyName("save")]
         public bool Save { get; set; }
-        
+
+        public Transaction(int transactionNumber, Customer sender, Account receiver, double amount, string message, DateTime date, bool save)
+        {
+            TransactionNumber = transactionNumber;
+            Sender = sender;
+            Receiver = receiver;
+            Amount = amount;
+            Message = message;
+            Date = date;
+            Save = save;
+        }
     }
 }

@@ -13,6 +13,12 @@ namespace BlazorClient.Models
         
         [JsonPropertyName("amount")]
         public double Amount { get; set; }
-        
+
+        public SavedAccounts(Account savedAccount, string accountName, double amount)
+        {
+            SavedAccount = savedAccount;
+            AccountName = accountName;
+            Amount = amount;
+        }
     }
 }
