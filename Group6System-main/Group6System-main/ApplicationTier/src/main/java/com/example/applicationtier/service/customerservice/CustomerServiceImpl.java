@@ -5,6 +5,8 @@ import com.example.applicationtier.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -34,12 +36,16 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(String username) {
+    public List<Customer> getAllCustomers() {
+        return customerDAO.getAllCustomers();
+    }
+    @Override
+    public void removeCustomer(int cprNumber) {
         //firebaseService.deleteUser(username);
     }
 
     @Override
-    public void updateCustomer(Customer customer) {
-        //firebaseService.updateUserDetails(customer);
+    public String updateCustomer(Customer customer) {
+        return null;
     }
 }

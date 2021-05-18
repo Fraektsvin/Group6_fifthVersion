@@ -30,11 +30,21 @@ public class Customer {
 
     @JsonProperty("user")
     private User user;
+    @JsonProperty("isvalid")
+    private boolean isValid;
 
     @JsonProperty("savedaccounts")
     private List<SavedAccounts> savedAccounts;
 
     public Customer(){}
+
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
 
     public String getName() {
         return name;
@@ -113,12 +123,13 @@ public class Customer {
         return "Customer{" +
                 "name='" + name + '\'' +
                 ", cprNumber=" + cprNumber +
-                ", address='" + address + '\'' +
+                ", address=" + address +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", nationality='" + nationality + '\'' +
                 ", countryOfResidence='" + countryOfResidence + '\'' +
                 ", user=" + user +
+                ", isValid=" + isValid +
                 ", savedAccounts=" + savedAccounts +
                 '}';
     }

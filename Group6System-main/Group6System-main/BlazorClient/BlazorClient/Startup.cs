@@ -33,7 +33,7 @@ namespace BlazorClient
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddScoped<IUserService, InMemoryUser>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
