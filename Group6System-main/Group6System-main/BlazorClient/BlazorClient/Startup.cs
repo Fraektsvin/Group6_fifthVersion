@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorClient.Data;
+using BlazorClient.Data.AdminValidation;
 using BlazorClient.Data.CustomerService;
 using BlazorClient.Data.UserService;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -34,10 +35,13 @@ namespace BlazorClient
             services.AddServerSideBlazor();
             services.AddScoped<IUserService, InMemoryUser>();
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("Admin", policy => 
+                    policy.RequireAuthenticatedUser().RequireClaim("Role", "admin"));
             });
         }
 

@@ -1,0 +1,118 @@
+﻿@page "/AdminValidation"
+@using BlazorClient.Models
+@*@attribute [Authorize(Policy = "admin")]*@
+@using BlazorClient.Data.CustomerService
+@inject ICustomerService _service
+@inject NavigationManager _navigationManager
+
+<h3>Admin Page</h3>
+
+@*<Authorized>*@
+    
+    <p>
+        Filter by customer status:
+        <select class="form-control selectpicker" @onchange="@((arg) => FilterByValidCustomers(arg))" style="width:200px">
+            <option>Validated</option>
+            <option>Invalidated</option>
+        </select>
+    </p>
+    
+    @if (_customersToShow == null)
+    {
+        <p>
+            <em>Loading ...</em>
+        </p>
+    }
+    else if (!_customersToShow.Any())
+    {
+        <p>
+            <em>No customers registered!</em>
+        </p>
+    }
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Cpr-Number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Nationality</th>
+            <th scope="col">Street Name</th>
+            <th scope="col">Street Number</th>
+            <th scope="col">Zipcode</th>
+            <th scope="col">City</th>
+            <th scope="col">Country of Residence</th>
+            <th scope="col">Username</th>
+        </tr>
+        </thead>
+    </table>
+    @foreach (var c in _customersToShow)
+    {
+        <tr>
+            <td>@c.CprNumber</td>
+            <td>@c.Name</td>
+            <td>@c.PhoneNumber</td>
+            <td>@c.Email</td>
+            <td>@c.Nationality</td>
+            <td>@c.Address.StreetName</td>
+            <td>@c.Address.StreetNumber</td>
+            <td>@c.Address.City.ZipCode</td>
+            <td>@c.Address.City.CityName</td>
+            <td>@c.CountryOfResidence</td>
+            <td>@c.User.Username</td>
+            <td>
+                <button @onclick="@(() => RemoveCustomerAsync(c.CprNumber))">
+                    <i class="oi oi-trash" style="color: red"/>
+                </button>
+            </td>
+            <td>
+                <input type="checkbox" checked=@c.IsValid @onchange="@((arg) => ValidateCustomerAsync(arg, c))"/>
+            </td>
+        </tr>
+    }
+@*</Authorized>*@
+
+@code {
+    private IList<Customer> _customersToShow = new List<Customer>();
+    private IList<Customer> _customers = new List<Customer>();
+    private bool? _filterByValidCustomers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _customersToShow = await _service.GetAllCustomersAsync();
+    }
+
+    private async Task RemoveCustomerAsync(int cprNumber)
+    {
+        await _service.RemoveCustomerAsync(cprNumber);
+        Customer customerToRemove = _customers.FirstOrDefault(c => c.CprNumber == cprNumber);
+        _customersToShow.Remove(customerToRemove);
+        _customers.Remove(customerToRemove);
+    }
+
+    private async Task ValidateCustomerAsync(ChangeEventArgs evt, Customer customer)
+    {
+        customer.IsValid = (bool) evt.Value;
+        await _service.UpdateCustomerAsync(customer);
+    }
+
+    private void ExecuteFilter()
+    {
+        _customersToShow = _customers.Where
+            (c => (_filterByValidCustomers != null && c.IsValid == _filterByValidCustomers)).ToList();
+    }
+
+    private async Task FilterByValidCustomers(ChangeEventArgs evt)
+    {
+        _filterByValidCustomers = null;
+        try
+        {
+            _filterByValidCustomers = bool.Parse(evt.Value.ToString());
+        }
+        catch (Exception e)
+        {
+            ExecuteFilter();
+        }
+    }
+
+}
