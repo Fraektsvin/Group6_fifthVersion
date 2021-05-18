@@ -34,6 +34,5 @@ namespace BlazorClient.Models
         [JsonPropertyName("savedaccounts")]
         public IList<SavedAccounts> SavedAccounts { get; set; }
         
-        
     }
 }

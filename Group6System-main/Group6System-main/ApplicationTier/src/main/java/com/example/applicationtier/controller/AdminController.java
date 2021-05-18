@@ -19,9 +19,18 @@ public class AdminController {
 
     @GetMapping("/getCustomers")
     public ResponseEntity getAllCustomers(){
-        List<Customer> allCustomers = service.getAllCustomers();
-        return new ResponseEntity<>(allCustomers, HttpStatus.OK);
+        try {
+            List<Customer> allCustomers = service.getAllCustomers();
+            return new ResponseEntity<>(allCustomers, HttpStatus.OK);
+        }
+        catch(Exception e)
+        {
+            System.out.println(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
+
+
     @DeleteMapping("/removeCustomer")
     public void deleteUser(@RequestHeader int cprNumber) {
         service.removeCustomer(cprNumber);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -11,17 +12,28 @@ namespace BlazorClient.Models
 
         [JsonPropertyName("accountnumber")] 
         public long AccountNumber{ get; set; }
-            
+        
+        [JsonPropertyName("customer")]
+        public Customer Customer { get; set; }
+        
+        [JsonPropertyName("transactions")]
+        public IList<Transaction> Transactions { get; set; }
+        
         [JsonPropertyName("date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date{ get; set; }
 
-        public Account(double balance, long accountNumber, DateTime date)
+        public Account()
         {
-            Balance = balance;
-            AccountNumber = accountNumber;
-            Date = date;
+            Customer = new Customer();
+            Transactions = new List<Transaction>();
+        }
+
+        public Account(long accountNumber, String name)
+        {
+            this.AccountNumber = accountNumber;
+            Customer.Name = name;
         }
     }
 }

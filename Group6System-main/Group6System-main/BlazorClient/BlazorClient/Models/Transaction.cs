@@ -9,7 +9,7 @@ namespace BlazorClient.Models
         public int TransactionNumber { get; set; }
         
         [JsonPropertyName("sender")]
-        public Customer Sender { get; set; }
+        public Account Sender { get; set; }
         
         [JsonPropertyName("receiver")]
         public Account Receiver { get; set; }
@@ -26,9 +26,8 @@ namespace BlazorClient.Models
         [JsonPropertyName("save")]
         public bool Save { get; set; }
 
-        public Transaction(int transactionNumber, Customer sender, Account receiver, double amount, string message, DateTime date, bool save)
+        public Transaction(Account sender, Account receiver, double amount, string message, DateTime date, bool save)
         {
-            TransactionNumber = transactionNumber;
             Sender = sender;
             Receiver = receiver;
             Amount = amount;

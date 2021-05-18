@@ -15,7 +15,7 @@ namespace BlazorClient.Authentication
         private readonly IJSRuntime _jsRuntime;
         private readonly IUserService _userService;
 
-        private User _cachedUser;
+        public User _cachedUser { get; set; }
 
         public CustomAuthenticationStateProvider(IJSRuntime jsRuntime, IUserService userService)
         {
@@ -75,6 +75,7 @@ namespace BlazorClient.Authentication
             _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
         }
+        
         private ClaimsIdentity SetupClaimsForUser(User user)
         {
             List<Claim> claims = new List<Claim>();
