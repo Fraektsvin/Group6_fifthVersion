@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 public class City {
     public City(){}
 
-    @JsonProperty("cityid")
-    private int id;
+
 
     @JsonProperty("zipcode")
     private int zipCode;
@@ -16,13 +15,7 @@ public class City {
     @JsonProperty("cityname")
     private String cityName;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
