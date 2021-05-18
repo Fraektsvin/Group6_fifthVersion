@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -13,9 +14,11 @@ namespace BlazorClient.Data.CustomerService
         private readonly HttpClient _client = new HttpClient();
         private string path = "http://localhost:8080";
         
-        public async Task<String> AddCustomerAsync(Customer user)
+        public async Task<String> AddCustomerAsync(Customer customer)
         {
-            string AsJson = JsonSerializer.Serialize(user, new JsonSerializerOptions
+            var hashedpassword = HashString(customer.User.Password);
+            customer.User.Password.Equals(hashedpassword);
+            string AsJson = JsonSerializer.Serialize(customer, new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
@@ -96,6 +99,14 @@ namespace BlazorClient.Data.CustomerService
             }
 
             throw new Exception(response.Content.ReadAsStringAsync().Result);
+        }
+        
+        private string HashString(string input)
+        {
+            using HashAlgorithm algorithm = SHA256.Create();
+            var hashBytes = algorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
+            var hashedInputAsString = Encoding.ASCII.GetString(hashBytes);
+            return hashedInputAsString;
         }
     }
 }

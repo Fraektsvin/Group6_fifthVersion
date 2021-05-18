@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using BlazorClient.Data.UserService;
@@ -51,9 +53,10 @@ namespace BlazorClient.Authentication
             if (string.IsNullOrEmpty(password)) throw new Exception("Enter password");
 
             ClaimsIdentity identity = new ClaimsIdentity();
-            try 
-            { 
-                User userToValidate = await _userService.ValidateUserAsync(username, password);
+            try
+            {
+                var hashedpassword = HashString(password);
+                User userToValidate = await _userService.ValidateUserAsync(username, hashedpassword);
                 identity = SetupClaimsForUser(userToValidate);
                 string serialisedData = JsonSerializer.Serialize(userToValidate);
                 await _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
@@ -83,7 +86,15 @@ namespace BlazorClient.Authentication
             ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
             return identity;
        }
-     }
+        
+        private string HashString(string input)
+        {
+            using HashAlgorithm algorithm = SHA256.Create();
+            var hashBytes = algorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
+            var hashedInputAsString = Encoding.ASCII.GetString(hashBytes);
+            return hashedInputAsString;
+        }
+    }
 }
 
 
