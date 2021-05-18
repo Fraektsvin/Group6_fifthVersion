@@ -32,6 +32,8 @@ namespace BlazorClient.Data.CustomerService
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
         
+        
+        
         /*public async Task RemoveCustomerAsync(int cprNumber)
         {
             HttpResponseMessage response = await _client.DeleteAsync($"{path}/removeCustomer/{cprNumber}");
@@ -74,8 +76,26 @@ namespace BlazorClient.Data.CustomerService
             }
             else
             {
-                Console.WriteLine($@"Error: {response.StatusCode}, {response.ReasonPhrase}");
+                throw new Exception(response.Content.ReadAsStringAsync().Result);
             }
+        }
+
+        public async Task<Account> GetAccount(string username, string password)
+        {
+            HttpResponseMessage response = await _client.GetAsync($"{path}/getAccount?username={username}&password={password}");
+            Console.WriteLine(response.Content);
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(result);
+                Account account = JsonSerializer.Deserialize<Account>(result, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+                return account;
+            }
+
+            throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
     }
 }

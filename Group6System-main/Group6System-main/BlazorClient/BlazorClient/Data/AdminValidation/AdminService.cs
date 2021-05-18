@@ -25,7 +25,7 @@ namespace BlazorClient.Data.AdminValidation
             }
             else
             {
-                Console.WriteLine($@"Error: {response.StatusCode}, {response.ReasonPhrase}");
+                throw new Exception(response.Content.ReadAsStringAsync().Result);
             }
         }
         
