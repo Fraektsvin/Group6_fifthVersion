@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -10,10 +11,10 @@ namespace BlazorClient.Data.AdminValidation
     public class AdminService:IAdminService
     {
         private string path = "http://localhost:8080";
+        HttpClient client = new HttpClient();
         
         public async Task ValidateCustomerAsync(Customer customer)
         {
-            HttpClient client = new HttpClient();
             string asJson = JsonSerializer.Serialize(customer);
             HttpContent content = new StringContent(
                 asJson, Encoding.UTF8, "application/json");
@@ -27,8 +28,39 @@ namespace BlazorClient.Data.AdminValidation
                 Console.WriteLine($@"Error: {response.StatusCode}, {response.ReasonPhrase}");
             }
         }
+        
+        public async Task RemoveCustomerAsync(int cprNumber)
+        {
+            HttpResponseMessage response = await client.DeleteAsync($"{path}/removeCustomer/{cprNumber}");
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.StatusCode);
+            }
+            else
+            {
+                throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
+            }
+        }
 
-        public async Task CreateCustomerAccountAsync(Customer customer, Account account)
+        public async Task<IList<Customer>> GetAllCustomersAsync()
+        {
+            HttpResponseMessage response = await client.GetAsync($"{path}/getCustomers");
+            Console.WriteLine(response.Content);
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(result);
+                IList<Customer> customers = JsonSerializer.Deserialize<IList<Customer>>(result, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+                return customers;
+            }
+
+            throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
+        }
+
+       /* public async Task CreateCustomerAccountAsync(Customer customer, Account account)
         {
             HttpClient client = new HttpClient();
             string asJson = JsonSerializer.Serialize(account);
@@ -44,6 +76,6 @@ namespace BlazorClient.Data.AdminValidation
             {
                 Console.WriteLine($@"Error: {response.StatusCode}, {response.ReasonPhrase}");
             }
-        }
+        }*/
     }
 }

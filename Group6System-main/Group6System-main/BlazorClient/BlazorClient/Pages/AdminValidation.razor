@@ -1,8 +1,8 @@
 ﻿@page "/AdminValidation"
 @using BlazorClient.Models
 @*@attribute [Authorize(Policy = "admin")]*@
-@using BlazorClient.Data.CustomerService
-@inject ICustomerService _service
+@using BlazorClient.Data.AdminValidation
+@inject IAdminService _service
 @inject NavigationManager _navigationManager
 
 <h3>Admin Page</h3>
@@ -93,7 +93,7 @@
     private async Task ValidateCustomerAsync(ChangeEventArgs evt, Customer customer)
     {
         customer.IsValid = (bool) evt.Value;
-        await _service.UpdateCustomerAsync(customer);
+        await _service.ValidateCustomerAsync(customer);
     }
 
     private void ExecuteFilter()
