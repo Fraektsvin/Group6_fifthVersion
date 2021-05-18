@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-@Service
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
@@ -32,16 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         System.out.println("The username is already in use!");
-       return "The username is already in use!";
-    }
-
-    @Override
-    public List<Customer> getAllCustomers() {
-        return customerDAO.getAllCustomers();
-    }
-    @Override
-    public void removeCustomer(int cprNumber) {
-        //firebaseService.deleteUser(username);
+        return "The username is already in use!";
     }
 
     @Override

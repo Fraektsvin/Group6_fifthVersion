@@ -1,15 +1,12 @@
 package com.example.applicationtier.DAO.customer;
 
-
 import com.example.applicationtier.models.Customer;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-@Component
+@Repository
 public interface CustomerDAO {
     void addCustomer(Customer customer);
+    String updateCustomer(Customer customer);
     Customer getCustomer(String username);
     Customer getCustomer(int cprNumber);
-    List<Customer> getAllCustomers();
 }
