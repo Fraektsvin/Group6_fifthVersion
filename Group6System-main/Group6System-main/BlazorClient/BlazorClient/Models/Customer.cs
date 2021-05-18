@@ -25,6 +25,8 @@ namespace BlazorClient.Models
         
         [JsonPropertyName("countryofresidence")]
         public string CountryOfResidence { get; set; }
+        [JsonPropertyName("isvalid")]
+        public bool IsValid { get; set; }
         
         [JsonPropertyName("user")]
         public User User { get; set; }
