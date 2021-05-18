@@ -12,8 +12,18 @@ namespace DatabaseTier.Repository.CustomerREPO
     {
         public async Task<IList<Customer>> GetAllAsync()
         {
-            await using CloudContext context = new CloudContext();
-            return await context.CustomersTable.ToListAsync();
+            using (CloudContext context = new CloudContext())
+            {
+                try
+                {
+                    return await context.CustomersTable.ToListAsync();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    throw new Exception(e.Message);
+                }
+            }
         }
 
         public async Task<Customer> AddCustomerAsync(Customer customer)

@@ -80,6 +80,14 @@ namespace DatabaseTier.Protocol
                     case "UpdateCustomer" :
                         return new Request("UpdateCustomer",
                             await RepositoryFactory.GetCustomerRepository().UpdateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
+                    
+                    //Administrator
+                    //Get all customers
+                    case "GetAllCustomers":
+                        return new Request("GetAllCustomers", await RepositoryFactory.GetCustomerRepository()
+                            .GetAllAsync());
+                    
+                    //Remove customer
                     case "RemoveCustomerByCprNumber":
                         await RepositoryFactory.GetCustomerRepository().RemoveCustomerAsync((int) request.Obj);
                         return new Request("RemoveCustomerByCprNumber", "User successfully removed");

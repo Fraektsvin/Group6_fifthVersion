@@ -32,7 +32,7 @@ namespace BlazorClient.Data.CustomerService
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
         
-        public async Task RemoveCustomerAsync(int cprNumber)
+        /*public async Task RemoveCustomerAsync(int cprNumber)
         {
             HttpResponseMessage response = await _client.DeleteAsync($"{path}/removeCustomer/{cprNumber}");
             if (response.IsSuccessStatusCode)
@@ -61,7 +61,7 @@ namespace BlazorClient.Data.CustomerService
             }
 
             throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
-        }
+        }*/
 
         public async Task UpdateCustomerAsync(Customer customer)
         {

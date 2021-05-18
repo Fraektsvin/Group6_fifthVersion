@@ -8,8 +8,6 @@ namespace BlazorClient.Data.CustomerService
     public interface ICustomerService
     {
         Task<String> AddCustomerAsync(Customer customer);
-        Task RemoveCustomerAsync(int cprNumber);
-        Task<IList<Customer>> GetAllCustomersAsync();
         Task UpdateCustomerAsync(Customer customer);
 
     }
