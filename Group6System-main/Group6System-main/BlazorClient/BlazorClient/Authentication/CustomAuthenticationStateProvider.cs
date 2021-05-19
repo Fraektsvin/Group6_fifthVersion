@@ -55,8 +55,8 @@ namespace BlazorClient.Authentication
             ClaimsIdentity identity = new ClaimsIdentity();
             try
             {
-                var hashedpassword = HashString(password);
-                User userToValidate = await _userService.ValidateUserAsync(username, hashedpassword);
+               // var hashedpassword = HashString(password);
+                User userToValidate = await _userService.ValidateUserAsync(username, password);
                 identity = SetupClaimsForUser(userToValidate);
                 string serialisedData = JsonSerializer.Serialize(userToValidate);
                 await _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
@@ -87,13 +87,13 @@ namespace BlazorClient.Authentication
             return identity;
        }
         
-        private string HashString(string input)
+       /* private string HashString(string input)
         {
             using HashAlgorithm algorithm = SHA256.Create();
             var hashBytes = algorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
             var hashedInputAsString = Encoding.ASCII.GetString(hashBytes);
             return hashedInputAsString;
-        }
+        }*/
     }
 }
 

@@ -1,0 +1,34 @@
+﻿@page "/CreateAccount/{CprNumber:int}"
+@using BlazorClient.Data.AdminValidation
+@inject IAdminService service
+
+
+<button disabled="@_loading" class="btn btn-light" @onclick="CreateAccountFor">Create Account
+    @if (_loading) 
+    {
+        <span class="spinner-border spinner-border-sm mr-1"></span>
+    }
+</button>
+
+@code {
+    [Parameter] public int CprNumber { get; set; }
+    private bool _loading;
+    private String ErrorMessage;
+
+
+    public async Task CreateAccountFor()
+    {
+        _loading = true;
+        try
+        {
+            String successMessage = await service.CreateAccount(CprNumber);
+            ErrorMessage = successMessage;
+            _loading = false;
+        }
+        catch (Exception e)
+        {
+            ErrorMessage = e.Message;
+        }
+    }
+
+}

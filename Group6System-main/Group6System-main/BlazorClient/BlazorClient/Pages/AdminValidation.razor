@@ -10,10 +10,11 @@
 @*<Authorized>*@
     
     <p>
-        Filter by customer status:
+        Filter by active status:
         <select class="form-control selectpicker" @onchange="@((arg) => FilterByValidCustomers(arg))" style="width:200px">
-            <option>Validated</option>
-            <option>Invalidated</option>
+            <option>Both</option>
+            <option>True</option>
+            <option>False</option>
         </select>
     </p>
     
@@ -114,10 +115,11 @@
         try
         {
             _filterByValidCustomers = bool.Parse(evt.Value.ToString());
+            ExecuteFilter();
         }
         catch (Exception e)
         {
-            ExecuteFilter();
+           Console.WriteLine(e.Message);
         }
     }
 

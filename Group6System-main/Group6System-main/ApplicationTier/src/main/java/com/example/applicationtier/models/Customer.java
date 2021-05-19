@@ -30,6 +30,7 @@ public class Customer {
 
     @JsonProperty("user")
     private User user;
+
     @JsonProperty("isvalid")
     private boolean isValid;
 

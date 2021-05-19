@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Persistence;
@@ -34,8 +35,10 @@ namespace DatabaseTier.Repository.AdminREPO
             {
                 try
                 {
-                     return await context.CustomersTable.
-                         Include(a=> a.Address).ThenInclude(a=> a.City).ToListAsync();
+                    IEnumerable<Customer> customers = await context.CustomersTable.
+                        Include(a=> a.Address).ThenInclude(a=> a.City).ToListAsync();
+                    Console.WriteLine(customers);
+                    return customers;
                 }
                 catch (Exception e)
                 {
