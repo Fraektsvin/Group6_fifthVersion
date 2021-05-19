@@ -118,9 +118,8 @@ using BlazorClient.Data.AdminValidation;
 
     private async Task RemoveCustomerAsync(int cprNumber)
     {
-        // remove from the persistence
         await _service.RemoveCustomerAsync(cprNumber);
-        
+        Console.WriteLine("client --> " + cprNumber);
         Customer customerToRemove = _customers.FirstOrDefault(c => c.CprNumber == cprNumber);
         Console.WriteLine(customerToRemove);
         _customersToShow.Remove(customerToRemove);
@@ -133,13 +132,6 @@ using BlazorClient.Data.AdminValidation;
         Console.WriteLine("client " + customer);
         _navigationManager.NavigateTo($"/CreateAccount/{customer.CprNumber}");
     }
-
-    private void ExecuteFilter()
-    {
-        _customersToShow = _customers.Where
-            (c => (_filterByValidCustomers != null && c.IsValid == _filterByValidCustomers)).ToList();
-    }
-
     private async Task FilterByValidCustomers(ChangeEventArgs evt)
     {
         _filterByValidCustomers = null;
@@ -152,6 +144,11 @@ using BlazorClient.Data.AdminValidation;
         {
            Console.WriteLine(e.Message);
         }
+    }
+    private void ExecuteFilter()
+    {
+        _customersToShow = _customers.Where
+            (c => (_filterByValidCustomers != null && c.IsValid == _filterByValidCustomers)).ToList();
     }
 
 
