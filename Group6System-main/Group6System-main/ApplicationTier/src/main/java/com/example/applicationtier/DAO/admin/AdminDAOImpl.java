@@ -1,8 +1,10 @@
 package com.example.applicationtier.DAO.admin;
 
 import com.example.applicationtier.DAO.Handler;
+import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.models.Request;
+import com.example.applicationtier.models.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,33 @@ public class AdminDAOImpl implements AdminDAO {
     @Override
     public String removeCustomer(int cprNumber) {
         return null;
+    }
+
+    @Override
+    public String CreateAccount(Account account, int cprNumber) throws Exception {
+        Request account1 = new Request("CreateAccount", account);
+        handler.setObj(account1);
+
+        Request response = handler.messageExchange(account1);
+
+        if(response.getHeader().equals("AccountCreate")) {
+            return (String) account1.getObj();
+        }
+        else throw new Exception((String) response.getObj());
+    }
+
+    @Override
+    public long getLastAccountNumber() throws Exception {
+        Request lastUsedAccountNumber = new Request("GetLastUsedAccountNumber", null);
+        handler.setObj(lastUsedAccountNumber);
+
+        Request response = handler.messageExchange(lastUsedAccountNumber);
+
+        if(response.getHeader().equals("LastUsedAccountNumber")) {
+
+            return (long) lastUsedAccountNumber.getObj();
+        }
+        throw new Exception((String) response.getObj());
     }
 
 }

@@ -8,12 +8,31 @@ import java.util.Date;
 public class Account {
     @JsonProperty("balance")
     private double balance;
+
     @JsonProperty("accountNumber")
     private long accountNumber;
+
     @JsonProperty("date")
     private Date date;
 
+    @JsonProperty("customer")
+    private Customer customer;
+
     public Account(){};
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Account(double balance, long accountNumber, Date date) {
+        this.balance = balance;
+        this.accountNumber = accountNumber;
+        this.date = date;
+    }
 
     public void setBalance(double balance) {
         this.balance = balance;

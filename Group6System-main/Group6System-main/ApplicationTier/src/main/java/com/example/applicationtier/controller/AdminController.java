@@ -25,6 +25,7 @@ public class AdminController {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
     @GetMapping("/getCustomers")
     public ResponseEntity getAllCustomers(){
         try {
@@ -38,6 +39,18 @@ public class AdminController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+
+    @PostMapping("CreateAccount")
+    public ResponseEntity CreateAccount(@RequestBody int cprNumber) {
+        try {
+            String message = service.CreateAccount(cprNumber);
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
 
     @DeleteMapping("/removeCustomer")
     public ResponseEntity deleteUser(@RequestHeader int cprNumber) {

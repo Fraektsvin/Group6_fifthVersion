@@ -2,7 +2,7 @@
 @using BlazorClient.Data.AdminValidation
 @inject IAdminService service
 
-
+<h1> Create Account for : @CprNumber </h1>
 <button disabled="@_loading" class="btn btn-light" @onclick="CreateAccountFor">Create Account
     @if (_loading) 
     {

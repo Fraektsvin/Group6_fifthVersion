@@ -129,6 +129,7 @@ using BlazorClient.Data.AdminValidation;
         customer.IsValid = (bool) evt.Value;
         await _service.ValidateCustomerAsync(customer);
         Console.WriteLine("client " + customer);
+        _navigationManager.NavigateTo($"/CreateAccount/{customer.CprNumber}");
     }
 
     private void ExecuteFilter()
