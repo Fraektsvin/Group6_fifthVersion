@@ -49,7 +49,7 @@ namespace DatabaseTier.Repository.AdminREPO
         public async Task<string> RemoveCustomerAsync(int cprNumber)
         {
             await using CloudContext context = new CloudContext();
-            Customer customerToRemove = await context.CustomersTable.FirstOrDefaultAsync(c => c.CprNumber == cprNumber);
+            Customer customerToRemove = context.CustomersTable.FirstOrDefault(c => c.CprNumber == cprNumber);
             Console.WriteLine(customerToRemove);
             context.CustomersTable.Remove(customerToRemove);
             await context.SaveChangesAsync();

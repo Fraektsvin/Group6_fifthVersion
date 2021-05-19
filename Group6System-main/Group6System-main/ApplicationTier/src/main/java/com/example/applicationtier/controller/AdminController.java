@@ -35,7 +35,7 @@ public class AdminController {
 
 
     @PostMapping("/CreateAccount")
-    public ResponseEntity CreateAccount(@RequestParam int cprNumber) {
+    public ResponseEntity CreateAccount(@RequestBody int cprNumber) {
         try {
             String message = service.CreateAccount(cprNumber);
             return new ResponseEntity<>(message, HttpStatus.OK);
