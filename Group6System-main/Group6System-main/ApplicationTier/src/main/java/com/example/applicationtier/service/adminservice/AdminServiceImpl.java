@@ -37,7 +37,7 @@ public class AdminServiceImpl implements AdminService{
     public String removeCustomer(int cprNumber){
         System.out.println(cprNumber);
         String customerToRemove = adminDAO.removeCustomer(cprNumber);
-        System.out.println("Inside service what DAO removes--> " + customerToRemove);
+        System.out.println("Inside service --> " + customerToRemove);
         return customerToRemove;
     }
 
