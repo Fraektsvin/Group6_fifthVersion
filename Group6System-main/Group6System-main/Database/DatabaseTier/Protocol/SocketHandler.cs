@@ -96,8 +96,18 @@ namespace DatabaseTier.Protocol
                     
                     //Validate Customer
                     case "IsValid":
-                        var validateCustomerAsync = await RepositoryFactory.GetAdminRepository().ValidateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj));
-                        return new Request("IsValid", validateCustomerAsync);
+                        await RepositoryFactory.GetAdminRepository().ValidateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj));
+                        return new Request("IsValid", "Customer successfully validated!");
+                    
+                    //Create Account
+                    case "CreateAccount":
+                        return new Request("AccountCreate",
+                            await RepositoryFactory.GetAdminRepository().CreateAccountAsync(ToObject<Account>((JsonElement) request.Obj)));
+                    
+                    //Get last used account number
+                    case "GetLastUsedAccountNumber":
+                        return new Request("LastUsedAccountNumber", await RepositoryFactory.GetAdminRepository()
+                            .GetLastAccountNumberAsync());
                 }
 
                 return wrongRequest;

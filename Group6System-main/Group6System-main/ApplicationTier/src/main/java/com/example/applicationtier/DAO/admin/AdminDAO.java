@@ -1,5 +1,6 @@
 package com.example.applicationtier.DAO.admin;
 
+import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import org.springframework.stereotype.Repository;
 
@@ -10,4 +11,8 @@ public interface AdminDAO {
     boolean validateCustomer(Customer customer);
     List<Customer> getAllCustomers();
     String removeCustomer(int cprNumber);
+
+    String CreateAccount(Account account, int cprNumber) throws Exception;
+
+    long getLastAccountNumber() throws Exception;
 }

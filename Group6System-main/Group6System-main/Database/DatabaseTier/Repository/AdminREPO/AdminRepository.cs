@@ -57,5 +57,35 @@ namespace DatabaseTier.Repository.AdminREPO
                 await context.SaveChangesAsync();
             }
         }
+
+        public async Task<string> CreateAccountAsync(Account account)
+        {
+            using (CloudContext context = new CloudContext())
+            {
+                try
+                {
+                    await context.AccountTable.AddAsync(account);
+                    return "Successful";
+                }
+                catch (Exception e)
+                {
+                    return e.Message;
+                }
+            }
+        }
+
+        public async Task<long> GetLastAccountNumberAsync()
+        {
+            using(CloudContext context = new CloudContext())
+            {
+                Account lastAccount = await context.AccountTable.LastAsync();
+                long lastAccountNumber = 1001000000;
+                if (lastAccount != null)
+                {
+                    lastAccountNumber = lastAccount.AccountNumber;
+                }
+                return lastAccount.AccountNumber;
+            }
+        }
     }
 }

@@ -70,7 +70,7 @@ namespace BlazorClient.Data.AdminValidation
             StringContent content = new StringContent(
                 AsJson,Encoding.UTF8, "application/json");
             
-            HttpResponseMessage response = await client.PostAsync($"{path}/createNewCustomer", content);
+            HttpResponseMessage response = await client.PostAsync($"{path}/CreateAccount", content);
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);
