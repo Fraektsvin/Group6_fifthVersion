@@ -9,9 +9,8 @@ namespace DatabaseTier.Repository.AdminREPO
     {
         Task<Customer> ValidateCustomerAsync(Customer customer);
         Task<IEnumerable<Customer>> GetAllCustomersAsync();
-        Task RemoveCustomerAsync(int cprNumber);
+        Task<string> RemoveCustomerAsync(int cprNumber);
         Task<String> CreateAccountAsync(Account account);
-
         Task<long> GetLastAccountNumberAsync();
     }
 }

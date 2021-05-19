@@ -19,7 +19,6 @@ namespace DatabaseTier.Repository.AdminREPO
                     ThenInclude(c=> c.City).FirstAsync(c => c.CprNumber == customer.CprNumber);
                 toValidate.IsValid = true;
                 await context.SaveChangesAsync();
-                Console.WriteLine("Repository " + toValidate);
                 return toValidate;
             }
             catch (Exception e)
@@ -37,7 +36,6 @@ namespace DatabaseTier.Repository.AdminREPO
                 {
                     IEnumerable<Customer> customers = await context.CustomersTable.
                         Include(a=> a.Address).ThenInclude(a=> a.City).ToListAsync();
-                    Console.WriteLine(customers);
                     return customers;
                 }
                 catch (Exception e)
@@ -48,15 +46,15 @@ namespace DatabaseTier.Repository.AdminREPO
             }
         }
 
-        public async Task RemoveCustomerAsync(int cprNumber)
+        public async Task<string> RemoveCustomerAsync(int cprNumber)
         {
             await using CloudContext context = new CloudContext();
             Customer customerToRemove = await context.CustomersTable.FirstOrDefaultAsync(c => c.CprNumber == cprNumber);
-            if (customerToRemove != null)
-            {
-                context.CustomersTable.Remove(customerToRemove);
-                await context.SaveChangesAsync();
-            }
+            Console.WriteLine(customerToRemove);
+            context.CustomersTable.Remove(customerToRemove);
+            await context.SaveChangesAsync();
+
+            return "Successfully removed!"; 
         }
 
         public async Task<string> CreateAccountAsync(Account account)

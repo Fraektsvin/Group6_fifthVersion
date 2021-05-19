@@ -21,11 +21,9 @@ public class AdminDAOImpl implements AdminDAO {
     @Override
     public boolean validateCustomer(Customer customer) {
         Request obj = new Request("IsValid", customer);
-        System.out.println("In Dao to db " + obj);
         handler.setObj(obj);
 
         Request response = handler.messageExchange(obj);
-        System.out.println("response to adminDAO" + response.getObj());
         Customer customer1 = mapper.convertValue(response.getObj(), Customer.class);
         return customer1.isValid();
     }
@@ -34,7 +32,6 @@ public class AdminDAOImpl implements AdminDAO {
     public List<Customer> getAllCustomers() {
         Request obj = new Request("GetAllCustomers");
         handler.setObj(obj);
-        System.out.println("Inside dao " + obj);
 
         Request response = handler.messageExchange(obj);
         return mapper.convertValue(response.getObj(),
@@ -43,8 +40,17 @@ public class AdminDAOImpl implements AdminDAO {
     }
 
     @Override
-    public String removeCustomer(int cprNumber) {
-        return null;
+    public String removeCustomer(int cprNumber){
+        Request obj = new Request("RemoveCustomerByCprNumber");
+        handler.setObj(obj);
+        System.out.println("Inside dao send request -->  " + obj);
+
+        Request response = handler.messageExchange(obj);
+       if(response.getHeader().equals("RemoveCustomerByCprNumber")){
+           System.out.println("Inside dao response " + response.getObj());
+           return (String) response.getObj();
+       }
+       else return "Customer not found!";
     }
 
     @Override

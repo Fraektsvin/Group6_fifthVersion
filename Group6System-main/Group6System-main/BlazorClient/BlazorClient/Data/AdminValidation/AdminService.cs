@@ -45,11 +45,9 @@ namespace BlazorClient.Data.AdminValidation
         public async Task<IList<Customer>> GetAllCustomersAsync()
         {
             HttpResponseMessage response = await client.GetAsync($"{path}/getCustomers");
-            Console.WriteLine(response.Content);
             if (response.IsSuccessStatusCode)
             {
                 string result = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(result);
                 IList<Customer> customers = JsonSerializer.Deserialize<IList<Customer>>(result, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true

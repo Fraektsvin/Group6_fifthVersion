@@ -11,8 +11,6 @@ public interface AdminDAO {
     boolean validateCustomer(Customer customer);
     List<Customer> getAllCustomers();
     String removeCustomer(int cprNumber);
-
     String CreateAccount(Account account, int cprNumber) throws Exception;
-
     long getLastAccountNumber() throws Exception;
 }
