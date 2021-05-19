@@ -96,8 +96,8 @@ namespace DatabaseTier.Protocol
                     
                     //Validate Customer
                     case "IsValid":
-                        await RepositoryFactory.GetAdminRepository().ValidateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj));
-                        return new Request("IsValid", "Customer successfully validated!");
+                        var validateCustomerAsync = await RepositoryFactory.GetAdminRepository().ValidateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj));
+                        return new Request("IsValid", validateCustomerAsync);
                 }
 
                 return wrongRequest;

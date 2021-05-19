@@ -102,8 +102,8 @@
             _newAddressToAdd.City = _newCityToAdd;
             _addNewCustomer.Address = _newAddressToAdd;
             _addNewCustomer.User = _newUserToAdd;
-            String SuccessMessage = await service.AddCustomerAsync(_addNewCustomer);
-            ErrorMessage = SuccessMessage;
+            string successMessage = await service.AddCustomerAsync(_addNewCustomer);
+            ErrorMessage = successMessage;
             _loading = false;
         }
         catch (Exception e)

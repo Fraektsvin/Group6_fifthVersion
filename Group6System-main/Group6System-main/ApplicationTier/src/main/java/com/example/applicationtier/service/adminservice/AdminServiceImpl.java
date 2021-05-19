@@ -13,13 +13,10 @@ public class AdminServiceImpl implements AdminService{
     private AdminDAO adminDAO;
 
     @Override
-    public boolean validateCustomer(Customer customer) throws Exception {
+    public boolean validateCustomer(Customer customer) {
         boolean customerToValidate = adminDAO.validateCustomer(customer);
         System.out.println("Service to DAO " + customerToValidate);
-        if(!customerToValidate){
-            return true;
-        }
-       throw new Exception("Not found!");
+        return customerToValidate;
     }
 
     @Override
