@@ -47,7 +47,8 @@ public class AdminController {
 
     @DeleteMapping("/removeCustomer/{cprNumber}")
     public ResponseEntity removeCustomer(@PathVariable int cprNumber){
-        String message = service.removeCustomer(cprNumber);
+        System.out.println(cprNumber);
+        var message = service.removeCustomer(cprNumber);
         System.out.println("controller-->>>>" + message);
         return new ResponseEntity<>(message, HttpStatus.OK);
     }

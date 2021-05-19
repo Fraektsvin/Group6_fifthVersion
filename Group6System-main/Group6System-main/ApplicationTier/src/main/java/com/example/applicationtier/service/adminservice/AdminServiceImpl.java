@@ -34,12 +34,10 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public String removeCustomer(int cprNumber){
+        System.out.println(cprNumber);
         String customerToRemove = adminDAO.removeCustomer(cprNumber);
-        System.out.println("Inside service what DAO removes" + customerToRemove);
-        if(!customerToRemove.isEmpty()){
-            return customerToRemove;
-        }
-        return "Cpr-Number not found!";
+        System.out.println("Inside service what DAO removes--> " + customerToRemove);
+        return customerToRemove;
     }
 
     @Override

@@ -93,6 +93,7 @@ namespace DatabaseTier.Protocol
                     case "RemoveCustomerByCprNumber":
                         var removeCustomer = await RepositoryFactory.GetAdminRepository().
                             RemoveCustomerAsync((int) request.Obj);
+                        Console.WriteLine("handler -->  " + removeCustomer);
                         return new Request("RemoveCustomerByCprNumber", removeCustomer);
                     
                     //Validate Customer
