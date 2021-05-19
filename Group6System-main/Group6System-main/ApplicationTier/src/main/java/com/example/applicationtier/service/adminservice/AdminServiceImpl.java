@@ -55,8 +55,12 @@ public class AdminServiceImpl implements AdminService{
             }
         }
 
+        //System.out.println(customer);
+
         Account account = new Account(10000.00, accountNumberGenerator(), new Date(System.currentTimeMillis()));
+        System.out.println(account);
         account.setCustomer(customer);
+
 
         String message = adminDAO.CreateAccount(account, cprNumber);
         return message;

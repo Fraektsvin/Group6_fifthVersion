@@ -55,7 +55,8 @@ public class AdminDAOImpl implements AdminDAO {
         Request response = handler.messageExchange(account1);
 
         if(response.getHeader().equals("AccountCreate")) {
-            return (String) account1.getObj();
+            System.out.println(response.getObj());
+            return (String) response.getObj();
         }
         else throw new Exception((String) response.getObj());
     }
@@ -69,7 +70,8 @@ public class AdminDAOImpl implements AdminDAO {
 
         if(response.getHeader().equals("LastUsedAccountNumber")) {
 
-            return (long) lastUsedAccountNumber.getObj();
+            System.out.println(response.getObj());
+            return (long) response.getObj();
         }
         throw new Exception((String) response.getObj());
     }

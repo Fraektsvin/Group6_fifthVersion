@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Persistence;
@@ -78,13 +79,15 @@ namespace DatabaseTier.Repository.AdminREPO
         {
             using(CloudContext context = new CloudContext())
             {
-                Account lastAccount = await context.AccountTable.LastAsync();
+                IQueryable<Account> Accounts = context.AccountTable.OrderByDescending(a => a.AccountNumber).Take(1);
+                Account lastAccount = Accounts.FirstOrDefault();
                 long lastAccountNumber = 1001000000;
                 if (lastAccount != null)
                 {
                     lastAccountNumber = lastAccount.AccountNumber;
                 }
-                return lastAccount.AccountNumber;
+                Console.WriteLine(lastAccountNumber);
+                return lastAccountNumber;
             }
         }
     }
