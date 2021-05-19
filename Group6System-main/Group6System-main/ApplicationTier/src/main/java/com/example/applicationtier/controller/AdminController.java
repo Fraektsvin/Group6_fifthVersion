@@ -15,15 +15,12 @@ public class AdminController {
     @Autowired
     private AdminService service;
 
-    @PostMapping("validateCustomer")
-    public ResponseEntity validateCustomer(@RequestBody Customer customer){
-        try {
+    @PatchMapping("validateCustomer")
+    public ResponseEntity validateCustomer(@RequestBody Customer customer)  {
             boolean message = service.validateCustomer(customer);
             System.out.println("Controller " + customer);
+            System.out.println(HttpStatus.OK);
             return new ResponseEntity<>(message, HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
-        }
     }
     @GetMapping("/getCustomers")
     public ResponseEntity getAllCustomers(){
