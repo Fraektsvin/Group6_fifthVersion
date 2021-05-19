@@ -4,7 +4,7 @@ import com.example.applicationtier.models.Customer;
 import java.util.List;
 
 public interface AdminService {
-    boolean validateCustomer(Customer customer) throws Exception;
+    boolean validateCustomer(Customer customer);
     List<Customer> getAllCustomers() throws Exception;
     String removeCustomer(int cprNumber);
 

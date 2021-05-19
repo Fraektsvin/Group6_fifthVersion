@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Persistence;
@@ -12,9 +11,9 @@ namespace DatabaseTier.Repository.AdminREPO
     {
         public async Task<Customer> ValidateCustomerAsync(Customer customer)
         {
+            await using CloudContext context = new CloudContext();
             try
             {
-                await using CloudContext context = new CloudContext();
                 Customer toValidate = await context.CustomersTable.Include(c=>c.Address).
                     ThenInclude(c=> c.City).FirstAsync(c => c.CprNumber == customer.CprNumber);
                 toValidate.IsValid = true;

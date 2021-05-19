@@ -17,6 +17,7 @@ public class AdminDAOImpl implements AdminDAO {
     @Autowired
     private Handler handler;
     private final ObjectMapper mapper = new ObjectMapper();
+
     @Override
     public boolean validateCustomer(Customer customer) {
         Request obj = new Request("IsValid", customer);
@@ -25,7 +26,8 @@ public class AdminDAOImpl implements AdminDAO {
 
         Request response = handler.messageExchange(obj);
         System.out.println("response to adminDAO" + response.getObj());
-        return true;
+        Customer customer1 = mapper.convertValue(response.getObj(), Customer.class);
+        return customer1.isValid();
     }
 
     @Override
