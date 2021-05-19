@@ -38,7 +38,8 @@ namespace DatabaseTier.Repository.CustomerREPO
             await using CloudContext context = new CloudContext();
             {
                 //var customer = await context.CustomersTable.FirstOrDefaultAsync(c => c.User.Username.Equals(username));
-                Customer customer = context.CustomersTable.FirstOrDefault(c => c.User.Username.Equals(username));
+                Customer customer = context.CustomersTable.Include(c=>c.Address).
+                    ThenInclude(c=> c.City).FirstOrDefault(c => c.User.Username.Equals(username));
                 if (customer != null)
                 {
                     Console.WriteLine(customer);
@@ -54,7 +55,8 @@ namespace DatabaseTier.Repository.CustomerREPO
             await using CloudContext context = new CloudContext();
             {
                 //var customer = context.CustomersTable.FirstOrDefaultAsync(c => c.CprNumber == cprnumber);
-                Customer customer = context.CustomersTable.FirstOrDefault(c => c.CprNumber == cprNumber);
+                Customer customer = context.CustomersTable.Include(c=>c.Address).
+                    ThenInclude(c=> c.City).FirstOrDefault(c => c.CprNumber == cprNumber);
                 if (customer != null)
                 {
                     Console.WriteLine(customer);

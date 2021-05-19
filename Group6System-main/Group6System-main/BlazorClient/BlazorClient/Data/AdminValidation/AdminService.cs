@@ -18,7 +18,7 @@ namespace BlazorClient.Data.AdminValidation
             string asJson = JsonSerializer.Serialize(customer);
             HttpContent content = new StringContent(
                 asJson, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PatchAsync($"{path}/customers", content);
+            HttpResponseMessage response = await client.PatchAsync($"{path}/validateCustomer", content);
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);
@@ -60,22 +60,23 @@ namespace BlazorClient.Data.AdminValidation
             throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
         }
 
-       /* public async Task CreateCustomerAccountAsync(Customer customer, Account account)
+        public async Task<String> CreateAccount(int cprNumber)
         {
-            HttpClient client = new HttpClient();
-            string asJson = JsonSerializer.Serialize(account);
-            HttpContent content = new StringContent(
-                asJson, Encoding.UTF8, "application/json");
-            HttpResponseMessage response =
-                await client.PostAsync($"{path}/customers?cprNumber={customer.CprNumber}", content);
+            string AsJson = JsonSerializer.Serialize(cprNumber, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+            
+            StringContent content = new StringContent(
+                AsJson,Encoding.UTF8, "application/json");
+            
+            HttpResponseMessage response = await client.PostAsync($"{path}/createNewCustomer", content);
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);
             }
-            else
-            {
-                Console.WriteLine($@"Error: {response.StatusCode}, {response.ReasonPhrase}");
-            }
-        }*/
+
+            throw new Exception(response.Content.ReadAsStringAsync().Result);
+        }
     }
 }

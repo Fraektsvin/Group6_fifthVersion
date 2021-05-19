@@ -16,7 +16,7 @@ public class AdminController {
     private AdminService service;
 
     @PostMapping("validateCustomer")
-    public ResponseEntity validateCustomer(Customer customer){
+    public ResponseEntity validateCustomer(@RequestBody Customer customer){
         try {
             boolean message = service.validateCustomer(customer);
             System.out.println("Controller " + customer);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorClient.Models;
 
@@ -12,5 +13,6 @@ namespace BlazorClient.Data.AdminValidation
         
         
         //Task CreateCustomerAccountAsync(Customer customer, Account account);
+        Task<String> CreateAccount(int cprNumber);
     }
 }
