@@ -55,7 +55,6 @@ public class Handler implements Runnable {
         try {
             toClient = objectMapper.writeValueAsBytes(objToSend);
             output.write(toClient,0,toClient.length);
-           // System.out.println("step 4 --> handler send to db socket " + objToSend);
         } catch (IOException ioException) {
             throw new RuntimeException(ioException.getMessage());
         }
@@ -66,7 +65,7 @@ public class Handler implements Runnable {
             int bytesRead = input.read(dataFromClient, 0, dataFromClient.length);
             String readObj = new String(dataFromClient);
             Request finalObj = objectMapper.readValue(readObj, Request.class);
-            System.out.println("back from the db to the handler --> " + readObj);
+            System.out.println("Returned message from the db to the handler --> " + readObj);
             return finalObj; }
         catch (IOException e) {
             throw new RuntimeException(e.getMessage());

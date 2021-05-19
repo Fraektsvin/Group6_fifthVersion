@@ -90,10 +90,12 @@
 
     private async Task RemoveCustomerAsync(int cprNumber)
     {
+        // remove from the persistence
         await _service.RemoveCustomerAsync(cprNumber);
+        
         Customer customerToRemove = _customers.FirstOrDefault(c => c.CprNumber == cprNumber);
+        Console.WriteLine(customerToRemove);
         _customersToShow.Remove(customerToRemove);
-        _customers.Remove(customerToRemove);
     }
 
     private async Task ValidateCustomerAsync(ChangeEventArgs evt, Customer customer)

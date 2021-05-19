@@ -3,7 +3,6 @@ package com.example.applicationtier.controller;
 import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.service.adminservice.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +14,9 @@ public class AdminController {
     @Autowired
     private AdminService service;
 
-    @PatchMapping("validateCustomer")
+    @PatchMapping("/validateCustomer")
     public ResponseEntity validateCustomer(@RequestBody Customer customer)  {
             boolean message = service.validateCustomer(customer);
-            System.out.println("Controller " + customer);
-            System.out.println(HttpStatus.OK);
             return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
@@ -27,7 +24,6 @@ public class AdminController {
     public ResponseEntity getAllCustomers(){
         try {
             List<Customer> allCustomers = service.getAllCustomers();
-            System.out.println("Controller to service " + allCustomers);
             return new ResponseEntity<>(allCustomers, HttpStatus.OK);
         }
         catch(Exception e)
@@ -38,8 +34,8 @@ public class AdminController {
     }
 
 
-    @PostMapping("CreateAccount")
-    public ResponseEntity CreateAccount(@RequestBody int cprNumber) {
+    @PostMapping("/CreateAccount")
+    public ResponseEntity CreateAccount(@RequestParam int cprNumber) {
         try {
             String message = service.CreateAccount(cprNumber);
             return new ResponseEntity<>(message, HttpStatus.OK);
@@ -49,13 +45,10 @@ public class AdminController {
     }
 
 
-    @DeleteMapping("/removeCustomer")
-    public ResponseEntity deleteUser(@RequestHeader int cprNumber) {
-        try {
-            String message = service.removeCustomer(cprNumber);
-            return new ResponseEntity<>(message, HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    @DeleteMapping("/removeCustomer/{cprNumber}")
+    public ResponseEntity removeCustomer(@PathVariable int cprNumber){
+        String message = service.removeCustomer(cprNumber);
+        System.out.println("controller-->>>>" + message);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 }

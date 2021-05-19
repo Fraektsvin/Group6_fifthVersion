@@ -33,7 +33,7 @@ namespace DatabaseTier.Protocol
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 });
-            Console.WriteLine("step 1 --> from the 2nd tier to the handler  " + readRequest.Header + readRequest.Obj);
+            Console.WriteLine(" --> from the 2nd tier to the handler  " + readRequest.Header + readRequest.Obj);
 
             Request reply;
             try
@@ -75,7 +75,8 @@ namespace DatabaseTier.Protocol
                     
                     //Add customer
                     case "AddCustomer":
-                        return new Request("AddCustomer", await RepositoryFactory.GetCustomerRepository().AddCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
+                        return new Request("AddCustomer", await RepositoryFactory.
+                            GetCustomerRepository().AddCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
                     
                     case "UpdateCustomer" :
                         return new Request("UpdateCustomer",
@@ -86,29 +87,31 @@ namespace DatabaseTier.Protocol
                     case "GetAllCustomers":
                         var all = new Request("GetAllCustomers", await RepositoryFactory.GetAdminRepository().
                             GetAllCustomersAsync());
-                        Console.WriteLine("Handler " + all);
                         return all;
                     
                     //Remove customer
                     case "RemoveCustomerByCprNumber":
-                        await RepositoryFactory.GetAdminRepository().RemoveCustomerAsync((int) request.Obj);
-                        return new Request("RemoveCustomerByCprNumber", "User successfully removed");
+                        var removeCustomer = await RepositoryFactory.GetAdminRepository().
+                            RemoveCustomerAsync((int) request.Obj);
+                        return new Request("RemoveCustomerByCprNumber", removeCustomer);
                     
                     //Validate Customer
                     case "IsValid":
-                        
-                        return new Request("IsValid", await RepositoryFactory.GetAdminRepository().ValidateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
+                        return new Request("IsValid", await RepositoryFactory.
+                            GetAdminRepository().ValidateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
                     
                     //Create Account
                     case "CreateAccount":
                         return new Request("AccountCreate",
-                            await RepositoryFactory.GetAdminRepository().CreateAccountAsync(ToObject<Account>((JsonElement) request.Obj)));
+                            await RepositoryFactory.GetAdminRepository().
+                                CreateAccountAsync(ToObject<Account>((JsonElement) request.Obj)));
                     
                     //Get last used account number
                     case "GetLastUsedAccountNumber":
                         Console.WriteLine(RepositoryFactory.GetAdminRepository()
                             .GetLastAccountNumberAsync());
-                        return new Request("LastUsedAccountNumber", await RepositoryFactory.GetAdminRepository()
+                        return new Request("LastUsedAccountNumber", 
+                            await RepositoryFactory.GetAdminRepository()
                             .GetLastAccountNumberAsync());
                 }
 

@@ -26,7 +26,6 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public List<Customer> getAllCustomers() throws Exception {
         List<Customer> getAll = adminDAO.getAllCustomers();
-        System.out.println("Inside service" + getAll);
         if(!getAll.isEmpty()){
             return getAll;
         }
@@ -34,8 +33,9 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String removeCustomer(int cprNumber) {
+    public String removeCustomer(int cprNumber){
         String customerToRemove = adminDAO.removeCustomer(cprNumber);
+        System.out.println("Inside service what DAO removes" + customerToRemove);
         if(!customerToRemove.isEmpty()){
             return customerToRemove;
         }
