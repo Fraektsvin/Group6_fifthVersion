@@ -55,7 +55,7 @@ namespace BlazorClient.Data.AdminValidation
                 return customers;
             }
 
-            throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
+            throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
 
         public async Task<String> CreateAccount(int cprNumber)

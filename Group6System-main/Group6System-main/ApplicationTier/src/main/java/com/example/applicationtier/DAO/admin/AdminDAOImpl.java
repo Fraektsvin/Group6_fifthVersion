@@ -67,18 +67,18 @@ public class AdminDAOImpl implements AdminDAO {
     }
 
     @Override
-    public long getLastAccountNumber() throws Exception {
+    public long getLastAccountNumber() {
         Request lastUsedAccountNumber = new Request("GetLastUsedAccountNumber", null);
         handler.setObj(lastUsedAccountNumber);
 
         Request response = handler.messageExchange(lastUsedAccountNumber);
 
         if(response.getHeader().equals("LastUsedAccountNumber")) {
-
             System.out.println(response.getObj());
-            return (long) response.getObj();
+            long lastNumber = mapper.convertValue(response.getObj(), long.class);
+            return lastNumber;
         }
-        throw new Exception((String) response.getObj());
+        else return 0;
     }
 
 }

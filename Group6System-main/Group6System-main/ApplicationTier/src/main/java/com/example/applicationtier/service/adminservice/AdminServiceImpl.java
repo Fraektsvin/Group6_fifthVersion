@@ -5,6 +5,7 @@ import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.nodes.CollectionNode;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -55,7 +56,9 @@ public class AdminServiceImpl implements AdminService{
 
         //System.out.println(customer);
 
-        Account account = new Account(10000.00, accountNumberGenerator(), new Date(System.currentTimeMillis()));
+        Date date = new Date(System.currentTimeMillis());
+        System.out.println(date);
+        Account account = new Account(10000.00, accountNumberGenerator(), date);
         System.out.println(account);
         account.setCustomer(customer);
 
@@ -64,9 +67,15 @@ public class AdminServiceImpl implements AdminService{
         return message;
     }
 
-    private long accountNumberGenerator() throws Exception {
-        long lastAccountNumber = adminDAO.getLastAccountNumber();
-        long available = lastAccountNumber + 1;
-        return available;
+    private long accountNumberGenerator(){
+        try {
+            long lastAccountNumber = adminDAO.getLastAccountNumber();
+            long available = lastAccountNumber + 1;
+            System.out.println(lastAccountNumber + " "  + available + " in account number generator");
+            return available;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
