@@ -40,7 +40,7 @@ public class AdminDAOImpl implements AdminDAO {
 
     @Override
     public String removeCustomer(int cprNumber){
-        Request obj = new Request("RemoveCustomerByCprNumber");
+        Request obj = new Request("RemoveCustomerByCprNumber", cprNumber);
         handler.setObj(obj);
         System.out.println("Inside dao send request -->  " + obj);
 

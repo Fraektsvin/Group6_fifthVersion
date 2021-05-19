@@ -12,7 +12,6 @@
     <p>
         Filter by active status:
         <select class="form-control selectpicker" @onchange="@((arg) => FilterByValidCustomers(arg))" style="width:200px">
-            <option>Both</option>
             <option>True</option>
             <option>False</option>
         </select>
@@ -79,28 +78,28 @@
 @*</Authorized>*@
 
 @code {
-    private IList<Customer> _customersToShow = new List<Customer>();
     private IList<Customer> _customers = new List<Customer>();
+    private IList<Customer> _customersToShow = new List<Customer>();
     private bool? _filterByValidCustomers;
 
     protected override async Task OnInitializedAsync()
     {
-        _customersToShow = await _service.GetAllCustomersAsync();
+        _customers = await _service.GetAllCustomersAsync();
+        _customersToShow = _customers;
     }
 
     private async Task RemoveCustomerAsync(int cprNumber)
     {
         await _service.RemoveCustomerAsync(cprNumber);
         Console.WriteLine("client --> " + cprNumber);
-        Customer customerToRemove = _customers.FirstOrDefault(c => c.CprNumber == cprNumber);
-        Console.WriteLine(customerToRemove);
+        var customerToRemove = _customers.First(c=> c.CprNumber == cprNumber);
         _customersToShow.Remove(customerToRemove);
     }
 
     private async Task ValidateCustomerAsync(ChangeEventArgs evt, Customer customer)
     {
         customer.IsValid = (bool) evt.Value;
-       // await _service.ValidateCustomerAsync(customer);
+        await _service.ValidateCustomerAsync(customer);
         Console.WriteLine("client " + customer);
         _navigationManager.NavigateTo($"/CreateAccount/{customer.CprNumber}");
     }

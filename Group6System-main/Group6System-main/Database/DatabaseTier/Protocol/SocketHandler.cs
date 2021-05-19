@@ -67,11 +67,13 @@ namespace DatabaseTier.Protocol
                     //Customers
                     // get customer with username
                     case "GetCustomer":
-                       return new Request("GetCustomer", await RepositoryFactory.GetCustomerRepository().GetCustomer(ToObject<String>((JsonElement) request.Obj)));
+                       return new Request("GetCustomer", await RepositoryFactory.GetCustomerRepository().
+                           GetCustomer(ToObject<String>((JsonElement) request.Obj)));
                     
                     //get customer with cprNumber
                     case "GetCustomerWithCpr":
-                        return new Request("GetCustomerWithCpr", await RepositoryFactory.GetCustomerRepository().GetCustomer(ToObject<int>((JsonElement) request.Obj)));
+                        return new Request("GetCustomerWithCpr", await RepositoryFactory.GetCustomerRepository().
+                            GetCustomer(ToObject<int>((JsonElement) request.Obj)));
                     
                     //Add customer
                     case "AddCustomer":
@@ -92,7 +94,7 @@ namespace DatabaseTier.Protocol
                     //Remove customer
                     case "RemoveCustomerByCprNumber":
                         var removeCustomer = await RepositoryFactory.GetAdminRepository().
-                            RemoveCustomerAsync((int) request.Obj);
+                            RemoveCustomerAsync(ToObject<int>((JsonElement) request.Obj));
                         Console.WriteLine("handler -->  " + removeCustomer);
                         return new Request("RemoveCustomerByCprNumber", removeCustomer);
                     
