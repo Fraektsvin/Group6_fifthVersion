@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
@@ -35,8 +34,8 @@ namespace DatabaseTier.Repository.AdminREPO
             {
                 try
                 {
-                    var customers = await context.CustomersTable.Include(a=> a.User).
-                        Include(a=> a.Address).ThenInclude(a=> a.City).ToListAsync();
+                    var customers = await context.CustomersTable.Include(a=> a.Address).
+                        ThenInclude(a=> a.City).Include(a=> a.User).ToListAsync();
                    return customers;
                 }
                 catch (Exception e)
@@ -50,9 +49,13 @@ namespace DatabaseTier.Repository.AdminREPO
         public async Task<string> RemoveCustomerAsync(int cprNumber)
         {
             await using CloudContext context = new CloudContext();
-            Customer customerToRemove = context.CustomersTable.FirstOrDefault(c => c.CprNumber == cprNumber);
-            Console.WriteLine(customerToRemove);
+            Customer customerToRemove = context.CustomersTable.Include(a=> a.Address).
+                ThenInclude(a=> a.City).Include(a=> a.User)
+                .FirstOrDefault(c => c.CprNumber == cprNumber);
             context.CustomersTable.Remove(customerToRemove);
+            context.AddressTable.Remove(customerToRemove.Address);
+            context.CityTable.Remove(customerToRemove.Address.City);
+            context.UsersTable.Remove(customerToRemove.User);
             await context.SaveChangesAsync();
 
             return "Successfully removed!"; 

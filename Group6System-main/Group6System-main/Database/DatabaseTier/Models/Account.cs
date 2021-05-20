@@ -22,15 +22,5 @@ namespace DatabaseTier.Models
         [JsonPropertyName("date")]
         public String Date{ get; set; }
 
-        public override string ToString()
-        {
-            return "Account{" +
-                   "accountnumber=" + AccountNumber +
-                   "balance=" + Balance +
-                   "Customer: " + Customer +
-                   '}';
-            
-        }
-        
     }
 }

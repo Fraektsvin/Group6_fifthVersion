@@ -6,26 +6,12 @@ namespace DatabaseTier.Models
     public class Address
     {
         [Key]
-        [JsonPropertyName("addressid")]
-        public int Id { get; set; }
-        
         [JsonPropertyName("streetname")]
         public string StreetName { get; set; }
-        
+        [Key]
         [JsonPropertyName("streetnumber")]
         public string StreetNumber { get; set; }
-        
         [JsonPropertyName("city")]
         public City City { get; set; }
-
-        public override string ToString()
-        {
-            return "Address{" +
-                   "streetname=" + StreetName +
-                   "streetnumber=" + StreetNumber +
-                   "zipcode=" + City.ZipCode + 
-                   "cityname" + City.CityName + 
-                   '}';
-        }
     }
 }
