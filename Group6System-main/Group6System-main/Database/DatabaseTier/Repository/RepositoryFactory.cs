@@ -1,5 +1,6 @@
 ﻿using DatabaseTier.Repository.AdminREPO;
 using DatabaseTier.Repository.CustomerREPO;
+using DatabaseTier.Repository.TransactionREPO;
 using DatabaseTier.Repository.UserREPO;
 
 namespace DatabaseTier.Repository
@@ -19,6 +20,11 @@ namespace DatabaseTier.Repository
         public static IAdminRepository GetAdminRepository()
         {
             return new AdminRepository();
+        }
+
+        public static ITransactionRepository GetTransactionRepository()
+        {
+            return new TransactionRepository();
         }
     }
 }

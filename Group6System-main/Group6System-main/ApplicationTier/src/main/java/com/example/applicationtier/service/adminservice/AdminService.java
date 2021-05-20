@@ -7,6 +7,5 @@ public interface AdminService {
     boolean validateCustomer(Customer customer);
     List<Customer> getAllCustomers() throws Exception;
     String removeCustomer(int cprNumber);
-
-    String CreateAccount(int cprNumber) throws Exception;
+    String createAccount(int cprNumber) throws Exception;
 }

@@ -3,7 +3,6 @@ package com.example.applicationtier.service.adminservice;
 import com.example.applicationtier.DAO.admin.AdminDAO;
 import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
-import com.example.applicationtier.models.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +39,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String CreateAccount(int cprNumber) throws Exception {
+    public String createAccount(int cprNumber) throws Exception {
         Customer customer = null;
 
         List<Customer> customers = adminDAO.getAllCustomers();
@@ -51,8 +50,6 @@ public class AdminServiceImpl implements AdminService{
                 break;
             }
         }
-
-        //System.out.println(customer);
 
         Date d = new Date(System.currentTimeMillis());
         String date = d.toString();

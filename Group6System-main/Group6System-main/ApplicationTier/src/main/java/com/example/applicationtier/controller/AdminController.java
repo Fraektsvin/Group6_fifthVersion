@@ -34,10 +34,10 @@ public class AdminController {
     }
 
 
-    @PostMapping("/CreateAccount")
-    public ResponseEntity CreateAccount(@RequestBody int cprNumber) {
+    @PostMapping("/createAccount")
+    public ResponseEntity createAccount(@RequestBody int cprNumber) {
         try {
-            String message = service.CreateAccount(cprNumber);
+            String message = service.createAccount(cprNumber);
             return new ResponseEntity<>(message, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);

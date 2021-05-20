@@ -30,4 +30,21 @@ public class Account {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setAccountNumber(long accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 }

@@ -81,8 +81,9 @@ namespace DatabaseTier.Repository.AdminREPO
         {
             using(CloudContext context = new CloudContext())
             {
-                IQueryable<Account> Accounts = context.AccountTable.OrderByDescending(a => a.AccountNumber).Take(1);
-                Account lastAccount = Accounts.FirstOrDefault();
+                IQueryable<Account> accounts = context.AccountTable.OrderByDescending(a => a.AccountNumber).
+                    Take(1);
+                Account lastAccount = accounts.FirstOrDefault();
                 long lastAccountNumber = 1001000000;
                 if (lastAccount != null)
                 {
