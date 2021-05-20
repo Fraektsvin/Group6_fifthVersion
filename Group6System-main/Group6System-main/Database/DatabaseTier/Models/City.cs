@@ -11,13 +11,5 @@ namespace DatabaseTier.Models
         
         [JsonPropertyName("cityname")]
         public string CityName { get; set; }
-
-        public override string ToString()
-        {
-            return "City{" +
-                   "zipcode=" + ZipCode +
-                   "cityname=" + CityName +
-                   '}';
-        }
     }
 }

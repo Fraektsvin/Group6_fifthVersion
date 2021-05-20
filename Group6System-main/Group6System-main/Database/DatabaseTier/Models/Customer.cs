@@ -7,13 +7,11 @@ namespace DatabaseTier.Models
 {
     public class Customer
     {
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-        
         [Key]
         [JsonPropertyName("cprnumber")]
         public int CprNumber { get; set; }
-        
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
         [JsonPropertyName("address")]
         public Address Address { get; set; }
 

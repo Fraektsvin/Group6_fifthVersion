@@ -1,11 +1,14 @@
 package com.example.applicationtier.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
-
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Component
 public class Account {
     @JsonProperty("balance")
@@ -26,44 +29,5 @@ public class Account {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-   /* public Account(double balance, long accountNumber, Date date) {
-        this.balance = balance;
-        this.accountNumber = accountNumber;
-        this.date = date;
-    }*/
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setAccountNumber(long accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public long getAccountNumber() {
-        return accountNumber;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "balance=" + balance +
-                ", accountLong=" + accountNumber +
-                ", date=" + date +
-                '}';
     }
 }

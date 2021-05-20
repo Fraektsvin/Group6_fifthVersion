@@ -1,43 +1,19 @@
 package com.example.applicationtier.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Component
 public class Request {
     private String header;
     private Object obj;
 
-    public Request(){}
-
     public Request(String header){
         this.header = header;
         obj = null;
     }
-
-    public Request(String header, Object obj) {
-        this.header = header;
-        this.obj = obj;
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
-    }
-
-    public Object getObj() {
-        return obj;
-    }
-
-    public void setObj(Object obj) {
-        this.obj = obj;
-    }
-
-    @Override
-    public String toString() {
-        return header + " " + obj;
-    }
-
 }

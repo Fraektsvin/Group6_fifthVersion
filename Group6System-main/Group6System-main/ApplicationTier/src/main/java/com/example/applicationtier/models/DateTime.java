@@ -1,21 +1,19 @@
 package com.example.applicationtier.models;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-
+@NoArgsConstructor
+@Data
 public class DateTime {
    static private long TICKS_AT_EPOCH = 621355968000000000L;
-
-        long ticks;
-
-        public DateTime(long t) {
+   long ticks;
+   public DateTime(long t) {
             ticks = t;
         }
-
         public DateTime(Date date) {
             ticks = TICKS_AT_EPOCH + 10000 * date.getTime();
         }
-
-        public long Ticks()  { return ticks; }
 
         static public DateTime fromJavaMillis(long millis)
         {

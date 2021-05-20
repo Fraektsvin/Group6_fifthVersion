@@ -20,5 +20,10 @@ namespace DatabaseTier.Persistence
                 options => options.UseAdminDatabase("qjqcxidp"));
             
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Address>()
+                .HasKey(c => new { c.StreetName, c.StreetNumber });
+        }
     }
 }

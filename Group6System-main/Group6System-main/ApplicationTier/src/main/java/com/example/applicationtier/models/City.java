@@ -1,8 +1,13 @@
 package com.example.applicationtier.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Component
 public class City {
 
@@ -11,31 +16,4 @@ public class City {
 
     @JsonProperty("cityname")
     private String cityName;
-
-    public City(){}
-
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public int getZipCode() {
-        return zipCode;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
-    public String getCityName() {
-        return cityName;
-    }
-
-
-    @Override
-    public String toString() {
-        return "City{" +
-                "zipCode=" + zipCode +
-                ", cityName='" + cityName + '\'' +
-                '}';
-    }
 }
