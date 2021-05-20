@@ -13,7 +13,6 @@ namespace DatabaseTier.Models
         [JsonPropertyName("password")]
         public string Password { get; set; }
         
-        public User(){}
         public override string ToString()
         {
             return "User{" +

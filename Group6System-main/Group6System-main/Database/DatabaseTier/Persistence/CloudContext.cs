@@ -20,36 +20,5 @@ namespace DatabaseTier.Persistence
                 options => options.UseAdminDatabase("qjqcxidp"));
             
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Address>().HasOne(a => a.City);
-            modelBuilder.Entity<Customer>().HasOne(a => a.Address);
-            modelBuilder.Entity<Customer>().HasOne(c => c.User);
-            modelBuilder.Entity<User>().HasKey(a => a.Username);
-            modelBuilder.Entity<Customer>().HasKey(a => a.CprNumber);
-            modelBuilder.Entity<Address>().HasKey(a => a.Id);
-            modelBuilder.Entity<City>().HasKey(a => a.ZipCode);
-            /*
-            modelBuilder.Entity<Address>(cus =>
-            {
-                cus.OwnsOne(a => a.City,
-                    add =>
-                    {
-                        add.Property(c => c.CityName).IsRequired();
-                        add.Property(c => c.ZipCode).IsRequired();
-                    });
-            });
-            
-            modelBuilder.Entity<Customer>(cus =>
-            {
-                cus.OwnsOne(a => a.Address,
-                    add =>
-                    {
-                        add.Property(c => c.StreetName).IsRequired();
-                        add.Property(c => c.StreetNumber).IsRequired();
-                    });
-            });*/
-        }
     }
 }
