@@ -53,9 +53,11 @@ public class AdminDAOImpl implements AdminDAO {
     }
 
     @Override
-    public String CreateAccount(Account account, int cprNumber) throws Exception {
+    public String CreateAccount(Account account) throws Exception {
         Request account1 = new Request("CreateAccount", account);
         handler.setObj(account1);
+
+        System.out.println(account.getDate());
 
         Request response = handler.messageExchange(account1);
 

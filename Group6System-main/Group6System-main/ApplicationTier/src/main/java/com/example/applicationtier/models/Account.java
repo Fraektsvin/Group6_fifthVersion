@@ -3,7 +3,9 @@ package com.example.applicationtier.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.sql.Date;
+
+
 @Component
 public class Account {
     @JsonProperty("balance")
@@ -13,12 +15,10 @@ public class Account {
     private long accountNumber;
 
     @JsonProperty("date")
-    private Date date;
+    private String date;
 
     @JsonProperty("customer")
     private Customer customer;
-
-    public Account(){};
 
     public Customer getCustomer() {
         return customer;
@@ -28,11 +28,11 @@ public class Account {
         this.customer = customer;
     }
 
-    public Account(double balance, long accountNumber, Date date) {
+   /* public Account(double balance, long accountNumber, Date date) {
         this.balance = balance;
         this.accountNumber = accountNumber;
         this.date = date;
-    }
+    }*/
 
     public void setBalance(double balance) {
         this.balance = balance;
@@ -50,11 +50,11 @@ public class Account {
         return accountNumber;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
