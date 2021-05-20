@@ -6,13 +6,13 @@ namespace DatabaseTier.Persistence
 {
     public class CloudContext:DbContext
     {
-        public virtual DbSet<User> UsersTable { get; set; }
-        public virtual DbSet<City> CityTable { get; set; }
-        public virtual DbSet<Address> AddressTable { get; set;}
-        public virtual DbSet<Account> AccountTable { get; set; }
-        public virtual DbSet<SavedAccounts> SavedAccountsTable { get; set; }
-        public virtual DbSet<Customer> CustomersTable { get; set; }
-        public virtual DbSet<Transaction> TransactionTable { get; set; }
+        public DbSet<User> UsersTable { get; set; }
+        public DbSet<City> CityTable { get; set; }
+        public DbSet<Address> AddressTable { get; set;}
+        public DbSet<Account> AccountTable { get; set; }
+        public DbSet<SavedAccounts> SavedAccountsTable { get; set; }
+        public DbSet<Customer> CustomersTable { get; set; }
+        public DbSet<Transaction> TransactionTable { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,6 +26,10 @@ namespace DatabaseTier.Persistence
             modelBuilder.Entity<Address>().HasOne(a => a.City);
             modelBuilder.Entity<Customer>().HasOne(a => a.Address);
             modelBuilder.Entity<Customer>().HasOne(c => c.User);
+            modelBuilder.Entity<User>().HasKey(a => a.Username);
+            modelBuilder.Entity<Customer>().HasKey(a => a.CprNumber);
+            modelBuilder.Entity<Address>().HasKey(a => a.Id);
+            modelBuilder.Entity<City>().HasKey(a => a.ZipCode);
             /*
             modelBuilder.Entity<Address>(cus =>
             {
