@@ -53,7 +53,7 @@ public class AdminDAOImpl implements AdminDAO {
     }
 
     @Override
-    public String CreateAccount(Account account) throws Exception {
+    public String createAccount(Account account) throws Exception {
         Request account1 = new Request("CreateAccount", account);
         handler.setObj(account1);
 

@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace BlazorClient.Pages
+namespace BlazorClient.Data
 {
     public class HashString
     {
