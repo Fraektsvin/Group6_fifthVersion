@@ -55,28 +55,11 @@ public class AdminServiceImpl implements AdminService{
         //System.out.println(customer);
 
         Date d = new Date(System.currentTimeMillis());
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         String date = d.toString();
         System.out.println(date);
         Account account = new Account();
         account.setAccountNumber(accountNumberGenerator());
-        account.setDate(date);
-=======
-        DateTime date = new DateTime(d);
-        System.out.println(date);
-=======
-        DateTime date = new DateTime(d);
-        System.out.println(date);
->>>>>>> Stashed changes
-       // Account account = new Account(10000.00, accountNumberGenerator(), date);
-        Account account = new Account();
-        account.setAccountNumber(accountNumberGenerator());
-        account.setDate(date.ToDate());
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+        account.setDate(date);;
         account.setBalance(10000.00);
         account.setCustomer(customer);
 
