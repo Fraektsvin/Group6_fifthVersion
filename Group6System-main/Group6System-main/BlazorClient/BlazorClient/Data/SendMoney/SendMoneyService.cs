@@ -22,7 +22,7 @@ namespace BlazorClient.Data.SendMoney
             StringContent content = new StringContent(
                 AsJson,Encoding.UTF8, "application/json");
             
-            HttpResponseMessage response = await client.PostAsync($"{path}/paybill", content);
+            HttpResponseMessage response = await client.PostAsync($"{path}/payBill", content);
             if (response.IsSuccessStatusCode)
             {
                 return response.Content.ReadAsStringAsync().Result;
@@ -41,7 +41,7 @@ namespace BlazorClient.Data.SendMoney
             StringContent content = new StringContent(
                 AsJson,Encoding.UTF8, "application/json");
             
-            HttpResponseMessage response = await client.PostAsync($"{path}/sendmoney", content);
+            HttpResponseMessage response = await client.PostAsync($"{path}/sendMoney", content);
             if (response.IsSuccessStatusCode)
             {
                 return response.Content.ReadAsStringAsync().Result;

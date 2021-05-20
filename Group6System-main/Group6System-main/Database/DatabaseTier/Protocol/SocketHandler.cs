@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Net.Http.Json;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Repository;
-using DatabaseTier.Repository.CustomerREPO;
-using DatabaseTier.Repository.UserREPO;
 
 namespace DatabaseTier.Protocol
 {
@@ -119,6 +115,30 @@ namespace DatabaseTier.Protocol
                         return new Request("LastUsedAccountNumber", 
                             await RepositoryFactory.GetAdminRepository()
                             .GetLastAccountNumberAsync());
+                    
+                    //check last balance
+                    case "checkBalance":
+                        Customer customerBalance = ToObject<Customer>((JsonElement) request.Obj);
+                        return new Request("checkBalance",
+                            await RepositoryFactory.GetTransactionRepository().CheckBalanceAsync(customerBalance));
+                    
+                    //get the account number for transfer
+                    case "getAccountNUmber" :
+                        Account accountNumber = ToObject<Account>((JsonElement) request.Obj);
+                        return new Request("getAccountNumber",
+                            await RepositoryFactory.GetTransactionRepository().GetAccountNumberAsync(accountNumber));
+                    
+                    //transfer money
+                     case "transferMoney":
+                        Transaction transfer = ToObject<Transaction>((JsonElement) request.Obj);
+                         return new Request("transferMoney", await RepositoryFactory.
+                             GetTransactionRepository().TransferMoneyAsync(transfer)); 
+                     
+                     //pay bill
+                    case "payBill":
+                        Transaction payment = ToObject<Transaction>((JsonElement) request.Obj);
+                        return new Request("payBill",
+                            await RepositoryFactory.GetTransactionRepository().PayBillAsync(payment));
                 }
 
                 return wrongRequest;
