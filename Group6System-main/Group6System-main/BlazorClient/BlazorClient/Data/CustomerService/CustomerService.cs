@@ -35,39 +35,6 @@ namespace BlazorClient.Data.CustomerService
 
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
-        
-        
-        
-        /*public async Task RemoveCustomerAsync(int cprNumber)
-        {
-            HttpResponseMessage response = await _client.DeleteAsync($"{path}/removeCustomer/{cprNumber}");
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine(response.StatusCode);
-            }
-            else
-            {
-                throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
-            }
-        }
-
-        public async Task<IList<Customer>> GetAllCustomersAsync()
-        {
-            HttpResponseMessage response = await _client.GetAsync($"{path}/getCustomers");
-            Console.WriteLine(response.Content);
-            if (response.IsSuccessStatusCode)
-            {
-                string result = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(result);
-                IList<Customer> customers = JsonSerializer.Deserialize<IList<Customer>>(result, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
-                return customers;
-            }
-
-            throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
-        }*/
 
         public async Task UpdateCustomerAsync(Customer customer)
         {

@@ -121,7 +121,7 @@ using BlazorClient.Data.AdminValidation;
     {
         await _service.RemoveCustomerAsync(cprNumber);
         Console.WriteLine("client --> " + cprNumber);
-        var customerToRemove = _customers.First(c=> c.CprNumber == cprNumber);
+        var customerToRemove = _customers.First(c => c.CprNumber == cprNumber);
         _customersToShow.Remove(customerToRemove);
     }
 
@@ -132,6 +132,7 @@ using BlazorClient.Data.AdminValidation;
         Console.WriteLine("client " + customer);
         _navigationManager.NavigateTo($"/CreateAccount/{customer.CprNumber}");
     }
+
     private async Task FilterByValidCustomers(ChangeEventArgs evt)
     {
         _filterByValidCustomers = null;
@@ -142,15 +143,15 @@ using BlazorClient.Data.AdminValidation;
         }
         catch (Exception e)
         {
-           Console.WriteLine(e.Message);
+            Console.WriteLine(e.Message);
         }
     }
+
     private void ExecuteFilter()
     {
         _customersToShow = _customers.Where
             (c => (_filterByValidCustomers != null && c.IsValid == _filterByValidCustomers)).ToList();
     }
-
 
 #line default
 #line hidden
