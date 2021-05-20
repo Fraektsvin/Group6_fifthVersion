@@ -61,7 +61,7 @@ public class AdminServiceImpl implements AdminService{
         account.setCustomer(customer);
 
         System.out.println(account);
-        String message = adminDAO.CreateAccount(account);
+        String message = adminDAO.createAccount(account);
         return message;
     }
 
