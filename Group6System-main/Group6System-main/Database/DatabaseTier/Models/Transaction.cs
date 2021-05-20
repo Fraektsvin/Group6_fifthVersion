@@ -26,13 +26,6 @@ namespace DatabaseTier.Models
         
         [JsonPropertyName("save")]
         public bool Save { get; set; }
-
-        /*
-        public Transaction()
-        {
-            Sender = new Account();
-            Receiver = new Account();
-        }*/
         
         public override string ToString()
         {

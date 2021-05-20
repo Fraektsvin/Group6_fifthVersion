@@ -37,14 +37,7 @@ namespace DatabaseTier.Models
         
         [JsonPropertyName("savedaccounts")]
         public IList<SavedAccounts> SavedAccountsList { get; set; }
-
-      /*  public Customer()
-        {
-            Address = new Address();
-            User = new User();
-            SavedAccountsList = new List<SavedAccounts>();
-        }*/
-      
+        
         public override string ToString()
         {
             return "Customer{" +

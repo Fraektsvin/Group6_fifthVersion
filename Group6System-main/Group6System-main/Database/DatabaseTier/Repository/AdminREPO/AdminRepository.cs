@@ -35,7 +35,7 @@ namespace DatabaseTier.Repository.AdminREPO
             {
                 try
                 {
-                    var customers = await context.CustomersTable.
+                    var customers = await context.CustomersTable.Include(a=> a.User).
                         Include(a=> a.Address).ThenInclude(a=> a.City).ToListAsync();
                    return customers;
                 }

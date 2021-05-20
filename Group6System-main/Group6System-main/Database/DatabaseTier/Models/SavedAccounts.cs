@@ -14,13 +14,6 @@ namespace DatabaseTier.Models
         [JsonPropertyName("amount")]
         public double Amount { get; set; }
 
-        /*
-         public SavedAccounts()
-        {
-            SaveAccount = new Account(); 
-        }
-        */
-        
         public override string ToString()
         {
             return "SavedAccounts{" +
