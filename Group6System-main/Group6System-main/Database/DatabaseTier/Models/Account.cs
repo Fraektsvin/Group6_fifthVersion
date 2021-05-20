@@ -21,7 +21,13 @@ namespace DatabaseTier.Models
         
         [JsonPropertyName("date")]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         public String Date{ get; set; }
+=======
+       // [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+       public DateTime Date{ get; set; }
+>>>>>>> Stashed changes
 =======
        // [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
