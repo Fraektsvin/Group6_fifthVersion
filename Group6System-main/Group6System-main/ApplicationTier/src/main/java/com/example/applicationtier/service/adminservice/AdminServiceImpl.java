@@ -3,13 +3,11 @@ package com.example.applicationtier.service.adminservice;
 import com.example.applicationtier.DAO.admin.AdminDAO;
 import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
+import com.example.applicationtier.models.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.yaml.snakeyaml.nodes.CollectionNode;
 
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -56,14 +54,34 @@ public class AdminServiceImpl implements AdminService{
 
         //System.out.println(customer);
 
-        Date date = new Date(System.currentTimeMillis());
+        Date d = new Date(System.currentTimeMillis());
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+        String date = d.toString();
         System.out.println(date);
-        Account account = new Account(10000.00, accountNumberGenerator(), date);
-        System.out.println(account);
+        Account account = new Account();
+        account.setAccountNumber(accountNumberGenerator());
+        account.setDate(date);
+=======
+        DateTime date = new DateTime(d);
+        System.out.println(date);
+=======
+        DateTime date = new DateTime(d);
+        System.out.println(date);
+>>>>>>> Stashed changes
+       // Account account = new Account(10000.00, accountNumberGenerator(), date);
+        Account account = new Account();
+        account.setAccountNumber(accountNumberGenerator());
+        account.setDate(date.ToDate());
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+        account.setBalance(10000.00);
         account.setCustomer(customer);
 
-
-        String message = adminDAO.CreateAccount(account, cprNumber);
+        System.out.println(account);
+        String message = adminDAO.CreateAccount(account);
         return message;
     }
 

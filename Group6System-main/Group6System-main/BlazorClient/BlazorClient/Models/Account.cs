@@ -20,19 +20,20 @@ namespace BlazorClient.Models
         public IList<Transaction> Transactions { get; set; }
         
         [JsonPropertyName("date")]
+<<<<<<< Updated upstream
+        public String Date{ get; set; }
+=======
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+       // [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date{ get; set; }
-
-        public Account()
-        {
-            Customer = new Customer();
-            Transactions = new List<Transaction>();
-        }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
         public Account(long accountNumber, String name)
         {
-            this.AccountNumber = accountNumber;
+            AccountNumber = accountNumber;
             Customer.Name = name;
         }
     }
