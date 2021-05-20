@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
@@ -34,9 +35,9 @@ namespace DatabaseTier.Repository.AdminREPO
             {
                 try
                 {
-                    IEnumerable<Customer> customers = await context.CustomersTable.
+                    var customers = await context.CustomersTable.
                         Include(a=> a.Address).ThenInclude(a=> a.City).ToListAsync();
-                    return customers;
+                   return customers;
                 }
                 catch (Exception e)
                 {

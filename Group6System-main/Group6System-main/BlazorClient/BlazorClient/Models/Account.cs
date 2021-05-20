@@ -20,19 +20,12 @@ namespace BlazorClient.Models
         public IList<Transaction> Transactions { get; set; }
         
         [JsonPropertyName("date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime Date{ get; set; }
+        public String Date{ get; set; }
 
-        public Account()
-        {
-            Customer = new Customer();
-            Transactions = new List<Transaction>();
-        }
 
         public Account(long accountNumber, String name)
         {
-            this.AccountNumber = accountNumber;
+            AccountNumber = accountNumber;
             Customer.Name = name;
         }
     }

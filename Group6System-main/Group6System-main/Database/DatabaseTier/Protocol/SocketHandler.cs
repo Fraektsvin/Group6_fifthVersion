@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Net.Http.Json;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Repository;
@@ -105,9 +107,10 @@ namespace DatabaseTier.Protocol
                     
                     //Create Account
                     case "CreateAccount":
+                        Account account = ToObject<Account>((JsonElement) request.Obj);
                         return new Request("AccountCreate",
                             await RepositoryFactory.GetAdminRepository().
-                                CreateAccountAsync(ToObject<Account>((JsonElement) request.Obj)));
+                                CreateAccountAsync(account));
                     
                     //Get last used account number
                     case "GetLastUsedAccountNumber":

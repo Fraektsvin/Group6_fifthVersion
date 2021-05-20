@@ -18,10 +18,10 @@ namespace DatabaseTier.Models
         [JsonPropertyName("city")]
         public City City { get; set; }
 
-        public Address()
+        /*public Address()
         {
             City = new City();
-        }
+        }*/
 
         public override string ToString()
         {

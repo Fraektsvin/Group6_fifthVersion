@@ -20,9 +20,7 @@ namespace DatabaseTier.Models
         // public IList<Transaction> Transactions { get; set; }
         
         [JsonPropertyName("date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime Date{ get; set; }
+        public String Date{ get; set; }
 
         public override string ToString()
         {
