@@ -108,7 +108,6 @@ namespace DatabaseTier.Protocol
                     //Create Account
                     case "CreateAccount":
                         Account account = ToObject<Account>((JsonElement) request.Obj);
-                        Console.WriteLine(account.Date);
                         return new Request("AccountCreate",
                             await RepositoryFactory.GetAdminRepository().
                                 CreateAccountAsync(account));
