@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Persistence;
@@ -10,27 +11,57 @@ namespace DatabaseTier.Repository.TransactionREPO
         public async Task<Transaction> TransferMoneyAsync(Transaction transaction)
         {
             await using CloudContext context = new CloudContext();                         //cast long to object 
-            IQueryable<Account> transfer = context.AccountTable.Where(a => a.AccountNumber.Equals(transaction.Receiver));
-            Account transferAccount = transfer.FirstOrDefault();
+            IQueryable<Account> transferTo = context.AccountTable.Where(a => a.AccountNumber.Equals(transaction.Receiver));
+            Account transferAccount = transferTo.FirstOrDefault();
+            UpdateReceiverAccount(transaction, transferAccount);
+            
+            IQueryable<Account> transferFrom = context.AccountTable.Where(a => a.AccountNumber.Equals(transaction.Sender));
+            Account senderAccount = transferFrom.FirstOrDefault();
+            UpdateSenderAccount(transaction, senderAccount);
+            
+            var updateTransaction = await context.TransactionTable.AddAsync(transaction);
+            return updateTransaction.Entity;
+        }
+        private bool UpdateSenderAccount(Transaction transaction, Account senderAccount)
+        {
+            if (senderAccount.AccountNumber.Equals(transaction.Sender))
+            {
+                UpdateSenderBalanceAsync();
+            }
+            else if (senderAccount.AccountNumber.Equals(transaction.Receiver))
+            {
+                UpdateReceiverBalanceAsync();
+            }
+            else return true;
 
+            return false;
+        }
+        private bool UpdateReceiverAccount(Transaction transaction, Account transferAccount)
+        {
             if (transferAccount.AccountNumber.Equals(transaction.Sender))
             {
-                transferAccount.Balance -= transaction.Amount;
+                UpdateSenderBalanceAsync();
             }
             else if (transferAccount.AccountNumber.Equals(transaction.Receiver))
             {
-                transferAccount.Balance += transaction.Amount;
+                UpdateReceiverBalanceAsync();
             }
-            else return null; 
-            
+            else return true;
 
+            return false;
+        }
+        private async Task UpdateReceiverBalanceAsync()
+        {
+            Account newBalance = null;
+            Transaction amount = null;
+            newBalance.Balance += amount.Amount;
+        }
 
-            // var updatedBalance = receiverAccount.Balance + transaction.Amount;
-            //
-            // IQueryable<Account> sender = context.AccountTable.Where(a => a.AccountNumber.Equals(transaction.Sender));
-            // Account senderAccount = sender.FirstOrDefault();
-            // var updateSenderBalance = senderAccount.Balance - transaction.Amount;
-            throw new System.NotImplementedException();
+        private async Task  UpdateSenderBalanceAsync()
+        {
+            Account newBalance = null;
+            Transaction amount = null; 
+            newBalance.Balance -= amount.Amount;
         }
         
         public async Task<Transaction> PayBillAsync(Transaction transaction)

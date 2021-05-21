@@ -2,13 +2,8 @@ package com.example.applicationtier.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+
 @Component
 public class User {
     @JsonProperty("username")
@@ -17,4 +12,23 @@ public class User {
     @JsonProperty("password")
     @JsonSetter
     private String password;
+
+    public User() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
