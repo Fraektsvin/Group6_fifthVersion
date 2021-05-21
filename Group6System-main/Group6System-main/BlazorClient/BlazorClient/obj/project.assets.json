@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\const\\.nuget\\packages\\": {}
+    "C:\\Users\\Antonio\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\const\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
+      "projectUniqueName": "C:\\Users\\Antonio\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
       "projectName": "BlazorClient",
-      "projectPath": "C:\\Users\\const\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
-      "packagesPath": "C:\\Users\\const\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\const\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\obj\\",
+      "projectPath": "C:\\Users\\Antonio\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
+      "packagesPath": "C:\\Users\\Antonio\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Antonio\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\const\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Antonio\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
