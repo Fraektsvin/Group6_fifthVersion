@@ -1,15 +1,10 @@
 package com.example.applicationtier.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+
 @Component
 public class Transaction {
     @JsonProperty("sender")
@@ -24,4 +19,55 @@ public class Transaction {
     private Date date;
     @JsonProperty("save")
     private boolean save;
+
+    public Transaction() {
+    }
+
+    public Customer getSender() {
+        return sender;
+    }
+
+    public void setSender(Customer sender) {
+        this.sender = sender;
+    }
+
+    public Account getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(Account receiver) {
+        this.receiver = receiver;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public boolean isSave() {
+        return save;
+    }
+
+    public void setSave(boolean save) {
+        this.save = save;
+    }
 }

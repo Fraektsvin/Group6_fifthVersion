@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DatabaseTier.Repository.AdminREPO
 {
@@ -49,30 +50,42 @@ namespace DatabaseTier.Repository.AdminREPO
         public async Task<string> RemoveCustomerAsync(int cprNumber)
         {
             await using CloudContext context = new CloudContext();
-            Customer customerToRemove = context.CustomersTable.Include(a=> a.Address).
-                ThenInclude(a=> a.City).Include(a=> a.User)
-                .FirstOrDefault(c => c.CprNumber == cprNumber);
-            context.CustomersTable.Remove(customerToRemove);
-            context.AddressTable.Remove(customerToRemove.Address);
-            context.CityTable.Remove(customerToRemove.Address.City);
-            context.UsersTable.Remove(customerToRemove.User);
-            await context.SaveChangesAsync();
+
+            try
+            {
+                IQueryable<Customer> customerToRemove = context.CustomersTable.Include(a=> a.Address).
+                    ThenInclude(a=> a.City).Include(a=> a.User);
+                
+                var toRemove = context.CustomersTable.FirstOrDefault(c => c.CprNumber == cprNumber);
+                context.CustomersTable.Remove(toRemove);
+                context.AddressTable.Remove(toRemove.Address);
+                context.CityTable.Remove(toRemove.Address.City);
+                context.UsersTable.Remove(toRemove.User);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                throw new Exception(e.Message);
+            }
 
             return "Successfully removed!"; 
         }
 
-        public async Task<string> CreateAccountAsync(Account account)
+        public async Task<Account> CreateAccountAsync(Account account)
         {
-            using (CloudContext context = new CloudContext())
+            await using CloudContext context = new CloudContext();
             {
                 try
                 {
-                    await context.AccountTable.AddAsync(account);
-                    return "Successful";
+                    EntityEntry<Account> newAccount = await context.AccountTable.AddAsync(account);
+                    await context.SaveChangesAsync();
+                    return newAccount.Entity;
                 }
                 catch (Exception e)
                 {
-                    return e.Message;
+                    Console.WriteLine(e.Message);
+                    throw new Exception(e.Message);
                 }
             }
         }
