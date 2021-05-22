@@ -98,7 +98,7 @@
     private async Task ValidateCustomerAsync(ChangeEventArgs evt, Customer customer)
     {
         customer.IsValid = (bool) evt.Value;
-        await _service.ValidateCustomerAsync(customer);
+       // await _service.ValidateCustomerAsync(customer);
         _navigationManager.NavigateTo($"/CreateAccount/{customer.CprNumber}");
     }
 

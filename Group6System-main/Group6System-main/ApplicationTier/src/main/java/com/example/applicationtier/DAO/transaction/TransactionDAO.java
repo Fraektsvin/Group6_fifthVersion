@@ -5,7 +5,7 @@ import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.models.Transaction;
 import org.springframework.stereotype.Repository;
 
-@Repository
+
 public interface TransactionDAO {
     String transferMoney(Transaction transaction);
     String payBill(Transaction transaction);
