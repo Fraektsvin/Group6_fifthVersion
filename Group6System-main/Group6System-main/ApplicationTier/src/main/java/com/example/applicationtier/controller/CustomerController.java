@@ -15,17 +15,15 @@ public class CustomerController {
 
     @PostMapping("/createNewCustomer")
     public ResponseEntity RegisterCustomer(@RequestBody Customer customer) {
-        /*try {
-            String successMessage = service.registerCustomer(customer);
+        String returnMessage = null;
+        try {
+            returnMessage = service.registerCustomer(customer);
 
-            return new ResponseEntity<>(successMessage, HttpStatus.OK);
+            return new ResponseEntity<>(returnMessage, HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        }*/
-        String returnMessage = service.registerCustomer(customer);
-
-        return new ResponseEntity<>(returnMessage, HttpStatus.OK);
+        }
     }
 
     @PutMapping("/updateCustomer")

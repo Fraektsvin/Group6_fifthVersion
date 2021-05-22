@@ -53,17 +53,16 @@ public class AdminDAOImpl implements AdminDAO {
     }
 
     @Override
-    public String createAccount(Account account) throws Exception {
+    public Account CreateAccount(Account account) throws Exception {
+
         Request account1 = new Request("CreateAccount", account);
         handler.setObj(account1);
-
-        System.out.println(account.getDate());
 
         Request response = handler.messageExchange(account1);
 
         if(response.getHeader().equals("AccountCreate")) {
-            System.out.println(response.getObj());
-            return (String) response.getObj();
+            Account acc = mapper.convertValue(response.getObj(), Account.class);
+            return acc;
         }
         else throw new Exception((String) response.getObj());
     }

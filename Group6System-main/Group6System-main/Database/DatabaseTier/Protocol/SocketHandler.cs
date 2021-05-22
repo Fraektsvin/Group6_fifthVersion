@@ -75,7 +75,7 @@ namespace DatabaseTier.Protocol
                     
                     //Add customer
                     case "AddCustomer":
-                        return new Request("AddCustomer", await RepositoryFactory.
+                        return new Request("CustomerAdded", await RepositoryFactory.
                             GetCustomerRepository().AddCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
                     
                     case "UpdateCustomer" :
@@ -110,8 +110,6 @@ namespace DatabaseTier.Protocol
                     
                     //Get last used account number
                     case "GetLastUsedAccountNumber":
-                        Console.WriteLine(RepositoryFactory.GetAdminRepository()
-                            .GetLastAccountNumberAsync());
                         return new Request("LastUsedAccountNumber", 
                             await RepositoryFactory.GetAdminRepository()
                             .GetLastAccountNumberAsync());

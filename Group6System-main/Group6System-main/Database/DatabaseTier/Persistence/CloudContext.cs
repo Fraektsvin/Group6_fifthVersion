@@ -17,7 +17,11 @@ namespace DatabaseTier.Persistence
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql("Host = hattie.db.elephantsql.com; Port = 5432; Database = qjqcxidp; Username = qjqcxidp; Password = U2Tl52Z6pKPT4yr9THTkmLDkmCEwB02u",
-                options => options.UseAdminDatabase("qjqcxidp"));
+                options =>
+                {
+                    options.EnableRetryOnFailure(20);
+                    options.UseAdminDatabase("qjqcxidp");
+                });
             
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

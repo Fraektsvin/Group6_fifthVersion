@@ -78,13 +78,18 @@ namespace DatabaseTier.Repository.AdminREPO
             {
                 try
                 {
+                    var checkCustomer = await context.CustomersTable.FirstOrDefaultAsync(t=> t.CprNumber == account.Customer.CprNumber);
+                    if (checkCustomer != null)
+                    {
+                        account.Customer = checkCustomer;
+                    }
                     EntityEntry<Account> newAccount = await context.AccountTable.AddAsync(account);
                     await context.SaveChangesAsync();
                     return newAccount.Entity;
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.StackTrace);
                     throw new Exception(e.Message);
                 }
             }

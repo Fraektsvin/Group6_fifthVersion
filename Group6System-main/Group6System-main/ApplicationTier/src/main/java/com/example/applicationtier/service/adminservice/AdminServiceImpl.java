@@ -60,9 +60,11 @@ public class AdminServiceImpl implements AdminService{
         account.setBalance(10000.00);
         account.setCustomer(customer);
 
-        System.out.println(account);
-        String message = adminDAO.createAccount(account);
-        return message;
+        Account acc = adminDAO.CreateAccount(account);
+        if(acc != null){
+            return "Successful!!";
+        }
+        else return "Not Successful!!!!!";
     }
 
     private long accountNumberGenerator(){

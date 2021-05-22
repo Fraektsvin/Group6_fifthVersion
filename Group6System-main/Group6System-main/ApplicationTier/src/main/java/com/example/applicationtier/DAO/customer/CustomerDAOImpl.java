@@ -19,12 +19,17 @@ public class CustomerDAOImpl implements CustomerDAO{
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public void addCustomer(Customer customer) {
+    public Customer addCustomer(Customer customer) throws Exception {
         Request obj = new Request("AddCustomer", customer);
         handler.setObj(obj);
 
         Request response = handler.messageExchange(obj);
-        System.out.println(response.getObj());
+        if(response.getHeader().equals("CustomerAdded"))
+        {
+            Customer c = objectMapper.convertValue(response.getObj(), Customer.class);
+            return c;
+        }
+        else throw new Exception((String) response.getObj());
     }
 
     @Override
