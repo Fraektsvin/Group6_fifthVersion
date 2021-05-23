@@ -2,9 +2,12 @@
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Repository;
+using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace DatabaseTier.Protocol
 {
@@ -27,8 +30,10 @@ namespace DatabaseTier.Protocol
             Request readRequest = JsonSerializer.Deserialize<Request>(message, 
                 new JsonSerializerOptions()
                 {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                   // ReferenceHandler = ReferenceHandler.Preserve
                 });
+            
             Console.WriteLine(" --> from the 2nd tier to the handler  " + readRequest.Header + readRequest.Obj);
 
             Request reply;
@@ -44,7 +49,9 @@ namespace DatabaseTier.Protocol
             string readMessage = JsonSerializer.Serialize(reply, new JsonSerializerOptions()
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    //ReferenceHandler = ReferenceHandler.Preserve
                 });
+            
             byte[] sendToServer = Encoding.UTF8.GetBytes(readMessage);
             _stream.Write(sendToServer, 0, sendToServer.Length);
         }

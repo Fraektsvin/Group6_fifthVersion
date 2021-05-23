@@ -52,10 +52,11 @@
 
     private async Task SendMoneyAsync()
     {
-    /*_loading = true;
-        // User user = AuthStat.;
-        // Models.Account Sender = await Service.GetAccount(user.Username, user.Password);
-        // Models.Account Receiver = new Models.Account(AccountNumber, AccountName);
+        _loading = true;
+         User user = CustomAuthenticationStateProvider.storedUser;
+         Console.WriteLine(user.Username);
+         Account Sender = await Service.GetAccount(user.Username);
+         Account Receiver = new Account(AccountNumber, AccountName);
 
         Transaction transaction = new Transaction(Sender, Receiver, Amount, Message, DateTime.Now, Save);
         
@@ -71,7 +72,7 @@
             _loading = false;
             ErrorMessage = e.Message;
         }
-    }*/
+    }
     }
 
 }

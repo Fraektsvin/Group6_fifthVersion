@@ -1,6 +1,7 @@
 package com.example.applicationtier.service.customerservice;
 
 import com.example.applicationtier.DAO.customer.CustomerDAO;
+import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public String updateCustomer(Customer customer) {
         return null;
+    }
+
+    @Override
+    public Account getAccount(String username) throws Exception {
+        Account account = customerDAO.getAccount(username);
+        return account;
     }
 }

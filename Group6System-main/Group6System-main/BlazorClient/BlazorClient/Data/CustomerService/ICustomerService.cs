@@ -10,6 +10,6 @@ namespace BlazorClient.Data.CustomerService
         Task<String> AddCustomerAsync(Customer customer);
         Task UpdateCustomerAsync(Customer customer);
 
-        Task<Account> GetAccount(string username, string password);
+        Task<Account> GetAccount(string username);
     }
 }

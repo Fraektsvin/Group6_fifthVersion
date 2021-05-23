@@ -29,5 +29,10 @@ namespace BlazorClient.Data.UserService
             Console.WriteLine(response.Content.ReadAsStringAsync().Result);
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
+
+        public async Task<User> GetUser(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
