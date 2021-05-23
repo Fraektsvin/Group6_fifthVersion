@@ -9,5 +9,6 @@ namespace DatabaseTier.Repository.TransactionREPO
         Task<Transaction> PayBillAsync(Transaction transaction);
         Task<double> CheckBalanceAsync(Customer customer);
         Task<Account> GetAccountNumberAsync(Account account);
+        Task<string> UpdateBalanceAsync(Account updateAccount);
     }
 }

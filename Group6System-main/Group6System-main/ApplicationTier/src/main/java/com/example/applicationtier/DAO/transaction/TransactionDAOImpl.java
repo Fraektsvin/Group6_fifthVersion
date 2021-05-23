@@ -40,12 +40,12 @@ public class TransactionDAOImpl implements TransactionDAO{
     }
 
     @Override
-    public double checkBalance(Customer customer) {
-        Request obj = new Request("checkBalance", customer);
+    public double getBalance(Account account) {
+        Request obj = new Request("getBalance", account);
         handler.setObj(obj);
 
         Request response = handler.messageExchange(obj);
-        if(response.getHeader().equals("checkBalance")){
+        if(response.getHeader().equals("getBalance")){
             System.out.println("Inside dao response --> checkBalance: " + response.getObj());
             return mapper.convertValue(response.getObj(), double.class);
         }
@@ -53,7 +53,7 @@ public class TransactionDAOImpl implements TransactionDAO{
     }
 
     @Override
-    public Account getAccountNumber(Account account) {
+    public Account checkAccount(Account account) {
         Request obj = new Request("getAccountNumber", account);
         handler.setObj(obj);
 
@@ -64,4 +64,18 @@ public class TransactionDAOImpl implements TransactionDAO{
         }
         else return null;
     }
+
+    @Override
+    public double updateBalance(Account balance) {
+        Request obj = new Request("updateBalance", balance);
+        handler.setObj(obj);
+
+        Request response = handler.messageExchange(obj);
+        if(response.getHeader().equals("updateBalance")){
+            System.out.println("Inside dao --> updateBalance" + response.getObj());
+            return mapper.convertValue(response.getObj(), double.class);
+        }
+        else return 0;
+    }
+
 }

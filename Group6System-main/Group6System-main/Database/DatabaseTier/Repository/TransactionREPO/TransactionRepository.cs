@@ -1,8 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseTier.Repository.TransactionREPO
 {
@@ -10,83 +11,87 @@ namespace DatabaseTier.Repository.TransactionREPO
     {
         public async Task<Transaction> TransferMoneyAsync(Transaction transaction)
         {
-            await using CloudContext context = new CloudContext();                         //cast long to object 
-            IQueryable<Account> transferTo = context.AccountTable.Where(a => a.AccountNumber.Equals(transaction.Receiver));
-            Account transferAccount = transferTo.FirstOrDefault();
-            UpdateReceiverAccount(transaction, transferAccount);
-            
-            IQueryable<Account> transferFrom = context.AccountTable.Where(a => a.AccountNumber.Equals(transaction.Sender));
-            Account senderAccount = transferFrom.FirstOrDefault();
-            UpdateSenderAccount(transaction, senderAccount);
-            
-            var updateTransaction = await context.TransactionTable.AddAsync(transaction);
-            return updateTransaction.Entity;
-        }
-        private bool UpdateSenderAccount(Transaction transaction, Account senderAccount)
-        {
-            if (senderAccount.AccountNumber.Equals(transaction.Sender))
+            await using CloudContext context = new CloudContext();
+            try
             {
-                UpdateSenderBalanceAsync();
-            }
-            else if (senderAccount.AccountNumber.Equals(transaction.Receiver))
-            {
-                UpdateReceiverBalanceAsync();
-            }
-            else return true;
+                var register = await context.AddAsync(transaction);
+                Account sender = await context.AccountTable.FirstOrDefaultAsync(t =>
+                    t.AccountNumber == transaction.Sender.AccountNumber);
+                //sender.Transactions.Add(transaction);
+                context.Update(sender); 
+                
+                Account receiver =
+                    await context.AccountTable.FirstOrDefaultAsync(t =>
+                        t.AccountNumber == transaction.Receiver.AccountNumber);
+                //receiver.Transactions.Add(transaction);
+                context.Update(receiver); 
+                
+                await context.SaveChangesAsync();
+                return register.Entity;
 
-            return false;
-        }
-        private bool UpdateReceiverAccount(Transaction transaction, Account transferAccount)
-        {
-            if (transferAccount.AccountNumber.Equals(transaction.Sender))
-            {
-                UpdateSenderBalanceAsync();
             }
-            else if (transferAccount.AccountNumber.Equals(transaction.Receiver))
+            catch (Exception e)
             {
-                UpdateReceiverBalanceAsync();
+                Console.WriteLine(e.StackTrace);
+                throw new Exception($"Not found!");
             }
-            else return true;
-
-            return false;
-        }
-        private async Task UpdateReceiverBalanceAsync()
-        {
-            Account newBalance = null;
-            Transaction amount = null;
-            newBalance.Balance += amount.Amount;
-        }
-
-        private async Task  UpdateSenderBalanceAsync()
-        {
-            Account newBalance = null;
-            Transaction amount = null; 
-            newBalance.Balance -= amount.Amount;
         }
         
-        public async Task<Transaction> PayBillAsync(Transaction transaction)
-        {
-            await using CloudContext context = new CloudContext();
-            
-            throw new System.NotImplementedException();
-        }
-
         public async Task<double> CheckBalanceAsync(Customer customer)
         {
             await using CloudContext context = new CloudContext();
-            var customerBalance = context.AccountTable.FirstOrDefault(a => a.Balance == customer.CprNumber);
-            if (customerBalance != null)
-                return customerBalance.Balance;
+            try
+            {
+                Account customerBalance = context.AccountTable.FirstOrDefault(a => a.Balance == customer.CprNumber);
+                if (customerBalance != null) return customerBalance.Balance;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new Exception("Error message!!!");
+            }
+
             return 0;
         }
 
         public async Task<Account> GetAccountNumberAsync(Account account)
         {
             await using CloudContext context = new CloudContext();
-            var customerAccount = context.AccountTable.FirstOrDefault(a => a.AccountNumber == a.Customer.CprNumber);
-            if (customerAccount != null)
-                return customerAccount;
+            try
+            {
+                var customerAccount = context.AccountTable.FirstOrDefault(a => a.AccountNumber == a.Customer.CprNumber);
+                if (customerAccount != null) 
+                    return customerAccount;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                throw new Exception("No account found!");
+            }
+
             return null;
+        }
+
+        public async Task<string> UpdateBalanceAsync(Account updateAccount)
+        {
+            await using CloudContext context = new CloudContext();
+            try
+            {
+                context.AccountTable.Update(updateAccount);
+                await context.SaveChangesAsync();
+                return "Balance updated";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                throw new Exception("Error message");
+            }
+        }
+        public async Task<Transaction> PayBillAsync(Transaction transaction)
+        {
+            await using CloudContext context = new CloudContext();
+            
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DatabaseTier.Models
         [JsonPropertyName("customer")]
         public Customer Customer { get; set; }
         
-        // [JsonPropertyName("transactions")]
+        // [JsonPropertyName("transactions")] 
         // public IList<Transaction> Transactions { get; set; }
         
         [JsonPropertyName("date")]

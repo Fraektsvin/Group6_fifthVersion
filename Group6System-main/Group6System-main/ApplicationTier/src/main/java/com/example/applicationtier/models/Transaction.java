@@ -8,7 +8,7 @@ import java.util.Date;
 @Component
 public class Transaction {
     @JsonProperty("sender")
-    private Customer sender;
+    private Account sender;
     @JsonProperty("receiver")
     private Account receiver;
     @JsonProperty("amount")
@@ -23,11 +23,11 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Customer getSender() {
+    public Account getSender() {
         return sender;
     }
 
-    public void setSender(Customer sender) {
+    public void setSender(Account sender) {
         this.sender = sender;
     }
 
@@ -70,4 +70,5 @@ public class Transaction {
     public void setSave(boolean save) {
         this.save = save;
     }
+
 }
