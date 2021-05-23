@@ -1,9 +1,10 @@
 ﻿@page "/Send_Money"
-@using BlazorClient.Authentication
+
 @using BlazorClient.Data.CustomerService
 @using BlazorClient.Data.SendMoney
 @using BlazorClient.Models
-@inject CustomAuthenticationStateProvider AuthStat
+@using BlazorClient.Authentication
+@inject AuthenticationStateProvider AuthStat
 @inject ICustomerService Service
 @inject ISendMoneyService TransactionService
 
@@ -35,7 +36,7 @@
             {
                 <span class="spinner-border spinner-border-sm mr-1"></span>
             }
-            <a href="" @onclick="PayBillAsync">Submit</a> 
+            <a href="" @onclick="SendMoneyAsync">Submit</a> 
         </button>
     </div>
 </div>
@@ -49,12 +50,12 @@
     private bool Save;
     private string ErrorMessage { get; set; }
 
-    private async Task PayBillAsync()
+    private async Task SendMoneyAsync()
     {
-        _loading = true;
-        User user = AuthStat._cachedUser;
-        Models.Account Sender = await Service.GetAccount(user.Username, user.Password);
-        Models.Account Receiver = new Models.Account(AccountNumber, AccountName);
+    /*_loading = true;
+        // User user = AuthStat.;
+        // Models.Account Sender = await Service.GetAccount(user.Username, user.Password);
+        // Models.Account Receiver = new Models.Account(AccountNumber, AccountName);
 
         Transaction transaction = new Transaction(Sender, Receiver, Amount, Message, DateTime.Now, Save);
         
@@ -70,5 +71,7 @@
             _loading = false;
             ErrorMessage = e.Message;
         }
+    }*/
     }
+
 }

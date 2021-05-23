@@ -3,6 +3,8 @@ package com.example.applicationtier.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 @Component
 public class Account {
@@ -17,9 +19,19 @@ public class Account {
 
     @JsonProperty("customer")
     private Customer customer;
+    @JsonProperty("transactions")
+    private List<Transaction> transactions;
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
     public void setCustomer(Customer customer) {

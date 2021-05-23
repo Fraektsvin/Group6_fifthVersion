@@ -11,12 +11,10 @@ namespace DatabaseTier.Protocol
     public class SocketHandler
     {
         private readonly NetworkStream _stream;
-        private readonly TcpClient _client;
-        
+
         public SocketHandler(TcpClient client)
         {
-            _client = client;
-            _stream = _client.GetStream();
+            _stream = client.GetStream();
         }
 
         public async Task ExchangeMessages()
@@ -115,12 +113,18 @@ namespace DatabaseTier.Protocol
                             .GetLastAccountNumberAsync());
                     
                     //check last balance
-                    case "checkBalance":
+                    case "getBalance":
                         Customer customerBalance = ToObject<Customer>((JsonElement) request.Obj);
                         return new Request("checkBalance",
                             await RepositoryFactory.GetTransactionRepository().CheckBalanceAsync(customerBalance));
                     
-                    //get the account number for transfer
+                    //update balance
+                    case "updateBalance":
+                        Account updateAccount = ToObject<Account>((JsonElement) request.Obj);
+                        return new Request("updateBalance",
+                            await RepositoryFactory.GetTransactionRepository().UpdateBalanceAsync(updateAccount));
+                    
+                    //get the account number
                     case "getAccountNUmber" :
                         Account accountNumber = ToObject<Account>((JsonElement) request.Obj);
                         return new Request("getAccountNumber",
