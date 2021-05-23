@@ -17,7 +17,9 @@ namespace BlazorClient.Authentication
         private readonly IJSRuntime _jsRuntime;
         private readonly IUserService _userService;
 
-        public User _cachedUser { get; set; }
+        private User _cachedUser { get; set; }
+
+        public static User storedUser;
 
         public CustomAuthenticationStateProvider(IJSRuntime jsRuntime, IUserService userService)
         {
@@ -57,6 +59,7 @@ namespace BlazorClient.Authentication
             {
                // var hashedpassword = HashString(password);
                 User userToValidate = await _userService.ValidateUserAsync(username, password);
+                storedUser = userToValidate;
                 identity = SetupClaimsForUser(userToValidate);
                 string serialisedData = JsonSerializer.Serialize(userToValidate);
                 await _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);

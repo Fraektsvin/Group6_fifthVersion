@@ -1,5 +1,6 @@
 package com.example.applicationtier.controller;
 
+import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.service.customerservice.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,17 @@ public class CustomerController {
     public ResponseEntity updateUser(@RequestBody Customer customer){
         String message = service.updateCustomer(customer);
         return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+    @GetMapping("/getAccount")
+    public ResponseEntity getAccount(@RequestParam String username){
+        try {
+            Account account = service.getAccount(username);
+
+            return new ResponseEntity<>(account, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 }

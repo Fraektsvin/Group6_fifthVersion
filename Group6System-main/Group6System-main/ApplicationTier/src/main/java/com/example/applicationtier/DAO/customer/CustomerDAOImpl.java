@@ -1,6 +1,7 @@
 package com.example.applicationtier.DAO.customer;
 
 import com.example.applicationtier.DAO.Handler;
+import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.models.Request;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -63,5 +64,18 @@ public class CustomerDAOImpl implements CustomerDAO{
             return customer;
         }
         return null;
+    }
+
+    @Override
+    public Account getAccount(String username) throws Exception {
+        Request obj = new Request("GetAccountWithUsername", username);
+        handler.setObj(obj);
+
+        Request accountObj = handler.messageExchange(obj);
+        if(accountObj.getHeader().equals("AccountWithUsername")){
+            Account account = objectMapper.convertValue(accountObj.getObj(), Account.class);
+            return account;
+        }
+        throw new Exception((String) accountObj.getObj());
     }
 }

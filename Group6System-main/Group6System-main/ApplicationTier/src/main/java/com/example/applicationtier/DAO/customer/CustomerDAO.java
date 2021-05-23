@@ -1,5 +1,6 @@
 package com.example.applicationtier.DAO.customer;
 
+import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +10,6 @@ public interface CustomerDAO {
     String updateCustomer(Customer customer);
     Customer getCustomer(String username);
     Customer getCustomer(int cprNumber);
+
+    Account getAccount(String username) throws Exception;
 }

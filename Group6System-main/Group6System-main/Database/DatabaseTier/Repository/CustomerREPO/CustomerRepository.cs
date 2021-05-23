@@ -54,9 +54,15 @@ namespace DatabaseTier.Repository.CustomerREPO
         {
             await using CloudContext context = new CloudContext();
             {
-                Account customerAccount =
-                        await context.AccountTable.FirstOrDefaultAsync(a => a.Customer.User.Username.Equals(username));
-                if(customerAccount != null) return customerAccount;
+                Console.WriteLine(username + "getaccount");
+                Customer customer =
+                        await context.CustomersTable.Include(c => c.User).FirstOrDefaultAsync(a => a.User.Username.Equals(username));
+                Console.WriteLine(customer.CprNumber + " getaccount");
+                Account customerAccount = await 
+                     context.AccountTable.Include(c => c.Customer).FirstOrDefaultAsync(a => a.Customer.CprNumber == customer.CprNumber);
+                Console.WriteLine(customerAccount.AccountNumber);
+                if(customerAccount != null)
+                    return customerAccount;
                 
                 throw new Exception("Account Not found.");
               

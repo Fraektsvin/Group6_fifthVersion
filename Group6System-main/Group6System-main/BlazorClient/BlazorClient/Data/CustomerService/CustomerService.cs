@@ -51,9 +51,9 @@ namespace BlazorClient.Data.CustomerService
             }
         }
 
-        public async Task<Account> GetAccount(string username, string password)
+        public async Task<Account> GetAccount(string username)
         {
-            HttpResponseMessage response = await _client.GetAsync($"{path}/getAccount?username={username}&password={password}");
+            HttpResponseMessage response = await _client.GetAsync($"{path}/getAccount?username={username}");
             Console.WriteLine(response.Content);
             if (response.IsSuccessStatusCode)
             {

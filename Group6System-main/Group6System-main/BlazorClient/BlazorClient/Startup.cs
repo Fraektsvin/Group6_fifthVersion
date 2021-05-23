@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using BlazorClient.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,6 +38,8 @@ namespace BlazorClient
                 options.AddPolicy("Admin", policy => 
                     policy.RequireAuthenticatedUser().RequireClaim("Role", "admin"));
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
