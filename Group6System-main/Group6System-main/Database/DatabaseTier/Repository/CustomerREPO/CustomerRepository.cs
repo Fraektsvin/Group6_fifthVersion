@@ -33,7 +33,7 @@ namespace DatabaseTier.Repository.CustomerREPO
             }
         }
 
-        public async Task<Customer> GetCustomer(string username)
+        public async Task<Customer> GetCustomerAsync(string username)
         {
             await using CloudContext context = new CloudContext();
             {
@@ -50,7 +50,20 @@ namespace DatabaseTier.Repository.CustomerREPO
             }
         }
 
-        public async Task<Customer> GetCustomer(int cprNumber)
+        public async Task<Account> GetCustomerAccountAsync(string username)
+        {
+            await using CloudContext context = new CloudContext();
+            {
+                Account customerAccount =
+                        await context.AccountTable.FirstOrDefaultAsync(a => a.Customer.User.Username.Equals(username));
+                if(customerAccount != null) return customerAccount;
+                
+                throw new Exception("Account Not found.");
+              
+            }
+        }
+
+        public async Task<Customer> GetCustomerAsync(int cprNumber)
         {
             await using CloudContext context = new CloudContext();
             {

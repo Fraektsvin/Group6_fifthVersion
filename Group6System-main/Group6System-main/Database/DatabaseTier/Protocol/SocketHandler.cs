@@ -64,12 +64,12 @@ namespace DatabaseTier.Protocol
                     // get customer with username
                     case "GetCustomer":
                        return new Request("GetCustomer", await RepositoryFactory.GetCustomerRepository().
-                           GetCustomer(ToObject<String>((JsonElement) request.Obj)));
+                           GetCustomerAsync(ToObject<String>((JsonElement) request.Obj)));
                     
                     //get customer with cprNumber
                     case "GetCustomerWithCpr":
                         return new Request("GetCustomerWithCpr", await RepositoryFactory.GetCustomerRepository().
-                            GetCustomer(ToObject<int>((JsonElement) request.Obj)));
+                            GetCustomerAsync(ToObject<int>((JsonElement) request.Obj)));
                     
                     //Add customer
                     case "AddCustomer":
@@ -123,6 +123,12 @@ namespace DatabaseTier.Protocol
                         Account updateAccount = ToObject<Account>((JsonElement) request.Obj);
                         return new Request("updateBalance",
                             await RepositoryFactory.GetTransactionRepository().UpdateBalanceAsync(updateAccount));
+                    
+                    //get account with username
+                    case"GetAccountWithUsername":
+                        string username = ToObject<string>((JsonElement) request.Obj);
+                        return new Request("AccountWithUsername",
+                            RepositoryFactory.GetCustomerRepository().GetCustomerAccountAsync(username));
                     
                     //get the account number
                     case "getAccountNUmber" :
