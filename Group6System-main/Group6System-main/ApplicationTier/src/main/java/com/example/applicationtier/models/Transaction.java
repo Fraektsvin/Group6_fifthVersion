@@ -1,5 +1,6 @@
 package com.example.applicationtier.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,9 @@ public class Transaction {
     @JsonProperty("save")
     private boolean save;
 
+    @JsonProperty("transactionnumber")
+    private int transActionNumber;
+
     public Transaction() {
     }
 
@@ -30,9 +34,18 @@ public class Transaction {
                 ", receiver=" + receiver +
                 ", amount=" + amount +
                 ", message='" + message + '\'' +
-                ", date=" + date +
+                ", date='" + date + '\'' +
                 ", save=" + save +
+                ", transActionNumber=" + transActionNumber +
                 '}';
+    }
+
+    public void setTransActionNumber(int transActionNumber) {
+        this.transActionNumber = transActionNumber;
+    }
+
+    public int getTransActionNumber() {
+        return transActionNumber;
     }
 
     public Account getSender() {

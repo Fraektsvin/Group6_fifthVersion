@@ -634,9 +634,7 @@ C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorCli
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\PayBill.razor.g.cs
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\Account.razor.g.cs
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\PayBill.razor.g.cs
-C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\Account.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\PayBill.razor.g.cs
-C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\Account.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\PayBill.razor.g.cs
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\AdminValidation.razor.g.cs
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\AdminValidation.razor.g.cs
