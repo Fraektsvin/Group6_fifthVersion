@@ -1,8 +1,9 @@
 ﻿@page "/Customers"
 @using BlazorClient.Models
 @using BlazorClient.Data.CustomerService
+@using BlazorClient.Authentication
 @inject NavigationManager NavigationManager
-@inject ICustomerService service
+@inject AuthenticationStateProvider service
 
 <h3>Register</h3>
 <EditForm Model="@_addNewCustomer" OnValidSubmit="@RegisterCustomer">
@@ -102,12 +103,14 @@
             _newAddressToAdd.City = _newCityToAdd;
             _addNewCustomer.Address = _newAddressToAdd;
             _addNewCustomer.User = _newUserToAdd;
-            string successMessage = await service.AddCustomerAsync(_addNewCustomer);
-            ErrorMessage = successMessage;
+           // string successMessage = await service.AddCustomerAsync(_addNewCustomer);
+            string successMessage = await ((CustomAuthenticationStateProvider)service).ValidateRegisterAsync(_addNewCustomer);
+                ErrorMessage = successMessage;
             _loading = false;
         }
         catch (Exception e)
         {
+            Console.WriteLine(e.Message);
             ErrorMessage = e.Message;
             _loading = false;
         }

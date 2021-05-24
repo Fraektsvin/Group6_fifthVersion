@@ -69,12 +69,12 @@ namespace BlazorClient.Data.CustomerService
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
         
-        private string HashString(string input)
+       /* private string HashString(string input)
         {
             using HashAlgorithm algorithm = SHA256.Create();
             var hashBytes = algorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
             var hashedInputAsString = Encoding.ASCII.GetString(hashBytes);
             return hashedInputAsString;
-        }
+        }*/
     }
 }
