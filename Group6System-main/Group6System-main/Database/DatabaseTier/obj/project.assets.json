@@ -854,19 +854,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\fatem\\.nuget\\packages\\": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fatem\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj",
       "projectName": "DatabaseTier",
-      "projectPath": "C:\\Users\\fatem\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj",
-      "packagesPath": "C:\\Users\\fatem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fatem\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\obj\\",
+      "projectPath": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\DatabaseTier.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\fatem\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

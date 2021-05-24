@@ -4,7 +4,9 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using BlazorClient.Data.CustomerService;
 using BlazorClient.Data.UserService;
 using BlazorClient.Models;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -16,15 +18,17 @@ namespace BlazorClient.Authentication
     {
         private readonly IJSRuntime _jsRuntime;
         private readonly IUserService _userService;
+        private readonly ICustomerService _customerService;
 
         private User _cachedUser { get; set; }
 
         public static User storedUser;
 
-        public CustomAuthenticationStateProvider(IJSRuntime jsRuntime, IUserService userService)
+        public CustomAuthenticationStateProvider(IJSRuntime jsRuntime, IUserService userService, ICustomerService customerService)
         {
           _jsRuntime = jsRuntime;
           _userService = userService;
+          _customerService = customerService;
         }
        
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -48,6 +52,14 @@ namespace BlazorClient.Authentication
             ClaimsPrincipal cachedClaimsPrincipal = new ClaimsPrincipal(identity);
             return await Task.FromResult(new AuthenticationState(cachedClaimsPrincipal));
         }
+
+        public async Task<string> ValidateRegisterAsync(Customer customer)
+        {
+            string hashPassword = HashString(customer.User.Password);
+            customer.User.Password = hashPassword;
+            Console.WriteLine(hashPassword + "         " + customer.User.Password);
+            return await _customerService.AddCustomerAsync(customer);
+        }
         
         public async Task ValidateLoginAsync(string username,string password) 
         {
@@ -57,8 +69,8 @@ namespace BlazorClient.Authentication
             ClaimsIdentity identity = new ClaimsIdentity();
             try
             {
-               // var hashedpassword = HashString(password);
-                User userToValidate = await _userService.ValidateUserAsync(username, password);
+                var hashedpassword = HashString(password);
+                User userToValidate = await _userService.ValidateUserAsync(username, hashedpassword);
                 storedUser = userToValidate;
                 identity = SetupClaimsForUser(userToValidate);
                 string serialisedData = JsonSerializer.Serialize(userToValidate);
@@ -90,13 +102,13 @@ namespace BlazorClient.Authentication
             return identity;
        }
         
-       /* private string HashString(string input)
+        private string HashString(string input)
         {
             using HashAlgorithm algorithm = SHA256.Create();
             var hashBytes = algorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
             var hashedInputAsString = Encoding.ASCII.GetString(hashBytes);
             return hashedInputAsString;
-        }*/
+        }
     }
 }
 
