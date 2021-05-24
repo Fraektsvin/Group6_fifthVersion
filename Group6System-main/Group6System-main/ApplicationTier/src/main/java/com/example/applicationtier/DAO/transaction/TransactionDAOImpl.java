@@ -14,15 +14,16 @@ public class TransactionDAOImpl implements TransactionDAO{
     @Autowired private Handler handler;
     private final ObjectMapper mapper = new ObjectMapper();
     @Override
-    public String transferMoney(Transaction transaction) {
+    public Transaction transferMoney(Transaction transaction) throws Exception {
         Request obj = new Request("transferMoney", transaction);
         handler.setObj(obj);
-
         Request response = handler.messageExchange(obj);
         if(response.getHeader().equals("transferMoney")){
-            return (String) response.getObj();
+            Transaction t = mapper.convertValue(response.getObj(), Transaction.class);
+            return t;
         }
-        else return "Transfer FAIL!";
+        else throw new Exception((String) response.getObj());
+
     }
 
     @Override

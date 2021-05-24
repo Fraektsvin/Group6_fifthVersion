@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 
 
 public interface TransactionService {
-    String transferMoney(Transaction transaction);
+    String transferMoney(Transaction transaction) throws Exception;
     String payBill(Transaction transaction);
 }

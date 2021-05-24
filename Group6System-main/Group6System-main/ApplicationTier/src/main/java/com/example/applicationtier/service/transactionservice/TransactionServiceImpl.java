@@ -10,7 +10,7 @@ public class TransactionServiceImpl implements TransactionService{
     @Autowired private TransactionDAO transDAO;
 
     @Override
-    public String transferMoney(Transaction transaction) {
+    public String transferMoney(Transaction transaction) throws Exception{
 
         double checkBalance = transaction.getSender().getBalance() - transaction.getAmount();
         System.out.println(checkBalance);
