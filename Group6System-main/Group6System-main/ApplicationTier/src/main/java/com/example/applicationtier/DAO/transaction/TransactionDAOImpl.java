@@ -20,7 +20,6 @@ public class TransactionDAOImpl implements TransactionDAO{
 
         Request response = handler.messageExchange(obj);
         if(response.getHeader().equals("transferMoney")){
-            System.out.println("Inside dao response " + response.getObj());
             return (String) response.getObj();
         }
         else return "Transfer FAIL!";
@@ -46,36 +45,8 @@ public class TransactionDAOImpl implements TransactionDAO{
 
         Request response = handler.messageExchange(obj);
         if(response.getHeader().equals("getBalance")){
-            System.out.println("Inside dao response --> checkBalance: " + response.getObj());
             return mapper.convertValue(response.getObj(), double.class);
         }
         else return 0;
     }
-
-    @Override
-    public Account checkAccount(Account account) {
-        Request obj = new Request("getAccountNumber", account);
-        handler.setObj(obj);
-
-        Request response = handler.messageExchange(obj);
-        if(response.getHeader().equals("getAccountNumber")){
-            System.out.println("Inside dao response --> accountNUmber: " + response.getObj());
-            return mapper.convertValue(response.getObj(), Account.class);
-        }
-        else return null;
-    }
-
-    @Override
-    public double updateBalance(Account balance) {
-        Request obj = new Request("updateBalance", balance);
-        handler.setObj(obj);
-
-        Request response = handler.messageExchange(obj);
-        if(response.getHeader().equals("updateBalance")){
-            System.out.println("Inside dao --> updateBalance" + response.getObj());
-            return mapper.convertValue(response.getObj(), double.class);
-        }
-        else return 0;
-    }
-
 }

@@ -119,7 +119,7 @@ using BlazorClient.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\Send Money.razor"
+#line 43 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\Send Money.razor"
        
     private long AccountNumber;
     private double Amount;
@@ -131,18 +131,16 @@ using BlazorClient.Authentication;
 
     private async Task SendMoneyAsync()
     {
-        _loading = true;
-         User user = CustomAuthenticationStateProvider.storedUser;
-         Console.WriteLine(user.Username);
-         Account Sender = await Service.GetAccount(user.Username);
-         Account Receiver = new Account(AccountNumber, AccountName);
-
-        Transaction transaction = new Transaction(Sender, Receiver, Amount, Message, DateTime.Now, Save);
-        
-        //Send money
         try
         {
+            _loading = true;
+            User user = CustomAuthenticationStateProvider.storedUser;
+            Account Sender = await Service.GetAccount(user.Username);
+            Account Receiver = await Service.GetAccount(AccountName);
+
+            Transaction transaction = new Transaction(Sender, Receiver, Amount, Message, DateTime.Now.ToString(), Save);
             String successMessage = await TransactionService.SendMoney(transaction);
+            
             ErrorMessage = successMessage;
             _loading = false;
         }

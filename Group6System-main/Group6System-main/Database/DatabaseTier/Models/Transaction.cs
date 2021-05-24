@@ -22,7 +22,7 @@ namespace DatabaseTier.Models
         public string Message { get; set; }
         
         [JsonPropertyName("date")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         
         [JsonPropertyName("save")]
         public bool Save { get; set; }

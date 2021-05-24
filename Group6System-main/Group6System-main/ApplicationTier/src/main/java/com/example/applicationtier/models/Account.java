@@ -19,21 +19,22 @@ public class Account {
 
     @JsonProperty("customer")
     private Customer customer;
-    @JsonProperty("transactions")
-    private List<Transaction> transactions;
+
+  /* @JsonProperty("transactions")
+    private List<Transaction> transactions;*/
 
     public Customer getCustomer() {
         return customer;
     }
 
-    public List<Transaction> getTransactions() {
+   /* public List<Transaction> getTransactions() {
         return transactions;
     }
 
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
-
+*/
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -54,11 +55,18 @@ public class Account {
         this.date = date;
     }
 
-    public Account() {
-    }
-
     public double getBalance() {
         return balance;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "balance=" + balance +
+                ", accountNumber=" + accountNumber +
+                ", date='" + date + '\'' +
+                ", customer=" + customer +
+                '}';
     }
 
     public long getAccountNumber() {

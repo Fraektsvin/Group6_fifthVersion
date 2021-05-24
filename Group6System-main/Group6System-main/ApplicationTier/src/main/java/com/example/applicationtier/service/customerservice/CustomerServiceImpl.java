@@ -42,6 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Account getAccount(String username) throws Exception {
         Account account = customerDAO.getAccount(username);
+
         return account;
     }
 }

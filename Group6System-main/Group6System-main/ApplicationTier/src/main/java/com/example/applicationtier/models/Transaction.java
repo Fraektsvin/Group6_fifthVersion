@@ -16,11 +16,23 @@ public class Transaction {
     @JsonProperty("message")
     private String message;
     @JsonProperty("date")
-    private Date date;
+    private String date;
     @JsonProperty("save")
     private boolean save;
 
     public Transaction() {
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "sender=" + sender +
+                ", receiver=" + receiver +
+                ", amount=" + amount +
+                ", message='" + message + '\'' +
+                ", date=" + date +
+                ", save=" + save +
+                '}';
     }
 
     public Account getSender() {
@@ -55,11 +67,11 @@ public class Transaction {
         this.message = message;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

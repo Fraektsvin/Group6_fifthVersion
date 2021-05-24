@@ -19,7 +19,6 @@ public class CustomerController {
         String returnMessage = null;
         try {
             returnMessage = service.registerCustomer(customer);
-
             return new ResponseEntity<>(returnMessage, HttpStatus.OK);
         }
         catch (Exception e){
@@ -37,7 +36,6 @@ public class CustomerController {
     public ResponseEntity getAccount(@RequestParam String username){
         try {
             Account account = service.getAccount(username);
-
             return new ResponseEntity<>(account, HttpStatus.OK);
         }
         catch (Exception e){

@@ -30,8 +30,7 @@ namespace DatabaseTier.Protocol
             Request readRequest = JsonSerializer.Deserialize<Request>(message, 
                 new JsonSerializerOptions()
                 {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                   // ReferenceHandler = ReferenceHandler.Preserve
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 });
             
             Console.WriteLine(" --> from the 2nd tier to the handler  " + readRequest.Header + readRequest.Obj);
@@ -49,7 +48,6 @@ namespace DatabaseTier.Protocol
             string readMessage = JsonSerializer.Serialize(reply, new JsonSerializerOptions()
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                    //ReferenceHandler = ReferenceHandler.Preserve
                 });
             
             byte[] sendToServer = Encoding.UTF8.GetBytes(readMessage);
@@ -121,21 +119,16 @@ namespace DatabaseTier.Protocol
                     
                     //check last balance
                     case "getBalance":
-                        Customer customerBalance = ToObject<Customer>((JsonElement) request.Obj);
+                        Account a = ToObject<Account>((JsonElement) request.Obj);
                         return new Request("checkBalance",
-                            await RepositoryFactory.GetTransactionRepository().CheckBalanceAsync(customerBalance));
-                    
-                    //update balance
-                    case "updateBalance":
-                        Account updateAccount = ToObject<Account>((JsonElement) request.Obj);
-                        return new Request("updateBalance",
-                            await RepositoryFactory.GetTransactionRepository().UpdateBalanceAsync(updateAccount));
-                    
+                            await RepositoryFactory.GetTransactionRepository().CheckBalanceAsync(a));
+
                     //get account with username
                     case"GetAccountWithUsername":
                         string username = ToObject<string>((JsonElement) request.Obj);
-                        return new Request("AccountWithUsername",
-                            RepositoryFactory.GetCustomerRepository().GetCustomerAccountAsync(username));
+                        Account acc = await RepositoryFactory.GetCustomerRepository().GetCustomerAccountAsync(username);
+                        Console.WriteLine(acc);
+                        return new Request("AccountWithUsername",acc);
                     
                     //get the account number
                     case "getAccountNUmber" :

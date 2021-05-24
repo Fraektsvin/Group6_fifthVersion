@@ -31,12 +31,11 @@
         <input type="checkbox" checked=@Save>
 
         <div style="color:red">@ErrorMessage</div>
-        <button disabled="@_loading" class="btn btn-light">
+        <button disabled="@_loading" class="btn btn-light" @onclick="SendMoneyAsync">Submit
             @if (_loading) 
             {
                 <span class="spinner-border spinner-border-sm mr-1"></span>
             }
-            <a href="" @onclick="SendMoneyAsync">Submit</a> 
         </button>
     </div>
 </div>
@@ -52,18 +51,17 @@
 
     private async Task SendMoneyAsync()
     {
-        _loading = true;
-         User user = CustomAuthenticationStateProvider.storedUser;
-         Console.WriteLine(user.Username);
-         Account Sender = await Service.GetAccount(user.Username);
-         Account Receiver = new Account(AccountNumber, AccountName);
-
-        Transaction transaction = new Transaction(Sender, Receiver, Amount, Message, DateTime.Now, Save);
-        
-        //Send money
         try
         {
+            _loading = true;
+            User user = CustomAuthenticationStateProvider.storedUser;
+            Account Sender = await Service.GetAccount(user.Username);
+            //ToDo get the receiver from the customer's input
+            Account Receiver = await Service.GetAccount(AccountName);
+
+            Transaction transaction = new Transaction(Sender, Receiver, Amount, Message, DateTime.Now.ToString(), Save);
             String successMessage = await TransactionService.SendMoney(transaction);
+            
             ErrorMessage = successMessage;
             _loading = false;
         }
