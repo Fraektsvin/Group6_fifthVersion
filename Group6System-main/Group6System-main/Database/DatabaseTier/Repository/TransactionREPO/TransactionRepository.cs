@@ -17,13 +17,13 @@ namespace DatabaseTier.Repository.TransactionREPO
                 var register = await context.AddAsync(transaction);
                 Account sender = await context.AccountTable.FirstOrDefaultAsync(t =>
                     t.AccountNumber == transaction.Sender.AccountNumber);
-                //sender.Transactions.Add(transaction);
+                sender.Balance = transaction.Sender.Balance;
                 context.Update(sender); 
                 
                 Account receiver =
                     await context.AccountTable.FirstOrDefaultAsync(t =>
                         t.AccountNumber == transaction.Receiver.AccountNumber);
-                //receiver.Transactions.Add(transaction);
+                receiver.Balance = transaction.Receiver.Balance;
                 context.Update(receiver); 
                 
                 await context.SaveChangesAsync();
@@ -37,12 +37,12 @@ namespace DatabaseTier.Repository.TransactionREPO
             }
         }
         
-        public async Task<double> CheckBalanceAsync(Customer customer)
+        public async Task<double> CheckBalanceAsync(Account account)
         {
             await using CloudContext context = new CloudContext();
             try
             {
-                Account customerBalance = context.AccountTable.FirstOrDefault(a => a.Balance == customer.CprNumber);
+                Account customerBalance = await context.AccountTable.FirstOrDefaultAsync(a => a.AccountNumber == account.AccountNumber);
                 if (customerBalance != null) return customerBalance.Balance;
             }
             catch (Exception e)
@@ -71,22 +71,7 @@ namespace DatabaseTier.Repository.TransactionREPO
 
             return null;
         }
-
-        public async Task<string> UpdateBalanceAsync(Account updateAccount)
-        {
-            await using CloudContext context = new CloudContext();
-            try
-            {
-                context.AccountTable.Update(updateAccount);
-                await context.SaveChangesAsync();
-                return "Balance updated";
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                throw new Exception("Error message");
-            }
-        }
+        
         public async Task<Transaction> PayBillAsync(Transaction transaction)
         {
             await using CloudContext context = new CloudContext();

@@ -21,12 +21,12 @@ namespace BlazorClient.Models
         public String Message { get; set; }
         
         [JsonPropertyName("date")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         
         [JsonPropertyName("save")]
         public bool Save { get; set; }
 
-        public Transaction(Account sender, Account receiver, double amount, string message, DateTime date, bool save)
+        public Transaction(Account sender, Account receiver, double amount, string message, string date, bool save)
         {
             Sender = sender;
             Receiver = receiver;

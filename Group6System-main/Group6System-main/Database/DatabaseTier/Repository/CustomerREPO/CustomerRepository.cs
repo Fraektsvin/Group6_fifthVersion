@@ -54,18 +54,28 @@ namespace DatabaseTier.Repository.CustomerREPO
         {
             await using CloudContext context = new CloudContext();
             {
-                Console.WriteLine(username + "getaccount");
-                Customer customer =
-                        await context.CustomersTable.Include(c => c.User).FirstOrDefaultAsync(a => a.User.Username.Equals(username));
-                Console.WriteLine(customer.CprNumber + " getaccount");
-                Account customerAccount = await 
-                     context.AccountTable.Include(c => c.Customer).FirstOrDefaultAsync(a => a.Customer.CprNumber == customer.CprNumber);
-                Console.WriteLine(customerAccount.AccountNumber);
-                if(customerAccount != null)
-                    return customerAccount;
+                // Console.WriteLine(username + "getaccount");
+                // Customer customer =
+                //         context.CustomersTable.Include(c => c.User).FirstOrDefault(a => a.User.Username.Equals(username));
+                // Console.WriteLine(customer.CprNumber + " getaccount");
+                // Account customerAccount =  
+                //      context.AccountTable.Include(c => c.Customer).FirstOrDefault(a => a.Customer.CprNumber == customer.CprNumber);
+                // Console.WriteLine(customerAccount.AccountNumber);
+                // if(customerAccount != null)
+                //     return customerAccount;
+                //
+                // throw new Exception("Account Not found.");
+                Customer customer = await GetCustomerAsync(username);
                 
-                throw new Exception("Account Not found.");
-              
+                Account account = await context.AccountTable
+                    .FirstOrDefaultAsync(c => c.Customer.Equals(customer));
+                Console.WriteLine(account.ToString());
+
+                if (account != null)
+                {
+                    return account;
+                }
+                throw new Exception("Account not found!!");
             }
         }
 

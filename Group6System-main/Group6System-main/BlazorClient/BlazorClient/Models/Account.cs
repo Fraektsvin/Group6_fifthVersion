@@ -10,23 +10,16 @@ namespace BlazorClient.Models
         [JsonPropertyName("balance")]
         public double Balance{ get; set; }
 
-        [JsonPropertyName("accountnumber")] 
+        [JsonPropertyName("accountNumber")] 
         public long AccountNumber{ get; set; }
         
         [JsonPropertyName("customer")]
         public Customer Customer { get; set; }
         
-        [JsonPropertyName("transactions")]
-        public IList<Transaction> Transactions { get; set; }
+        /*[JsonPropertyName("transactions")]
+        public IList<Transaction> Transactions { get; set; }*/
         
         [JsonPropertyName("date")]
         public String Date{ get; set; }
-
-
-        public Account(long accountNumber, String name)
-        {
-            AccountNumber = accountNumber;
-            Customer.Name = name;
-        }
     }
 }

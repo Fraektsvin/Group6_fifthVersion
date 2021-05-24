@@ -11,14 +11,15 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Override
     public String transferMoney(Transaction transaction) {
-        if ((transaction.getReceiver() != transDAO.checkAccount(transaction.getReceiver())
-                && (transaction.getSender() != transDAO.checkAccount(transaction.getSender())))) {
-            return "Account does not exist!";
-        } else if ((transaction.getAmount()) <=
-                (transDAO.getBalance(transaction.getSender()) - transaction.getAmount())) {
+
+        double checkBalance = transaction.getSender().getBalance() - transaction.getAmount();
+        System.out.println(checkBalance);
+        if (checkBalance < 0) {
             return "Insufficient funds.";
-        } else {
+        } else
+        {
             updateReceiver(transaction);
+
             updateSender(transaction);
 
             transDAO.transferMoney(transaction);
@@ -28,17 +29,15 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     private void updateReceiver(Transaction transaction) {
-        double getReceiverBalance = transDAO.getBalance(transaction.getReceiver()) ;
+        double getReceiverBalance = transaction.getReceiver().getBalance();
         double newReceiverBalance = getReceiverBalance + transaction.getAmount();
         transaction.getReceiver().setBalance(newReceiverBalance);
-        transDAO.updateBalance(transaction.getReceiver());
     }
 
     private void updateSender(Transaction transaction) {
-        double getSenderBalance = transDAO.getBalance(transaction.getSender());
+        double getSenderBalance = transaction.getSender().getBalance();
         double newSenderBalance = getSenderBalance - transaction.getAmount();
         transaction.getSender().setBalance(newSenderBalance);
-        transDAO.updateBalance(transaction.getSender());
     }
 
     @Override

@@ -45,7 +45,6 @@ public class CustomerDAOImpl implements CustomerDAO{
 
         Request newObj = handler.messageExchange(obj);
         if(newObj.getHeader().equals("GetCustomer")) {
-            System.out.println(newObj.getObj() + " from dao impl");
             Customer customer = objectMapper.convertValue(newObj.getObj(), Customer.class);
             return customer;
         }
@@ -59,7 +58,6 @@ public class CustomerDAOImpl implements CustomerDAO{
 
         Request newObj = handler.messageExchange(obj);
         if(newObj.getHeader().equals("GetCustomerWithCpr")) {
-            System.out.println(newObj.getObj() + " from dao impl");
             Customer customer = objectMapper.convertValue(newObj.getObj(), Customer.class);
             return customer;
         }
