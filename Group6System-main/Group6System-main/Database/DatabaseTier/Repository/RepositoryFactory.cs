@@ -1,5 +1,6 @@
 ﻿using DatabaseTier.Repository.AdminREPO;
 using DatabaseTier.Repository.CustomerREPO;
+using DatabaseTier.Repository.NotificationREPO;
 using DatabaseTier.Repository.TransactionREPO;
 using DatabaseTier.Repository.UserREPO;
 
@@ -25,6 +26,11 @@ namespace DatabaseTier.Repository
         public static ITransactionRepository GetTransactionRepository()
         {
             return new TransactionRepository();
+        }
+
+        public static INotificationRepository GetNotificationRepository()
+        {
+            return new NotificationRepository();
         }
     }
 }

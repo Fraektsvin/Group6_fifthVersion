@@ -1,5 +1,6 @@
 package com.example.applicationtier.controller;
 
+import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.service.adminservice.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,6 @@ public class AdminController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-
 
     @PostMapping("/createAccount")
     public ResponseEntity createAccount(@RequestBody int cprNumber) {

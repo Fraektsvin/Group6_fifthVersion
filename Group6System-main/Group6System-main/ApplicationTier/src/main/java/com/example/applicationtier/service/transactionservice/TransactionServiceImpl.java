@@ -1,6 +1,7 @@
 package com.example.applicationtier.service.transactionservice;
 
 import com.example.applicationtier.DAO.transaction.TransactionDAO;
+import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,11 @@ public class TransactionServiceImpl implements TransactionService{
         double getSenderBalance = transaction.getSender().getBalance();
         double newSenderBalance = getSenderBalance - transaction.getAmount();
         transaction.getSender().setBalance(newSenderBalance);
+    }
+
+    public Account getAccount(String username) throws Exception {
+        Account account = transDAO.getAccount(username);
+        return account;
     }
 
     @Override

@@ -37,9 +37,8 @@ namespace DatabaseTier.Repository.CustomerREPO
         {
             await using CloudContext context = new CloudContext();
             {
-                //var customer = await context.CustomersTable.FirstOrDefaultAsync(c => c.User.Username.Equals(username));
-                Customer customer = context.CustomersTable.Include(c=>c.Address).
-                    ThenInclude(c=> c.City).FirstOrDefault(c => c.User.Username.Equals(username));
+                Customer customer = await context.CustomersTable.Include(c=>c.Address).
+                    ThenInclude(c=> c.City).FirstOrDefaultAsync(c => c.User.Username.Equals(username));
                 if (customer != null)
                 {
                     Console.WriteLine(customer);
@@ -50,7 +49,7 @@ namespace DatabaseTier.Repository.CustomerREPO
             }
         }
 
-        public async Task<Account> GetCustomerAccountAsync(string username)
+        /*public async Task<Account> GetCustomerAccountAsync(string username)
         {
             await using CloudContext context = new CloudContext();
             {
@@ -77,7 +76,7 @@ namespace DatabaseTier.Repository.CustomerREPO
                 }
                 throw new Exception("Account not found!!");
             }
-        }
+        }*/
 
         public async Task<Customer> GetCustomerAsync(int cprNumber)
         {

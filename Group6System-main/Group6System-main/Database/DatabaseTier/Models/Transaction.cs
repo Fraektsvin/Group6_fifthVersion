@@ -27,16 +27,5 @@ namespace DatabaseTier.Models
         [JsonPropertyName("save")]
         public bool Save { get; set; }
         
-        public override string ToString()
-        {
-            return "Transaction{" +
-                   "transactionnumber=" + TransactionNumber +
-                   "sender=" + Sender.AccountNumber +
-                   "receiver=" + Receiver.AccountNumber +
-                   "amount=" + Amount +
-                   "message=" + Message +
-                   "save=" + Save +
-                   '}';
-        }
     }
 }

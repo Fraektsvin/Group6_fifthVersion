@@ -13,6 +13,7 @@ namespace DatabaseTier.Persistence
         public DbSet<SavedAccounts> SavedAccountsTable { get; set; }
         public DbSet<Customer> CustomersTable { get; set; }
         public DbSet<Transaction> TransactionTable { get; set; }
+        public DbSet<Notification> NotificationTable { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

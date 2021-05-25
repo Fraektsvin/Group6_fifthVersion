@@ -38,11 +38,4 @@ public class CustomerServiceImpl implements CustomerService {
     public String updateCustomer(Customer customer) {
         return null;
     }
-
-    @Override
-    public Account getAccount(String username) throws Exception {
-        Account account = customerDAO.getAccount(username);
-
-        return account;
-    }
 }

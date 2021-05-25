@@ -7,7 +7,7 @@ namespace BlazorClient.Data.CustomerService
 {
     public interface ICustomerService
     {
-        Task<String> AddCustomerAsync(Customer customer);
+        Task<string> AddCustomerAsync(Customer customer);
         Task UpdateCustomerAsync(Customer customer);
 
         Task<Account> GetAccount(string username);

@@ -1,17 +1,14 @@
 ﻿@page "/Customers"
 @using BlazorClient.Models
-@using BlazorClient.Data.CustomerService
 @using BlazorClient.Authentication
-@inject NavigationManager NavigationManager
-@inject AuthenticationStateProvider service
+@inject NavigationManager _navigationManager
+@inject AuthenticationStateProvider _service
 
-<h3>Register</h3>
 <EditForm Model="@_addNewCustomer" OnValidSubmit="@RegisterCustomer">
     <ValidationSummary/>
     <DataAnnotationsValidator/>
     <div class="card">
         <h4 class="card-header">Register as a Customer</h4>
-        
         <div class="card-body">
             <div class="col-sm-5">
                 CPR Number:<br/>
@@ -104,7 +101,7 @@
             _addNewCustomer.Address = _newAddressToAdd;
             _addNewCustomer.User = _newUserToAdd;
            // string successMessage = await service.AddCustomerAsync(_addNewCustomer);
-            string successMessage = await ((CustomAuthenticationStateProvider)service).ValidateRegisterAsync(_addNewCustomer);
+            string successMessage = await ((CustomAuthenticationStateProvider)_service).ValidateRegisterAsync(_addNewCustomer);
                 ErrorMessage = successMessage;
             _loading = false;
         }

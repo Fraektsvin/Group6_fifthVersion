@@ -14,18 +14,18 @@ namespace BlazorClient.Data.CustomerService
         private readonly HttpClient _client = new HttpClient();
         private string path = "http://localhost:8080";
         
-        public async Task<String> AddCustomerAsync(Customer customer)
+        public async Task<string> AddCustomerAsync(Customer customer)
         {
             //var hashedpassword = HashString(customer.User.Password);
             //customer.User.Password.Equals(hashedpassword);
             //Console.WriteLine(customer.User.Password);
-            string AsJson = JsonSerializer.Serialize(customer, new JsonSerializerOptions
+            string asJson = JsonSerializer.Serialize(customer, new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
             
             StringContent content = new StringContent(
-                AsJson,Encoding.UTF8, "application/json");
+                asJson,Encoding.UTF8, "application/json");
             
             HttpResponseMessage response = await _client.PostAsync($"{path}/createNewCustomer", content);
             if (response.IsSuccessStatusCode)

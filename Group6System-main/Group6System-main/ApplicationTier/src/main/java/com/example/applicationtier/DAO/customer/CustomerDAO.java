@@ -10,6 +10,4 @@ public interface CustomerDAO {
     String updateCustomer(Customer customer);
     Customer getCustomer(String username);
     Customer getCustomer(int cprNumber);
-
-    Account getAccount(String username) throws Exception;
 }

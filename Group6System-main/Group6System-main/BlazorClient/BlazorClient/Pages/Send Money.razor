@@ -4,31 +4,31 @@
 @using BlazorClient.Data.SendMoney
 @using BlazorClient.Models
 @using BlazorClient.Authentication
-@inject AuthenticationStateProvider AuthStat
-@inject ICustomerService Service
-@inject ISendMoneyService TransactionService
+@inject AuthenticationStateProvider _authStat
+@inject ICustomerService _service
+@inject ISendMoneyService _transactionService
 
 <div class="card">
     <h4 class="card-header">Send Money</h4>
     <div class="card-body">
         <div class="form-group row">
             <label class="col-form-label">Account number:</label>
-            <input type="number" placeholder="account number" @bind-value="AccountNumber"/>
+            <input type="number" placeholder="account number" @bind-value="_accountNumber"/>
         </div>
         <div class="form-group row">
             <label class="col-form-label">Account Holder's Name:</label>
-            <input type="text" placeholder="name" @bind-value="AccountName"/>
+            <input type="text" placeholder="name" @bind-value="_accountName"/>
         </div>
         <div class="form-group row">
             <label class="col-form-label">Amount:</label>
-            <input type="number" placeholder="amount" @bind-value="Amount"/>
+            <input type="number" placeholder="amount" @bind-value="_amount"/>
         </div>
         <div class="form-group row">
             <label class="col-form-label">Message:</label>
-            <input type="text" placeholder="message" @bind-value="Message"/>
+            <input type="text" placeholder="message" @bind-value="_message"/>
         </div>
         
-        <input type="checkbox" checked=@Save>
+        <input type="checkbox" checked=@_save>
 
         <div style="color:red">@ErrorMessage</div>
         <button disabled="@_loading" class="btn btn-light" @onclick="SendMoneyAsync">Submit
@@ -41,12 +41,12 @@
 </div>
 
 @code {
-    private long AccountNumber;
-    private double Amount;
-    private String AccountName;
-    private String Message;
+    private long _accountNumber;
+    private double _amount;
+    private string _accountName;
+    private string _message;
     private bool _loading;
-    private bool Save;
+    private bool _save;
     private string ErrorMessage { get; set; }
 
     private async Task SendMoneyAsync()
@@ -55,12 +55,12 @@
         {
             _loading = true;
             User user = CustomAuthenticationStateProvider.storedUser;
-            Account Sender = await Service.GetAccount(user.Username);
+            Account sender = await _service.GetAccount(user.Username);
             //ToDo get the receiver from the customer's input
-            Account Receiver = await Service.GetAccount(AccountName);
+            Account receiver = await _service.GetAccount(_accountName);
 
-            Transaction transaction = new Transaction(Sender, Receiver, Amount, Message, DateTime.Now.ToString(), Save);
-            String successMessage = await TransactionService.SendMoney(transaction);
+            Transaction transaction = new Transaction(sender, receiver, _amount, _message, DateTime.Now.ToString(), _save);
+            string successMessage = await _transactionService.SendMoney(transaction);
             
             ErrorMessage = successMessage;
             _loading = false;
@@ -71,6 +71,4 @@
             ErrorMessage = e.Message;
         }
     }
-    }
-
 }

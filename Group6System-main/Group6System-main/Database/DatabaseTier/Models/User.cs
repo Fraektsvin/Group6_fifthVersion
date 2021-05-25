@@ -12,13 +12,5 @@ namespace DatabaseTier.Models
         [Required]
         [JsonPropertyName("password")]
         public string Password { get; set; }
-        
-        public override string ToString()
-        {
-            return "User{" +
-                   "username=" + Username +
-                   "password=" + Password +
-                   '}';
-        }
     }
 }

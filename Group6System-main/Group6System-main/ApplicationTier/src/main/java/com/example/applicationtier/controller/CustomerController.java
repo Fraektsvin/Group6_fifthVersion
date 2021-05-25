@@ -31,15 +31,4 @@ public class CustomerController {
         String message = service.updateCustomer(customer);
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
-
-    @GetMapping("/getAccount")
-    public ResponseEntity getAccount(@RequestParam String username){
-        try {
-            Account account = service.getAccount(username);
-            return new ResponseEntity<>(account, HttpStatus.OK);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        }
-    }
 }

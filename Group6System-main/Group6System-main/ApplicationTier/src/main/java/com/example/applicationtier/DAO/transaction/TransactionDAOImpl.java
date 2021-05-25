@@ -2,7 +2,6 @@ package com.example.applicationtier.DAO.transaction;
 
 import com.example.applicationtier.DAO.Handler;
 import com.example.applicationtier.models.Account;
-import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.models.Request;
 import com.example.applicationtier.models.Transaction;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,11 +18,21 @@ public class TransactionDAOImpl implements TransactionDAO{
         handler.setObj(obj);
         Request response = handler.messageExchange(obj);
         if(response.getHeader().equals("transferMoney")){
-            Transaction t = mapper.convertValue(response.getObj(), Transaction.class);
-            return t;
+            return mapper.convertValue(response.getObj(), Transaction.class);
         }
         else throw new Exception((String) response.getObj());
 
+    }
+    @Override
+    public Account getAccount(String username) throws Exception {
+        Request obj = new Request("GetAccountWithUsername", username);
+        handler.setObj(obj);
+
+        Request accountObj = handler.messageExchange(obj);
+        if(accountObj.getHeader().equals("AccountWithUsername")){
+            return mapper.convertValue(accountObj.getObj(), Account.class);
+        }
+        throw new Exception((String) accountObj.getObj());
     }
 
     @Override
@@ -33,21 +42,8 @@ public class TransactionDAOImpl implements TransactionDAO{
 
         Request response = handler.messageExchange(obj);
         if(response.getHeader().equals("payBill")){
-            System.out.println("Inside dao response " + response.getObj());
-            return (String) response.getObj();
+            return mapper.convertValue(response.getObj(), String.class);
         }
         else return "Payment could not complete!";
-    }
-
-    @Override
-    public double getBalance(Account account) {
-        Request obj = new Request("getBalance", account);
-        handler.setObj(obj);
-
-        Request response = handler.messageExchange(obj);
-        if(response.getHeader().equals("getBalance")){
-            return mapper.convertValue(response.getObj(), double.class);
-        }
-        else return 0;
     }
 }
