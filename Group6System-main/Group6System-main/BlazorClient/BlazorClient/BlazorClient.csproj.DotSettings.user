@@ -2,10 +2,12 @@
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CACCOUNT/@EntryIndexedValue"></s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CADMINVALIDATION/@EntryIndexedValue"></s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CCUSTOMERS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CNOTIFICATION/@EntryIndexedValue"></s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CPAYBILL/@EntryIndexedValue"></s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=WWWROOT_005CSENDMONEY/@EntryIndexedValue"></s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CACCOUNT/@EntryIndexedValue">wwwroot\Account</s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CADMINVALIDATION/@EntryIndexedValue">wwwroot\AdminValidation</s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CCUSTOMERS/@EntryIndexedValue">wwwroot\Customers</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CNOTIFICATION/@EntryIndexedValue">wwwroot\Notification</s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CPAYBILL/@EntryIndexedValue">wwwroot\PayBill</s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=WWWROOT_005CSENDMONEY/@EntryIndexedValue">wwwroot\SendMoney</s:String></wpf:ResourceDictionary>

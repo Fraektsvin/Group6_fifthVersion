@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorClient.Data.AdminValidation;
 using BlazorClient.Data.CustomerService;
+using BlazorClient.Data.NotificationService;
 using BlazorClient.Data.SendMoney;
 using BlazorClient.Data.UserService;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -32,7 +33,8 @@ namespace BlazorClient
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
-            services.AddScoped<ISendMoneyService, SendMoneyService>(); 
+            services.AddScoped<ISendMoneyService, SendMoneyService>();
+            services.AddScoped<INotificationService, NotificationService>();
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy => 

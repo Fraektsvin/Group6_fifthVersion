@@ -7,5 +7,5 @@ import com.example.applicationtier.models.Transaction;
 public interface TransactionDAO {
     Transaction transferMoney(Transaction transaction) throws Exception;
     String payBill(Transaction transaction);
-    double getBalance(Account account);
+    Account getAccount(String username) throws Exception;
 }

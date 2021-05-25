@@ -63,17 +63,4 @@ public class CustomerDAOImpl implements CustomerDAO{
         }
         return null;
     }
-
-    @Override
-    public Account getAccount(String username) throws Exception {
-        Request obj = new Request("GetAccountWithUsername", username);
-        handler.setObj(obj);
-
-        Request accountObj = handler.messageExchange(obj);
-        if(accountObj.getHeader().equals("AccountWithUsername")){
-            Account account = objectMapper.convertValue(accountObj.getObj(), Account.class);
-            return account;
-        }
-        throw new Exception((String) accountObj.getObj());
-    }
 }

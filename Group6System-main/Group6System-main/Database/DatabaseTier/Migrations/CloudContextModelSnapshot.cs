@@ -118,6 +118,26 @@ namespace DatabaseTier.Migrations
                     b.ToTable("CustomersTable");
                 });
 
+            modelBuilder.Entity("DatabaseTier.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int?>("CustomerCprNumber")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerCprNumber");
+
+                    b.ToTable("NotificationTable");
+                });
+
             modelBuilder.Entity("DatabaseTier.Models.SavedAccounts", b =>
                 {
                     b.Property<int>("AccountId")
@@ -225,6 +245,15 @@ namespace DatabaseTier.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DatabaseTier.Models.Notification", b =>
+                {
+                    b.HasOne("DatabaseTier.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerCprNumber");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("DatabaseTier.Models.SavedAccounts", b =>

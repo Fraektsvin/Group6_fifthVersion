@@ -37,39 +37,17 @@ namespace DatabaseTier.Repository.TransactionREPO
             }
         }
         
-        public async Task<double> CheckBalanceAsync(Account account)
+        public async Task<Account> GetCustomerAccountAsync(string username)
         {
             await using CloudContext context = new CloudContext();
-            try
             {
-                Account customerBalance = await context.AccountTable.FirstOrDefaultAsync(a => a.AccountNumber == account.AccountNumber);
-                if (customerBalance != null) return customerBalance.Balance;
+                Customer customer = await context.CustomersTable.FirstOrDefaultAsync(a=> a.User.Username.Equals(username));
+                
+                Account account = await context.AccountTable
+                    .FirstOrDefaultAsync(c => c.Customer.Equals(customer));
+                Console.WriteLine(account.ToString());
+                return account;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw new Exception("Error message!!!");
-            }
-
-            return 0;
-        }
-
-        public async Task<Account> GetAccountNumberAsync(Account account)
-        {
-            await using CloudContext context = new CloudContext();
-            try
-            {
-                var customerAccount = context.AccountTable.FirstOrDefault(a => a.AccountNumber == a.Customer.CprNumber);
-                if (customerAccount != null) 
-                    return customerAccount;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                throw new Exception("No account found!");
-            }
-
-            return null;
         }
         
         public async Task<Transaction> PayBillAsync(Transaction transaction)

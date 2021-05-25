@@ -117,25 +117,14 @@ namespace DatabaseTier.Protocol
                             await RepositoryFactory.GetAdminRepository()
                             .GetLastAccountNumberAsync());
                     
-                    //check last balance
-                    case "getBalance":
-                        Account a = ToObject<Account>((JsonElement) request.Obj);
-                        return new Request("checkBalance",
-                            await RepositoryFactory.GetTransactionRepository().CheckBalanceAsync(a));
 
                     //get account with username
                     case"GetAccountWithUsername":
                         string username = ToObject<string>((JsonElement) request.Obj);
-                        Account acc = await RepositoryFactory.GetCustomerRepository().GetCustomerAccountAsync(username);
+                        Account acc = await RepositoryFactory.GetTransactionRepository().GetCustomerAccountAsync(username);
                         Console.WriteLine(acc);
                         return new Request("AccountWithUsername",acc);
-                    
-                    //get the account number
-                    case "getAccountNUmber" :
-                        Account accountNumber = ToObject<Account>((JsonElement) request.Obj);
-                        return new Request("getAccountNumber",
-                            await RepositoryFactory.GetTransactionRepository().GetAccountNumberAsync(accountNumber));
-                    
+
                     //transfer money
                      case "transferMoney":
                         Transaction transfer = ToObject<Transaction>((JsonElement) request.Obj);
@@ -147,6 +136,18 @@ namespace DatabaseTier.Protocol
                         Transaction payment = ToObject<Transaction>((JsonElement) request.Obj);
                         return new Request("payBill",
                             await RepositoryFactory.GetTransactionRepository().PayBillAsync(payment));
+                    
+                    //get notification from admin
+                    case "getNotification":
+                        string notification = ToObject<string>((JsonElement) request.Obj);
+                        return new Request("getNotification",
+                            await RepositoryFactory.GetNotificationRepository().GetNotificationAsync(notification)); 
+                    
+                    //send notification to customer
+                    case "sendNotificationToUser":
+                        Notification toSend = ToObject<Notification>((JsonElement) request.Obj);
+                        return new Request("sendNotificationToUser",
+                            await RepositoryFactory.GetNotificationRepository().SendNotificationToUserAsync(toSend));
                 }
 
                 return wrongRequest;

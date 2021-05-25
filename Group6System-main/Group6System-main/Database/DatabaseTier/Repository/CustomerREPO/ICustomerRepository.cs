@@ -10,7 +10,7 @@ namespace DatabaseTier.Repository.CustomerREPO
         Task<Customer> AddCustomerAsync(Customer customer);
         Task<Customer> UpdateCustomerAsync(Customer customer);
         Task<Customer> GetCustomerAsync(string username);
-        Task<Account> GetCustomerAccountAsync(string username);
+        //Task<Account> GetCustomerAccountAsync(string username);
         Task<Customer> GetCustomerAsync(int cprNumber);
     }
 }
