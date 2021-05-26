@@ -26,7 +26,7 @@ public class NotificationController {
     @PostMapping("/sendNotification")
     public ResponseEntity sendNotificationToUser(@RequestBody int cprnumber){
         try {
-            System.out.println(cprnumber);
+            System.out.println(cprnumber + " ////////////////////*******************");
             service.sendNotificationToUser(cprnumber);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception exception) {

@@ -3,6 +3,7 @@ package com.example.applicationtier.service.adminservice;
 import com.example.applicationtier.DAO.admin.AdminDAO;
 import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
+import com.example.applicationtier.service.notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService{
     @Autowired
     private AdminDAO adminDAO;
+    @Autowired
+    private NotificationService notificationService;
 
     @Override
     public boolean validateCustomer(Customer customer) {
@@ -62,6 +65,7 @@ public class AdminServiceImpl implements AdminService{
 
         Account acc = adminDAO.CreateAccount(account);
         if(acc != null){
+            notificationService.sendNotificationToUser(cprNumber);
             return "Successful!!";
         }
         else return "Not Successful!!!!!";
