@@ -21,13 +21,13 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public void sendNotificationToUser(int cprnumber) throws Exception {
+    public void sendNotificationToUser(int cprNumber) throws Exception {
         Customer customer = null;
 
         List<Customer> customers = adminDAO.getAllCustomers();
         System.out.println("list found" + customers);
         for (Customer c: customers) {
-            if(c.getCprNumber() == cprnumber)
+            if(c.getCprNumber() == cprNumber)
             {
                 customer = c;
                 break;
