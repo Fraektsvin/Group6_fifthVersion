@@ -15,11 +15,11 @@ namespace DatabaseTier.Repository.CustomerREPO
             {
                 try
                 {
-                    var checkingCity = await context.CityTable.FirstOrDefaultAsync(t=> t.ZipCode == customer.Address.City.ZipCode);
-                    if (checkingCity != null)
-                    {
-                        customer.Address.City = checkingCity;
-                    }
+                    // var checkingCity = await context.CityTable.FirstOrDefaultAsync(t=> t.ZipCode == customer.Address.City.ZipCode);
+                    // if (checkingCity != null)
+                    // {
+                    //     customer.Address.City = checkingCity;
+                    // }
                     var newAddedCustomer = await context.CustomersTable.AddAsync(customer);
                     Console.WriteLine("customer repo " + newAddedCustomer);
                     await context.SaveChangesAsync();
