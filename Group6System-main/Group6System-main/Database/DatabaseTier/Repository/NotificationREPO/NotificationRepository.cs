@@ -19,19 +19,19 @@ namespace DatabaseTier.Repository.NotificationREPO
 
         public async Task<Notification> SendNotificationToUserAsync(Notification notification)
         {
-            await using CloudContext context = new CloudContext();
-            try
+            using (CloudContext context = new CloudContext())
             {
-                Console.WriteLine(" /////////////////////////////------------------" + notification);
-                var toSend = await context.NotificationTable.AddAsync(notification);
-                Console.WriteLine(toSend.Entity);
-                await context.SaveChangesAsync();
-                return toSend.Entity;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                throw new Exception($"Could not send!");
+                try
+                {
+                    var toSend = await context.NotificationTable.AddAsync(notification);
+                     await context.SaveChangesAsync();
+                    return toSend.Entity;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace);
+                    throw new Exception($"Could not send!");
+                }
             }
         }
     }

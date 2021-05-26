@@ -30,6 +30,7 @@ public class NotificationDaoImpl implements NotificationDAO{
         handler.setObj(obj);
 
         Request response = handler.messageExchange(obj);
+        System.out.println(obj);
         if(response.getHeader().equals("sendNotificationToUser")){
             return mapper.convertValue(response.getObj(), Notification.class);
         }

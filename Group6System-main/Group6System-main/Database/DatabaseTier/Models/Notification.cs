@@ -8,8 +8,10 @@ namespace DatabaseTier.Models
         [Key, Required]
         [JsonPropertyName("id")]
         public int Id { get; set; }
+        
         [JsonPropertyName("message")]
         public string Message { get; set; }
+        
         [JsonPropertyName("customer")]
         public Customer Customer { get; set; }
     }

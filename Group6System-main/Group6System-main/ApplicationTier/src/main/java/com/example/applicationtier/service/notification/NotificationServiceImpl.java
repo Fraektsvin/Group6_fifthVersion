@@ -12,7 +12,9 @@ import java.util.List;
 public class NotificationServiceImpl implements NotificationService {
     @Autowired
     NotificationDAO notificationDAO;
+    @Autowired
     AdminDAO adminDAO;
+
     @Override
     public Notification getNotification(String username) throws Exception {
         return notificationDAO.getNotification(username);
@@ -23,6 +25,7 @@ public class NotificationServiceImpl implements NotificationService {
         Customer customer = null;
 
         List<Customer> customers = adminDAO.getAllCustomers();
+        System.out.println("list found" + customers);
         for (Customer c: customers) {
             if(c.getCprNumber() == cprnumber)
             {
@@ -30,10 +33,13 @@ public class NotificationServiceImpl implements NotificationService {
                 break;
             }
         }
-
+        System.out.println("the customer is found" + customer);
         Notification toSend = new Notification();
         toSend.setMessage("Your request has been approved!");
         toSend.setCustomer(customer);
+        System.out.println("notification ready to be sent to the customer" );
+
+        System.out.println("notification send to" + customer.toString());
 
         notificationDAO.sendNotificationToUser(toSend);
     }

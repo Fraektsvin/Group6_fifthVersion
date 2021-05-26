@@ -56,7 +56,7 @@ namespace BlazorClient.Authentication
         public async Task<string> ValidateRegisterAsync(Customer customer)
         {
             string hashPassword = HashString(customer.User.Password);
-            customer.User.Password = hashPassword;
+            customer.User.Password = hashPassword; 
             Console.WriteLine(hashPassword + "         " + customer.User.Password);
             return await _customerService.AddCustomerAsync(customer);
         }

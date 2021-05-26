@@ -12,13 +12,6 @@ public class Notification {
     @JsonProperty("customer")
     private Customer customer;
 
-    public Notification() {
-    }
-
-    public Notification(String message) {
-        this.message = message;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
