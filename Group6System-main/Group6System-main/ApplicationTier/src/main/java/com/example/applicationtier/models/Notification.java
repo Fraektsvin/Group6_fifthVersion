@@ -7,8 +7,10 @@ import org.springframework.stereotype.Component;
 public class Notification {
     @JsonProperty("id")
     private int id;
+
     @JsonProperty("message")
     private String message;
+
     @JsonProperty("customer")
     private Customer customer;
 

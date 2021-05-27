@@ -113,7 +113,7 @@ using BlazorClient.Authentication;
             await ((CustomAuthenticationStateProvider) _authenticationStateProvider).ValidateLoginAsync(_username, _password);
             _username = "";
             _password = "";
-            _navMgr.NavigateTo($"/NotificationPage/{_username}");
+            _navMgr.NavigateTo($"/Send_Money");
         }
         catch (Exception e)
         {

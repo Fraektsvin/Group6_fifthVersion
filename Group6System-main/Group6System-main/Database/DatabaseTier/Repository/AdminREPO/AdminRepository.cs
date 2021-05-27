@@ -35,7 +35,7 @@ namespace DatabaseTier.Repository.AdminREPO
             {
                 try
                 {
-                    var customers = await context.CustomersTable.Include(a=> a.Address).
+                    IEnumerable<Customer> customers = await context.CustomersTable.Include(a=> a.Address).
                         ThenInclude(a=> a.City).Include(a=> a.User).ToListAsync();
                    return customers;
                 }
@@ -58,8 +58,8 @@ namespace DatabaseTier.Repository.AdminREPO
                 
                 var toRemove = context.CustomersTable.FirstOrDefault(c => c.CprNumber == cprNumber);
                 context.CustomersTable.Remove(toRemove);
-                context.AddressTable.Remove(toRemove.Address);
-                context.CityTable.Remove(toRemove.Address.City);
+              /*  context.AddressTable.Remove(toRemove.Address);
+                context.CityTable.Remove(toRemove.Address.City);*/
                 context.UsersTable.Remove(toRemove.User);
                 await context.SaveChangesAsync();
             }

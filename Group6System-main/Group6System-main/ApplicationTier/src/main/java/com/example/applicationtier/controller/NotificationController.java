@@ -1,8 +1,6 @@
 package com.example.applicationtier.controller;
 
-import com.example.applicationtier.DAO.notification.NotificationDaoImpl;
 import com.example.applicationtier.models.Notification;
-import com.example.applicationtier.models.User;
 import com.example.applicationtier.service.notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,10 +22,10 @@ public class NotificationController {
         }
     }
     @PostMapping("/sendNotification")
-    public ResponseEntity sendNotificationToUser(@RequestBody int cprnumber){
+    public ResponseEntity sendNotificationToUser(@RequestBody int cprNumber){
         try {
-            System.out.println(cprnumber + " ////////////////////*******************");
-            service.sendNotificationToUser(cprnumber);
+            System.out.println(cprNumber + " ////////////////////*******************");
+            service.sendNotificationToUser(cprNumber);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

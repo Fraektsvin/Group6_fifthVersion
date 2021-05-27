@@ -118,8 +118,8 @@ using BlazorClient.Data.NotificationService;
         _loading = true;
         try
         {
-           // String successMessage = await _service.CreateAccount(CprNumber);
-           // _errorMessage = successMessage;
+          // String successMessage = await _service.CreateAccount(CprNumber);
+          // _errorMessage = successMessage;
             await _notification.SendNotificationToUserAsync(CprNumber);
             _loading = false;
         }
@@ -129,7 +129,7 @@ using BlazorClient.Data.NotificationService;
         }
     }
 
-    /*private async Task SendNotificationAsync()
+  /*  private async Task SendNotificationAsync()
     {
         _loading1 = true;
         try

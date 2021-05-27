@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Persistence;
@@ -19,19 +20,19 @@ namespace DatabaseTier.Repository.NotificationREPO
 
         public async Task<Notification> SendNotificationToUserAsync(Notification notification)
         {
-            using (CloudContext context = new CloudContext())
+            await using CloudContext context = new CloudContext();
+            try
             {
-                try
-                {
-                    var toSend = await context.NotificationTable.AddAsync(notification);
-                     await context.SaveChangesAsync();
-                    return toSend.Entity;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.StackTrace);
-                    throw new Exception($"Could not send!");
-                }
+                var toSend = await context.NotificationTable.AddAsync(notification);
+                Console.WriteLine("notification ---------->>>>>>>>" + toSend.Entity.Message);
+                await context.SaveChangesAsync();
+                return toSend.Entity;
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw new Exception($"Could not send!");
             }
         }
     }
