@@ -31,6 +31,7 @@ namespace DatabaseTier.Repository.NotificationREPO
             }
             catch (Exception e)
             {
+
                 Console.WriteLine(e.Message);
                 throw new Exception($"Could not send!");
             }
