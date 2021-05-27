@@ -10,6 +10,6 @@ namespace BlazorClient.Data.AdminValidation
         Task ValidateCustomerAsync(Customer customer);
         Task RemoveCustomerAsync(int cprNumber);
         Task<IList<Customer>> GetAllCustomersAsync();
-        Task<String> CreateAccount(int cprNumber);
+        Task<String> CreateAccountAsync(string username);
     }
 }

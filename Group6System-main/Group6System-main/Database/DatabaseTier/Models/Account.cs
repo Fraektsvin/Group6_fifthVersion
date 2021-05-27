@@ -12,14 +12,14 @@ namespace DatabaseTier.Models
         [JsonPropertyName("balance")]
         public double  Balance{ get; set; }
         
-        [JsonPropertyName("customer")]
-        public Customer Customer { get; set; }
+        [JsonPropertyName("user")]
+        public User User { get; set; }
         
         // [JsonPropertyName("transactions")] 
         // public IList<Transaction> Transactions { get; set; }
         
         [JsonPropertyName("date")]
-        public String Date{ get; set; }
+        public string Date{ get; set; }
         
     }
 }

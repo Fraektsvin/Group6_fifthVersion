@@ -3,6 +3,7 @@ package com.example.applicationtier.service.adminservice;
 import com.example.applicationtier.DAO.admin.AdminDAO;
 import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
+import com.example.applicationtier.models.User;
 import com.example.applicationtier.service.notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,30 +40,23 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String createAccount(int cprNumber) throws Exception {
-        Customer customer = null;
-
-        List<Customer> customers = adminDAO.getAllCustomers();
-        for (Customer c: customers) {
-            if(c.getCprNumber() == cprNumber)
-            {
-                customer = c;
-                break;
-            }
-        }
-
+    public String createAccount(String username) throws Exception {
+        System.out.println("username--------->>>>>>>>>>>>>>" + username);
+        User toFind = adminDAO.checkUser(username);
+        System.out.println("in service before adding ------->>>>>>>> " + toFind);
         Date d = new Date(System.currentTimeMillis());
         String date = d.toString();
         System.out.println(date);
         Account account = new Account();
         account.setAccountNumber(accountNumberGenerator());
-        account.setDate(date);;
+        account.setDate(date);
         account.setBalance(10000.00);
-        account.setCustomer(customer);
+        account.setUser(toFind);
 
         Account acc = adminDAO.CreateAccount(account);
+
+        System.out.println("service+account----->>>>>> " + acc);
         if(acc != null){
-            notificationService.sendNotificationToUser(cprNumber);
             return "Successful!!";
         }
         else return "Not Successful!!!!!";

@@ -14,7 +14,7 @@ namespace BlazorClient.Data.NotificationService
 
         public async Task<Notification> GetNotificationFromAdminAsync(string username)
         {
-            HttpResponseMessage response = await _client.GetAsync($"{path}/getNotification?username={username}");
+            HttpResponseMessage response = await _client.GetAsync($"{path}/getNotification");
             //We might need to use another path i think we are using this path somewhere else I am not sure
             if (response.IsSuccessStatusCode)
             {
@@ -29,9 +29,9 @@ namespace BlazorClient.Data.NotificationService
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
 
-        public async Task SendNotificationToUserAsync(int cprNumber)
+        public async Task SendNotificationToUserAsync(string username)
         {
-            string asJson = JsonSerializer.Serialize(cprNumber, new JsonSerializerOptions
+            string asJson = JsonSerializer.Serialize(username, new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });

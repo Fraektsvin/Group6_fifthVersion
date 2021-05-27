@@ -3,15 +3,17 @@ using System;
 using DatabaseTier.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DatabaseTier.Migrations
 {
     [DbContext(typeof(CloudContext))]
-    partial class CloudContextModelSnapshot : ModelSnapshot
+    [Migration("20210527171644_AccountNew")]
+    partial class AccountNew
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

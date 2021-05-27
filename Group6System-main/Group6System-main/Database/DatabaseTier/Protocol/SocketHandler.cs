@@ -89,7 +89,7 @@ namespace DatabaseTier.Protocol
                     //Get all customers
                     case "GetAllCustomers":
                         return new Request("GetAllCustomers", await RepositoryFactory.GetAdminRepository().
-                            GetAllCustomersAsync());;
+                            GetAllCustomersAsync());
                     
                     //Remove customer
                     case "RemoveCustomerByCprNumber":
@@ -99,8 +99,16 @@ namespace DatabaseTier.Protocol
                     
                     //Validate Customer
                     case "IsValid":
-                        return new Request("IsValid", await RepositoryFactory.
-                            GetAdminRepository().ValidateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
+                        return new Request("IsValid",
+                            await RepositoryFactory.GetAdminRepository()
+                                .ValidateCustomerAsync(ToObject<Customer>((JsonElement) request.Obj)));
+                    
+                    // Get user
+                    case "checkUser":
+                        string user = ToObject<string>((JsonElement) request.Obj);
+                        Console.WriteLine("user handler ------------->>>>>>>>>>>>>" + user);
+                        return new Request("checkUser",
+                            await RepositoryFactory.GetAdminRepository().CheckUserAsync(user));
                     
                     //Create Account
                     case "CreateAccount":
