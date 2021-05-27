@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatabaseTier.Migrations
 {
     [DbContext(typeof(CloudContext))]
-    [Migration("20210525174139_NotificationTable")]
-    partial class NotificationTable
+    [Migration("20210527211424_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,15 +31,15 @@ namespace DatabaseTier.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("double precision");
 
-                    b.Property<int?>("CustomerCprNumber")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Date")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
                         .HasColumnType("text");
 
                     b.HasKey("AccountNumber");
 
-                    b.HasIndex("CustomerCprNumber");
+                    b.HasIndex("Username");
 
                     b.ToTable("AccountTable");
                 });
@@ -218,11 +218,11 @@ namespace DatabaseTier.Migrations
 
             modelBuilder.Entity("DatabaseTier.Models.Account", b =>
                 {
-                    b.HasOne("DatabaseTier.Models.Customer", "Customer")
+                    b.HasOne("DatabaseTier.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("CustomerCprNumber");
+                        .HasForeignKey("Username");
 
-                    b.Navigation("Customer");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DatabaseTier.Models.Address", b =>

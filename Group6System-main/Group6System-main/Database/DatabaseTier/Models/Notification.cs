@@ -12,7 +12,7 @@ namespace DatabaseTier.Models
         [JsonPropertyName("message")]
         public string Message { get; set; }
         
-        [JsonPropertyName("customer")]
-        public Customer Customer { get; set; }
+        [JsonPropertyName("user")]
+        public User User { get; set; }
     }
 }

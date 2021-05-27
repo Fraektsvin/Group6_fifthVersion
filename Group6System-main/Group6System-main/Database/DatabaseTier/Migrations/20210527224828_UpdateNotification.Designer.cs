@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatabaseTier.Migrations
 {
     [DbContext(typeof(CloudContext))]
-    [Migration("20210524102342_UpdatedDate")]
-    partial class UpdatedDate
+    [Migration("20210527224828_UpdateNotification")]
+    partial class UpdateNotification
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,15 +31,15 @@ namespace DatabaseTier.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("double precision");
 
-                    b.Property<int?>("CustomerCprNumber")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Date")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
                         .HasColumnType("text");
 
                     b.HasKey("AccountNumber");
 
-                    b.HasIndex("CustomerCprNumber");
+                    b.HasIndex("Username");
 
                     b.ToTable("AccountTable");
                 });
@@ -120,6 +120,26 @@ namespace DatabaseTier.Migrations
                     b.ToTable("CustomersTable");
                 });
 
+            modelBuilder.Entity("DatabaseTier.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Username");
+
+                    b.ToTable("NotificationTable");
+                });
+
             modelBuilder.Entity("DatabaseTier.Models.SavedAccounts", b =>
                 {
                     b.Property<int>("AccountId")
@@ -198,11 +218,11 @@ namespace DatabaseTier.Migrations
 
             modelBuilder.Entity("DatabaseTier.Models.Account", b =>
                 {
-                    b.HasOne("DatabaseTier.Models.Customer", "Customer")
+                    b.HasOne("DatabaseTier.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("CustomerCprNumber");
+                        .HasForeignKey("Username");
 
-                    b.Navigation("Customer");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DatabaseTier.Models.Address", b =>
@@ -225,6 +245,15 @@ namespace DatabaseTier.Migrations
                         .HasForeignKey("AddressStreetName", "AddressStreetNumber");
 
                     b.Navigation("Address");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DatabaseTier.Models.Notification", b =>
+                {
+                    b.HasOne("DatabaseTier.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Username");
 
                     b.Navigation("User");
                 });

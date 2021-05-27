@@ -54,6 +54,7 @@ public class AdminServiceImpl implements AdminService{
         account.setUser(toFind);
 
         Account acc = adminDAO.CreateAccount(account);
+        notificationService.sendNotificationToUser(username);
 
         System.out.println("service+account----->>>>>> " + acc);
         if(acc != null){

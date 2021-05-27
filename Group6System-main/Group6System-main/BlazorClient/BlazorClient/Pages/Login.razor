@@ -56,9 +56,7 @@
         try
         {
             await ((CustomAuthenticationStateProvider) _authenticationStateProvider).ValidateLoginAsync(_username, _password);
-            _username = "";
-            _password = "";
-            _navMgr.NavigateTo($"/Send_Money");
+            _navMgr.NavigateTo($"/NotificationPage/{_username}");
         }
         catch (Exception e)
         {
