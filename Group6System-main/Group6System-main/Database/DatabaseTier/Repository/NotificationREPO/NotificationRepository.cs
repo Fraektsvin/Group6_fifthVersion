@@ -13,8 +13,7 @@ namespace DatabaseTier.Repository.NotificationREPO
         public async Task<Notification> GetNotificationAsync(string username)
         {
             await using CloudContext context = new CloudContext();
-            Notification newNotification = await context.NotificationTable.Include(a => a.Customer).ThenInclude(a=> a.User)
-                .FirstOrDefaultAsync(a => a.Customer.User.Username.Equals(username));
+            Notification newNotification = await context.NotificationTable.Include(a => a.User).FirstOrDefaultAsync(a => a.User.Username.Equals(username));
             return newNotification;
         }
 
@@ -23,6 +22,12 @@ namespace DatabaseTier.Repository.NotificationREPO
             await using CloudContext context = new CloudContext();
             try
             {
+                var user = await context.UsersTable.FirstOrDefaultAsync(u =>
+                    u.Username.Equals(notification.User.Username));
+                if (user != null)
+                {
+                    notification.User = user;
+                }
                 var toSend = await context.NotificationTable.AddAsync(notification);
                 Console.WriteLine("notification ---------->>>>>>>>" + toSend.Entity.Message);
                 await context.SaveChangesAsync();

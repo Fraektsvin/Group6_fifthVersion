@@ -3,6 +3,7 @@ import com.example.applicationtier.DAO.admin.AdminDAO;
 import com.example.applicationtier.DAO.notification.NotificationDAO;
 import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.models.Notification;
+import com.example.applicationtier.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,25 +22,17 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public void sendNotificationToUser(int cprNumber) throws Exception {
-        Customer customer = null;
+    public void sendNotificationToUser(String username) throws Exception {
+        User user = adminDAO.checkUser(username);
 
-        List<Customer> customers = adminDAO.getAllCustomers();
-        System.out.println("list found" + customers);
-        for (Customer c: customers) {
-            if(c.getCprNumber() == cprNumber)
-            {
-                customer = c;
-                break;
-            }
-        }
-        System.out.println("the customer is found" + customer);
+
+        System.out.println("the customer is found" + user);
         Notification toSend = new Notification();
-        toSend.setMessage("Your request has been approved!");
-        toSend.setCustomer(customer);
+        toSend.setMessage("Request Approved :)");
+        toSend.setUser(user);
         System.out.println("notification ready to be sent to the customer" );
 
-        System.out.println("notification send to" + customer.toString());
+        System.out.println("notification send to" + user.toString());
 
         notificationDAO.sendNotificationToUser(toSend);
     }

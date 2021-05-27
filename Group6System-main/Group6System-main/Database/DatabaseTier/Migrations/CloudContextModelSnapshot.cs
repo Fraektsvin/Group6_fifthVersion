@@ -125,15 +125,15 @@ namespace DatabaseTier.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CustomerCprNumber")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerCprNumber");
+                    b.HasIndex("Username");
 
                     b.ToTable("NotificationTable");
                 });
@@ -249,11 +249,11 @@ namespace DatabaseTier.Migrations
 
             modelBuilder.Entity("DatabaseTier.Models.Notification", b =>
                 {
-                    b.HasOne("DatabaseTier.Models.Customer", "Customer")
+                    b.HasOne("DatabaseTier.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("CustomerCprNumber");
+                        .HasForeignKey("Username");
 
-                    b.Navigation("Customer");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DatabaseTier.Models.SavedAccounts", b =>

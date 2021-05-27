@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DatabaseTier.Migrations
 {
-    public partial class CreateTables : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,6 +52,27 @@ namespace DatabaseTier.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AccountTable",
+                columns: table => new
+                {
+                    AccountNumber = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Balance = table.Column<double>(type: "double precision", nullable: false),
+                    Username = table.Column<string>(type: "text", nullable: true),
+                    Date = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccountTable", x => x.AccountNumber);
+                    table.ForeignKey(
+                        name: "FK_AccountTable_UsersTable_Username",
+                        column: x => x.Username,
+                        principalTable: "UsersTable",
+                        principalColumn: "Username",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CustomersTable",
                 columns: table => new
                 {
@@ -86,20 +106,49 @@ namespace DatabaseTier.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AccountTable",
+                name: "TransactionTable",
                 columns: table => new
                 {
-                    AccountNumber = table.Column<long>(type: "bigint", nullable: false)
+                    TransactionNumber = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Balance = table.Column<double>(type: "double precision", nullable: false),
-                    CustomerCprNumber = table.Column<int>(type: "integer", nullable: true),
-                    Date = table.Column<string>(type: "text", nullable: true)
+                    SenderAccountNumber = table.Column<long>(type: "bigint", nullable: true),
+                    ReceiverAccountNumber = table.Column<long>(type: "bigint", nullable: true),
+                    Amount = table.Column<double>(type: "double precision", nullable: false),
+                    Message = table.Column<string>(type: "text", nullable: true),
+                    Date = table.Column<string>(type: "text", nullable: true),
+                    Save = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AccountTable", x => x.AccountNumber);
+                    table.PrimaryKey("PK_TransactionTable", x => x.TransactionNumber);
                     table.ForeignKey(
-                        name: "FK_AccountTable_CustomersTable_CustomerCprNumber",
+                        name: "FK_TransactionTable_AccountTable_ReceiverAccountNumber",
+                        column: x => x.ReceiverAccountNumber,
+                        principalTable: "AccountTable",
+                        principalColumn: "AccountNumber",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TransactionTable_AccountTable_SenderAccountNumber",
+                        column: x => x.SenderAccountNumber,
+                        principalTable: "AccountTable",
+                        principalColumn: "AccountNumber",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NotificationTable",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Message = table.Column<string>(type: "text", nullable: true),
+                    CustomerCprNumber = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NotificationTable", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_NotificationTable_CustomersTable_CustomerCprNumber",
                         column: x => x.CustomerCprNumber,
                         principalTable: "CustomersTable",
                         principalColumn: "CprNumber",
@@ -134,40 +183,10 @@ namespace DatabaseTier.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "TransactionTable",
-                columns: table => new
-                {
-                    TransactionNumber = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    SenderAccountNumber = table.Column<long>(type: "bigint", nullable: true),
-                    ReceiverAccountNumber = table.Column<long>(type: "bigint", nullable: true),
-                    Amount = table.Column<double>(type: "double precision", nullable: false),
-                    Message = table.Column<string>(type: "text", nullable: true),
-                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    Save = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TransactionTable", x => x.TransactionNumber);
-                    table.ForeignKey(
-                        name: "FK_TransactionTable_AccountTable_ReceiverAccountNumber",
-                        column: x => x.ReceiverAccountNumber,
-                        principalTable: "AccountTable",
-                        principalColumn: "AccountNumber",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TransactionTable_AccountTable_SenderAccountNumber",
-                        column: x => x.SenderAccountNumber,
-                        principalTable: "AccountTable",
-                        principalColumn: "AccountNumber",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
-                name: "IX_AccountTable_CustomerCprNumber",
+                name: "IX_AccountTable_Username",
                 table: "AccountTable",
-                column: "CustomerCprNumber");
+                column: "Username");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AddressTable_CityZipCode",
@@ -183,6 +202,11 @@ namespace DatabaseTier.Migrations
                 name: "IX_CustomersTable_Username",
                 table: "CustomersTable",
                 column: "Username");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NotificationTable_CustomerCprNumber",
+                table: "NotificationTable",
+                column: "CustomerCprNumber");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SavedAccountsTable_CustomerCprNumber",
@@ -208,16 +232,19 @@ namespace DatabaseTier.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "NotificationTable");
+
+            migrationBuilder.DropTable(
                 name: "SavedAccountsTable");
 
             migrationBuilder.DropTable(
                 name: "TransactionTable");
 
             migrationBuilder.DropTable(
-                name: "AccountTable");
+                name: "CustomersTable");
 
             migrationBuilder.DropTable(
-                name: "CustomersTable");
+                name: "AccountTable");
 
             migrationBuilder.DropTable(
                 name: "AddressTable");

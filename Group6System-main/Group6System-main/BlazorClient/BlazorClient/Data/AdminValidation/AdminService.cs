@@ -58,20 +58,17 @@ namespace BlazorClient.Data.AdminValidation
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
 
-        public async Task<String> CreateAccountAsync(string username)
+        public async Task<string> CreateAccountAsync(string username)
         {
-            string asJson = JsonSerializer.Serialize(username, new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
-            
-            StringContent content = new StringContent(
-                asJson,Encoding.UTF8, "application/json");
-            
-            HttpResponseMessage response = await client.PostAsync($"{path}/createAccount", content);
+            HttpResponseMessage response = await client.GetAsync($"{path}/CreateAccount?username={username}");
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine(response.StatusCode);
+                string result = await response.Content.ReadAsStringAsync();
+                string status = JsonSerializer.Deserialize<string>(result, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+                return status;
             }
 
             throw new Exception(response.Content.ReadAsStringAsync().Result);

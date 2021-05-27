@@ -14,8 +14,7 @@ namespace BlazorClient.Data.NotificationService
 
         public async Task<Notification> GetNotificationFromAdminAsync(string username)
         {
-            HttpResponseMessage response = await _client.GetAsync($"{path}/getNotification");
-            //We might need to use another path i think we are using this path somewhere else I am not sure
+            HttpResponseMessage response = await _client.GetAsync($"{path}/getNotification?username={username}");
             if (response.IsSuccessStatusCode)
             {
                 string asJson = await response.Content.ReadAsStringAsync();
@@ -29,20 +28,17 @@ namespace BlazorClient.Data.NotificationService
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
 
-        public async Task SendNotificationToUserAsync(string username)
+        public async Task<string> SendNotificationToUserAsync(string username)
         {
-            string asJson = JsonSerializer.Serialize(username, new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
-            
-            StringContent content = new StringContent(
-                asJson,Encoding.UTF8, "application/json");
-            
-            HttpResponseMessage response = await _client.PostAsync($"{path}/sendNotification", content);
+            HttpResponseMessage response = await _client.GetAsync($"{path}/sendNotification?username={username}");
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine(response.StatusCode);
+                string asJson = await response.Content.ReadAsStringAsync();
+                string message = JsonSerializer.Deserialize<string>(asJson, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+                return message;
             }
 
             throw new Exception(response.Content.ReadAsStringAsync().Result);

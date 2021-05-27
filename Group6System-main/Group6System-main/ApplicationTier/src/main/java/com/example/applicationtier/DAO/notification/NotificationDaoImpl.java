@@ -14,6 +14,7 @@ public class NotificationDaoImpl implements NotificationDAO{
     ObjectMapper mapper = new ObjectMapper();
     @Override
     public Notification getNotification(String username) throws Exception {
+        System.out.println("request for notification" + username);
         Request obj = new Request("getNotification", username);
         handler.setObj(obj);
 

@@ -114,18 +114,25 @@ namespace DatabaseTier.Repository.AdminREPO
 
         public async Task<User> CheckUserAsync(string username)
         {
-            await using CloudContext context = new CloudContext();
+            using (CloudContext context = new CloudContext())
+            {
+                IQueryable<User> users = context.UsersTable.Where(a => a.Username.Equals(username));
+                Console.WriteLine(username);
+                    foreach (User user in users)
+                    {
+                        if (user.Username.Equals(username))
+                        {
+                            Console.WriteLine("username !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + user.Password);
+                            return user;
+                        }
+                    }
 
-            try
-            {
-                var userToFind = await context.UsersTable.SingleOrDefaultAsync(a=> a.Username.Equals(username));
-                Console.WriteLine("username --------->>>>>>>>> " + userToFind);
-                return userToFind;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                throw new Exception(e.Message);
+                    Console.WriteLine("user not found!");
+                    throw new Exception("user not found");
+                    
+                    // User userToFind = await context.UsersTable.FirstOrDefaultAsync(a => a.Username.Equals(username));
+
+                    //return toFind;
             }
         }
     }

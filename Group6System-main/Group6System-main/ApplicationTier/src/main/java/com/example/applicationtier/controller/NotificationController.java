@@ -12,21 +12,23 @@ public class NotificationController {
 
     @Autowired
     NotificationService service;
+
     @GetMapping("/getNotification")
-    public ResponseEntity getNotificationFromAdmin(@PathVariable String username) {
+    public ResponseEntity getNotificationFromAdmin(@RequestParam String username) {
         try {
+            System.out.println("requesting notification from" + username);
             Notification message = service.getNotification(username);
             return new ResponseEntity<>(message, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-    @PostMapping("/sendNotification")
-    public ResponseEntity sendNotificationToUser(@RequestBody int cprNumber){
+    @GetMapping("/sendNotification")
+    public ResponseEntity sendNotificationToUser(@RequestParam String username){
         try {
-            System.out.println(cprNumber + " ////////////////////*******************");
-            service.sendNotificationToUser(cprNumber);
-            return new ResponseEntity<>(HttpStatus.OK);
+            System.out.println(username + " ////////////////////*******************");
+            service.sendNotificationToUser(username);
+            return new ResponseEntity<>("Successfully sent",HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }

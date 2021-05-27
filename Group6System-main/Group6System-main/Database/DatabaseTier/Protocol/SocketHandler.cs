@@ -30,7 +30,8 @@ namespace DatabaseTier.Protocol
             Request readRequest = JsonSerializer.Deserialize<Request>(message, 
                 new JsonSerializerOptions()
                 {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    WriteIndented = true
                 });
             
             Console.WriteLine(" --> from the 2nd tier to the handler  " + readRequest.Header + readRequest.Obj);
@@ -105,10 +106,9 @@ namespace DatabaseTier.Protocol
                     
                     // Get user
                     case "checkUser":
-                        string user = ToObject<string>((JsonElement) request.Obj);
-                        Console.WriteLine("user handler ------------->>>>>>>>>>>>>" + user);
                         return new Request("checkUser",
-                            await RepositoryFactory.GetAdminRepository().CheckUserAsync(user));
+                            await RepositoryFactory.GetAdminRepository()
+                                .CheckUserAsync(ToObject<string>((JsonElement) request.Obj)));
                     
                     //Create Account
                     case "CreateAccount":
@@ -145,9 +145,9 @@ namespace DatabaseTier.Protocol
                     
                     //get notification from admin
                     case "getNotification":
-                        string notification = ToObject<string>((JsonElement) request.Obj);
+                        string user = ToObject<string>((JsonElement) request.Obj);
                         return new Request("getNotification",
-                            await RepositoryFactory.GetNotificationRepository().GetNotificationAsync(notification)); 
+                            await RepositoryFactory.GetNotificationRepository().GetNotificationAsync(user)); 
                     
                     //send notification to customer
                     case "sendNotificationToUser":

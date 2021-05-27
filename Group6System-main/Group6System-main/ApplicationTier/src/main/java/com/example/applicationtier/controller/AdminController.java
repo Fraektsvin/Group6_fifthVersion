@@ -34,8 +34,8 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/createAccount")
-    public ResponseEntity createAccount(@RequestBody String username) {
+    @GetMapping("/CreateAccount")
+    public ResponseEntity createAccount(@RequestParam String username) {
         try {
             System.out.println("controller----->>>>>" + username);
             String message = service.createAccount(username);

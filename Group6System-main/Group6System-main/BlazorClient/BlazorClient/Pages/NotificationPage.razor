@@ -3,6 +3,7 @@
 @using BlazorClient.Data.NotificationService
 @inject INotificationService _service
 
+<p>Notification page</p>
 @if (_notification == null)
 {
     <p>
@@ -12,12 +13,12 @@
 <div class="card">
     <h4> Notifications for: @Username </h4>
     <div class="card-body">
-        <div class="form-group row">
-            <label class="col-form-label">ID</label>
+        <div class="col-5">
+           Id:<br/>
             <input type="number" placeholder="ID" @bind-value="_notification.Id"/>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label">Message</label>
+        <div class="col-10">
+            Message:<br/>
             <input type="text" placeholder="name" @bind-value="_notification.Message"/>
         </div>
     </div>
@@ -25,10 +26,10 @@
 @code { 
     [Parameter] public string Username { get; set; }
     private Notification _notification = new Notification();
-    
+
     protected override async Task OnInitializedAsync()
     {
-        _notification = await _service.GetNotificationFromAdminAsync(Username); 
+        Console.WriteLine("Request form page "  + Username);
+        _notification = await _service.GetNotificationFromAdminAsync(Username);
     }
-    
 }
