@@ -6,6 +6,6 @@ namespace BlazorClient.Data.NotificationService
     public interface INotificationService
     {
         Task<Notification> GetNotificationFromAdminAsync(string username); 
-        Task SendNotificationToUserAsync(int cprNumber);
+        Task SendNotificationToUserAsync(string username); 
     }
 }

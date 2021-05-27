@@ -4,6 +4,7 @@ import com.example.applicationtier.DAO.Handler;
 import com.example.applicationtier.models.Account;
 import com.example.applicationtier.models.Customer;
 import com.example.applicationtier.models.Request;
+import com.example.applicationtier.models.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,5 +86,20 @@ public class AdminDAOImpl implements AdminDAO {
         }
         else return 0;
     }
+
+    @Override
+    public User checkUser(String username) throws Exception {
+        Request user = new Request("checkUser", username);
+        handler.setObj(user);
+
+        Request response = handler.messageExchange(user);
+
+        if(response.getHeader().equals("checkUser")) {
+            User user1 = mapper.convertValue(response.getObj(), User.class);
+            return user1;
+        }
+        else throw new Exception((String) response.getObj());
+    }
+
 
 }

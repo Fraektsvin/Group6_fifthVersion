@@ -12,5 +12,6 @@ namespace DatabaseTier.Repository.AdminREPO
         Task<string> RemoveCustomerAsync(int cprNumber);
         Task<Account> CreateAccountAsync(Account account);
         Task<long> GetLastAccountNumberAsync();
+        Task<User> CheckUserAsync(string username);
     }
 }

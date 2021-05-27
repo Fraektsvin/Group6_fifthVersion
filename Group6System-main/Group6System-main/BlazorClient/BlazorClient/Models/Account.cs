@@ -13,8 +13,8 @@ namespace BlazorClient.Models
         [JsonPropertyName("accountNumber")] 
         public long AccountNumber{ get; set; }
         
-        [JsonPropertyName("customer")]
-        public Customer Customer { get; set; }
+        [JsonPropertyName("user")]
+        public User User { get; set; }
         
         /*[JsonPropertyName("transactions")]
         public IList<Transaction> Transactions { get; set; }*/

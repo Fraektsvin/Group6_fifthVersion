@@ -17,7 +17,7 @@ namespace DatabaseTier.Repository.AdminREPO
             try
             {
                 Customer toValidate = await context.CustomersTable.Include(c=>c.Address).
-                    ThenInclude(c=> c.City).FirstAsync(c => c.CprNumber == customer.CprNumber);
+                    ThenInclude(c=> c.City).Include(a=> a.User).FirstAsync(c => c.CprNumber == customer.CprNumber);
                 toValidate.IsValid = true;
                 await context.SaveChangesAsync();
                 return toValidate;
@@ -53,13 +53,13 @@ namespace DatabaseTier.Repository.AdminREPO
 
             try
             {
-                IQueryable<Customer> customerToRemove = context.CustomersTable.Include(a=> a.Address).
-                    ThenInclude(a=> a.City).Include(a=> a.User);
+                var customerToRemove = await context.CustomersTable.Include(a=> a.Address).
+                    ThenInclude(a=> a.City).Include(a=> a.User).FirstOrDefaultAsync(a=> a.CprNumber == cprNumber);
                 
-                var toRemove = context.CustomersTable.FirstOrDefault(c => c.CprNumber == cprNumber);
-                context.CustomersTable.Remove(toRemove);
-              /*  context.AddressTable.Remove(toRemove.Address);
-                context.CityTable.Remove(toRemove.Address.City);*/
+                var toRemove = await context.CustomersTable.FirstOrDefaultAsync(c => c.CprNumber == cprNumber);
+                context.CustomersTable.Remove(customerToRemove);
+                context.AddressTable.Remove(toRemove.Address);
+                context.CityTable.Remove(toRemove.Address.City); 
                 context.UsersTable.Remove(toRemove.User);
                 await context.SaveChangesAsync();
             }
@@ -75,23 +75,23 @@ namespace DatabaseTier.Repository.AdminREPO
         public async Task<Account> CreateAccountAsync(Account account)
         {
             await using CloudContext context = new CloudContext();
+            try
             {
-                try
+                Console.WriteLine("inside account----->>>>" + account);
+                var checkUser = await context.UsersTable.FirstOrDefaultAsync(t=> t.Username.Equals(account.User.Username));
+                Console.WriteLine("check username equals account " + checkUser);
+                if (checkUser != null)
                 {
-                    var checkCustomer = await context.CustomersTable.FirstOrDefaultAsync(t=> t.CprNumber == account.Customer.CprNumber);
-                    if (checkCustomer != null)
-                    {
-                        account.Customer = checkCustomer;
-                    }
-                    EntityEntry<Account> newAccount = await context.AccountTable.AddAsync(account);
-                    await context.SaveChangesAsync();
-                    return newAccount.Entity;
+                    account.User = checkUser;
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.StackTrace);
-                    throw new Exception(e.Message);
-                }
+                EntityEntry<Account> newAccount = await context.AccountTable.AddAsync(account);
+                await context.SaveChangesAsync();
+                return newAccount.Entity;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                throw new Exception(e.Message);
             }
         }
 
@@ -109,6 +109,23 @@ namespace DatabaseTier.Repository.AdminREPO
                 }
                 Console.WriteLine(lastAccountNumber);
                 return lastAccountNumber;
+            }
+        }
+
+        public async Task<User> CheckUserAsync(string username)
+        {
+            await using CloudContext context = new CloudContext();
+
+            try
+            {
+                var userToFind = await context.UsersTable.SingleOrDefaultAsync(a=> a.Username.Equals(username));
+                Console.WriteLine("username --------->>>>>>>>> " + userToFind);
+                return userToFind;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                throw new Exception(e.Message);
             }
         }
     }

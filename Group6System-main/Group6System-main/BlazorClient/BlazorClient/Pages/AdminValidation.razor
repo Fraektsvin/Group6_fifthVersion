@@ -99,7 +99,7 @@
     {
         customer.IsValid = (bool) evt.Value;
         await _service.ValidateCustomerAsync(customer);
-        _navigationManager.NavigateTo($"/CreateAccount/{customer.CprNumber}");
+        _navigationManager.NavigateTo($"/CreateAccount/{customer.User.Username}");
     }
 
     private async Task FilterByValidCustomers(ChangeEventArgs evt)

@@ -8,95 +8,61 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16a6ff6d-e93d-4789-ad05-7725ce530b14" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/DAO/notification/NotificationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/DAO/notification/NotificationDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/service/notification/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/service/notification/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/service/notification/NotificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/service/notification/NotificationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/controller/NotificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/controller/NotificationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/service/notification/NotificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/service/notification/NotificationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/service/notification/NotificationServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/service/notification/NotificationServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/.idea/.idea.BlazorClient/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/.idea/.idea.BlazorClient/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Pages/CreateAccount.razor" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Pages/CreateAccount.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Pages/Login.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.StaticWebAssets.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/DAO/admin/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/DAO/admin/AdminDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/DAO/admin/AdminDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/DAO/admin/AdminDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/models/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/service/adminservice/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/service/adminservice/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/service/adminservice/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/src/main/java/com/example/applicationtier/service/adminservice/AdminServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/DAO/admin/AdminDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/DAO/admin/AdminDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/DAO/admin/AdminDAOImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/DAO/admin/AdminDAOImpl$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/DAO/admin/AdminDAOImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/DAO/admin/AdminDAOImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/models/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/models/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/service/adminservice/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/service/adminservice/AdminService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/service/adminservice/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ApplicationTier/target/classes/com/example/applicationtier/service/adminservice/AdminServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Data/AdminValidation/AdminService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Data/AdminValidation/AdminService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Data/AdminValidation/IAdminService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Data/AdminValidation/IAdminService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Data/NotificationService/INotificationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Data/NotificationService/INotificationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Data/NotificationService/NotificationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Data/NotificationService/NotificationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Models/Account.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Models/Account.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Pages/AdminValidation.razor" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Pages/AdminValidation.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Pages/CreateAccount.razor" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/Pages/CreateAccountAsync.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.Views.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.runtimeconfig.dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/BlazorClient.runtimeconfig.dev.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/ref/BlazorClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/bin/Debug/net5.0/ref/BlazorClient.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/BlazorClient.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/BlazorClient.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/BlazorClient.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/BlazorClient.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.RazorComponent.input.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.RazorComponent.input.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.RazorCoreGenerate.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.RazorCoreGenerate.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.TagHelpers.output.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.TagHelpers.output.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.Views.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/BlazorClient.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/App.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/App.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/AdminValidation.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/AdminValidation.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/CreateAccount.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/CreateAccount.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/Customers.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/Customers.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/Index.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/Index.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/CreateAccount.razor.g.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/Login.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/Login.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/NotificationPage.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/NotificationPage.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/PayBill.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/PayBill.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/Send Money.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/Send Money.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/_Host.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Pages/_Host.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Shared/MainLayout.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Shared/MainLayout.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Shared/NavMenu.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/Shared/NavMenu.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/_Imports.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/Razor/_Imports.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/BlazorClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/BlazorClient.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/BlazorClient.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/BlazorClient.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/AdminValidation.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/AdminValidation.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/CreateAccount.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/CreateAccount.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/Customers.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/Customers.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/Login.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/NotificationPage.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/NotificationPage.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/PayBill.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/PayBill.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/Send Money.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/Send Money.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/RazorDeclaration/Pages/CreateAccount.razor.g.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/ref/BlazorClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/ref/BlazorClient.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/staticwebassets/BlazorClient.StaticWebAssets.Manifest.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/staticwebassets/BlazorClient.StaticWebAssets.Manifest.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/staticwebassets/BlazorClient.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/Debug/net5.0/staticwebassets/BlazorClient.StaticWebAssets.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/../../BlazorClient/BlazorClient/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DatabaseTier.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DatabaseTier.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Transaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Transaction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/CloudContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Migrations/CloudContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Account.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Account.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Protocol/SocketHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Protocol/SocketHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repository/CustomerREPO/CustomerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/CustomerREPO/CustomerRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repository/NotificationREPO/NotificationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/NotificationREPO/NotificationRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repository/AdminREPO/AdminRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/AdminREPO/AdminRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repository/AdminREPO/IAdminRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/AdminREPO/IAdminRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repository/TransactionREPO/TransactionRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository/TransactionREPO/TransactionRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/DatabaseTier.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/DatabaseTier.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/DatabaseTier.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/DatabaseTier.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/DatabaseTier.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/DatabaseTier.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/DatabaseTier.runtimeconfig.dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/DatabaseTier.runtimeconfig.dev.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/ref/DatabaseTier.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/ref/DatabaseTier.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/DatabaseTier.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/DatabaseTier.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/DatabaseTier.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/DatabaseTier.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/DatabaseTier.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/apphost.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/ref/DatabaseTier.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/ref/DatabaseTier.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,32 +84,32 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61F5185B-E9CF-48B9-8487-181D7861EB9C/314/MethodBase.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61F5185B-E9CF-48B9-8487-181D7861EB9C/233/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61F5185B-E9CF-48B9-8487-181D7861EB9C/CA/Range.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/60B4CAED-9553-4D9E-9BBA-8E623D3661FF/C/DbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Repository/AdminREPO/AdminRepository.cs" />
-      <option value="$PROJECT_DIR$/Repository/AdminREPO/IAdminRepository.cs" />
       <option value="$PROJECT_DIR$/Repository/TransactionREPO/ITransactionRepository.cs" />
       <option value="$PROJECT_DIR$/Repository/CustomerREPO/ICustomerRepository.cs" />
-      <option value="$PROJECT_DIR$/Models/Account.cs" />
       <option value="$PROJECT_DIR$/Models/User.cs" />
       <option value="$PROJECT_DIR$/Persistence/CloudContext.cs" />
       <option value="$PROJECT_DIR$/Models/Notification.cs" />
       <option value="$PROJECT_DIR$/Repository/RepositoryFactory.cs" />
       <option value="$PROJECT_DIR$/Repository/NotificationREPO/INotificationRepository.cs" />
       <option value="$PROJECT_DIR$/Repository/UserREPO/UserRepository.cs" />
-      <option value="$PROJECT_DIR$/Repository/CustomerREPO/CustomerRepository.cs" />
-      <option value="$PROJECT_DIR$/Repository/TransactionREPO/TransactionRepository.cs" />
-      <option value="$PROJECT_DIR$/Protocol/SocketHandler.cs" />
       <option value="$PROJECT_DIR$/Repository/NotificationREPO/NotificationRepository.cs" />
       <option value="$PROJECT_DIR$/Models/Transaction.cs" />
+      <option value="$PROJECT_DIR$/Repository/TransactionREPO/TransactionRepository.cs" />
+      <option value="$PROJECT_DIR$/Repository/CustomerREPO/CustomerRepository.cs" />
+      <option value="$PROJECT_DIR$/Models/Account.cs" />
+      <option value="$PROJECT_DIR$/Repository/AdminREPO/IAdminRepository.cs" />
+      <option value="$PROJECT_DIR$/Protocol/SocketHandler.cs" />
+      <option value="$PROJECT_DIR$/Repository/AdminREPO/AdminRepository.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1sqwsvr7ME7xn06BmynlVYVUb4F" />
@@ -157,12 +123,12 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.03230059" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.18739635" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="XThreadsFramesViewSplitterKey" value="0.55474454" />
+    <property name="XThreadsFramesViewSplitterKey" value="0.06117647" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="IdeDotTraceSystemModulesPageId" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -198,6 +164,7 @@
       <workItem from="1621613653795" duration="17054000" />
       <workItem from="1621632719096" duration="5067000" />
       <workItem from="1621690287411" duration="12513000" />
+      <workItem from="1622124831610" duration="21479000" />
     </task>
     <servers />
   </component>
@@ -222,52 +189,11 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repository/NotificationREPO/NotificationRepository.cs</url>
-          <line>25</line>
-          <properties documentPath="C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\Database\DatabaseTier\Repository\NotificationREPO\NotificationRepository.cs" initialLine="25" containingFunctionPresentation="method 'SendNotificationToUserAsync'">
-            <startOffsets>
-              <option value="914" />
-            </startOffsets>
-            <endOffsets>
-              <option value="982" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repository/NotificationREPO/NotificationRepository.cs</url>
-          <line>27</line>
-          <properties documentPath="C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\Database\DatabaseTier\Repository\NotificationREPO\NotificationRepository.cs" initialLine="27" containingFunctionPresentation="method 'SendNotificationToUserAsync'">
-            <startOffsets>
-              <option value="1092" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1125" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Repository/NotificationREPO/NotificationRepository.cs</url>
-          <line>28</line>
-          <properties documentPath="C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\Database\DatabaseTier\Repository\NotificationREPO\NotificationRepository.cs" initialLine="28" containingFunctionPresentation="method 'SendNotificationToUserAsync'">
-            <startOffsets>
-              <option value="1142" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1163" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="DotNetProject">
         <watch expression="((Microsoft.EntityFrameworkCore.Internal.InternalDbSet&lt;DatabaseTier.Models.Transaction&gt;) this.&lt;context&gt;5__1.TransactionTable).Local" language="C#" />
+        <watch expression="String.Concat()" />
+        <watch expression="username" />
       </configuration>
     </watches-manager>
   </component>

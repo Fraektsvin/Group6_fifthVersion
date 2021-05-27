@@ -3,9 +3,6 @@ package com.example.applicationtier.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
-
 @Component
 public class Account {
     @JsonProperty("balance")
@@ -17,15 +14,12 @@ public class Account {
     @JsonProperty("date")
     private String date;
 
-    @JsonProperty("customer")
-    private Customer customer;
+    @JsonProperty("user")
+    private User user;
 
   /* @JsonProperty("transactions")
     private List<Transaction> transactions;*/
 
-    public Customer getCustomer() {
-        return customer;
-    }
 
    /* public List<Transaction> getTransactions() {
         return transactions;
@@ -35,8 +29,13 @@ public class Account {
         this.transactions = transactions;
     }
 */
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setBalance(double balance) {
@@ -65,7 +64,7 @@ public class Account {
                 "balance=" + balance +
                 ", accountNumber=" + accountNumber +
                 ", date='" + date + '\'' +
-                ", customer=" + customer +
+                ", user=" + user +
                 '}';
     }
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DatabaseTier.Models;
 using DatabaseTier.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DatabaseTier.Repository.TransactionREPO
 {
@@ -12,65 +13,75 @@ namespace DatabaseTier.Repository.TransactionREPO
         public async Task<Transaction> TransferMoneyAsync(Transaction transaction)
         {
             await using CloudContext context = new CloudContext();
+            try
             {
-                 var register = await context.AddAsync(transaction);
-                 Console.WriteLine("add before saving ------->>>>>>>> " + register);
-                 //await context.SaveChangesAsync();
-                 Console.WriteLine("add transaction ------->>>>>>>> " + register);
-                 await UpdateSenderAsync(transaction);
-                 await UpdateReceiverAsync(transaction);
+                EntityEntry<Transaction> register = await context.TransactionTable.AddAsync(transaction);
+                Console.WriteLine("add before saving ------->>>>>>>> " + register);
+                await context.SaveChangesAsync();
+                Console.WriteLine("add transaction ------->>>>>>>> " + register);
+                await UpdateSenderAsync(transaction);
+                await UpdateReceiverAsync(transaction);
                                 
-                 return register.Entity;
+                return register.Entity;
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new Exception($"FAILED!!!!");
+            }
+            
         }
 
         private static async Task UpdateReceiverAsync(Transaction transaction)
         {
             await using CloudContext context = new CloudContext();
-            {
-                Customer customer = await context.CustomersTable.Include(a => a.Address).ThenInclude(a => a.City)
-                    .Include(a => a.User).FirstOrDefaultAsync(a=> a.CprNumber== transaction.Sender.Customer.CprNumber);
-                
-                Account receiver = await context.AccountTable.Where(a => a.Customer.CprNumber.Equals(customer.CprNumber)).FirstOrDefaultAsync(t =>
-                    t.AccountNumber == transaction.Receiver.AccountNumber);
-                receiver.Balance = transaction.Receiver.Balance;
-                context.Update(receiver);
-                Console.WriteLine("update receiver ------------>>>>>>>>>>>" + receiver);
-                await context.SaveChangesAsync();
-            }
             
+            User user = await context.UsersTable.FirstOrDefaultAsync(a=> a.Username== transaction.Sender.User.Username);
+                
+            Account receiver = await context.AccountTable.Where(a => a.User.Username.Equals(user.Username)).FirstOrDefaultAsync(t =>
+                    t.AccountNumber == transaction.Receiver.AccountNumber);
+            receiver.Balance = transaction.Receiver.Balance;
+            context.Update(receiver);
+            Console.WriteLine("update receiver ------------>>>>>>>>>>>" + receiver);
+            await context.SaveChangesAsync();
         }
 
         private static async Task UpdateSenderAsync(Transaction transaction)
         {
             await using CloudContext context = new CloudContext();
-            {
-                Customer customer = await context.CustomersTable.Include(a => a.Address).ThenInclude(a => a.City)
-                    .Include(a => a.User).FirstOrDefaultAsync(a=> a.CprNumber== transaction.Sender.Customer.CprNumber);
+            User user = await context.UsersTable.FirstOrDefaultAsync(a=> a.Username== transaction.Sender.User.Username);
                 
-                Account sender = await context.AccountTable.Where(a => a.Customer.CprNumber.Equals(customer.CprNumber)).FirstOrDefaultAsync(t =>
+            Account sender = await context.AccountTable.Where(a => a.User.Username.Equals(user.Username)).FirstOrDefaultAsync(t =>
                     t.AccountNumber == transaction.Sender.AccountNumber);
                 
-                sender.Balance = transaction.Sender.Balance;
-                context.Update(sender);
-                Console.WriteLine("update sender -------->>>>>>>>" + sender);
-                await context.SaveChangesAsync();
-            }
+            sender.Balance = transaction.Sender.Balance;
+            context.Update(sender);
+            Console.WriteLine("update sender -------->>>>>>>>" + sender);
+            await context.SaveChangesAsync();
+          
          
         }
 
         public async Task<Account> GetCustomerAccountAsync(string username)
         {
             await using CloudContext context = new CloudContext();
+
+            try
             {
-                Customer customer = await context.CustomersTable.Include(c=>c.Address).
-                    ThenInclude(c=> c.City).FirstOrDefaultAsync(c => c.User.Username.Equals(username));
+                User user = await context.UsersTable.FirstOrDefaultAsync(c => c.Username.Equals(username));
+                
                 
                 Account account = await context.AccountTable
-                    .FirstOrDefaultAsync(c => c.Customer.Equals(customer));
+                    .FirstOrDefaultAsync(c => c.User.Equals(user));
                 Console.WriteLine(account.ToString());
                 return account;
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                throw new Exception($"Not found!");
+            }
+           
         }
         
         public async Task<Transaction> PayBillAsync(Transaction transaction)

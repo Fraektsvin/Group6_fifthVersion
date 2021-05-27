@@ -1,10 +1,10 @@
-﻿@page "/CreateAccount/{CprNumber:int}"
+﻿@page "/CreateAccount/{Username}"
 @using BlazorClient.Data.AdminValidation
 @using BlazorClient.Data.NotificationService
 @inject INotificationService _notification
 @inject IAdminService _service
 
-<h1> Create Account for : @CprNumber </h1>
+<h1> Create Account for : @Username </h1>
 <button disabled="@_loading" class="btn btn-light" @onclick="CreateAccountFor">Create Account
     @if (_loading) 
     {
@@ -12,7 +12,7 @@
     }
 </button>
 @*
-<h1> Send notification to : @CprNumber </h1>
+<h1> Send notification to : @Username </h1>
 <button disabled="@_loading1" class="btn btn-light" @onclick="SendNotificationAsync">Send Notification
     @if (_loading1) 
     {
@@ -21,7 +21,7 @@
 </button>
 *@
 @code {
-    [Parameter] public int CprNumber { get; set; }
+    [Parameter] public string  Username { get; set; }
     private bool _loading;
     private bool _loading1;
     private string _errorMessage;
@@ -32,9 +32,9 @@
         _loading = true;
         try
         {
-          // String successMessage = await _service.CreateAccount(CprNumber);
-          // _errorMessage = successMessage;
-            await _notification.SendNotificationToUserAsync(CprNumber);
+          String successMessage = await _service.CreateAccountAsync(Username);
+          _errorMessage = successMessage;
+            //await _notification.SendNotificationToUserAsync(Username);
             _loading = false;
         }
         catch (Exception e)
@@ -48,7 +48,7 @@
         _loading1 = true;
         try
         {
-             await _notification.SendNotificationToUserAsync(CprNumber);
+             await _notification.SendNotificationToUserAsync(Username);
             _loading1 = false;
         }
         catch (Exception e)
