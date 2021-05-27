@@ -28,14 +28,18 @@ public class AdminDAOImpl implements AdminDAO {
     }
 
     @Override
-    public List<Customer> getAllCustomers() {
-        Request obj = new Request("GetAllCustomers");
+    public List<Customer> getAllCustomers() throws Exception {
+        Request obj = new Request("GetAllCustomers", null);
         handler.setObj(obj);
 
         Request response = handler.messageExchange(obj);
-        return mapper.convertValue(response.getObj(),
-                new TypeReference<>() {
-                });
+        if(response.getHeader().equals("GetAllCustomers")) {
+            List<Customer> customers = mapper.convertValue(response.getObj(), new TypeReference<>() {
+            });
+            System.out.println(customers);
+            return customers;
+        }
+        throw new Exception((String)response.getObj());
     }
 
     @Override

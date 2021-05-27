@@ -27,10 +27,7 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public List<Customer> getAllCustomers() throws Exception {
         List<Customer> getAll = adminDAO.getAllCustomers();
-        if(!getAll.isEmpty()){
-            return getAll;
-        }
-        throw new Exception("No customers to show!");
+        return getAll;
     }
 
     @Override

@@ -49,7 +49,7 @@ public class Handler implements Runnable {
 
     public Request messageExchange(Request objToSend){
         byte[] toClient;
-        byte[] dataFromClient = new byte[8000];
+        byte[] dataFromClient = new byte[10000];
 
         //Sending an object
         try {
@@ -68,6 +68,7 @@ public class Handler implements Runnable {
             System.out.println("Returned message from the db to the handler --> " + readObj);
             return finalObj; }
         catch (IOException e) {
+            System.out.println(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }

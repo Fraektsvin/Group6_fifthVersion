@@ -23,7 +23,7 @@ namespace DatabaseTier.Protocol
         public async Task ExchangeMessages()
         {
              //read 
-            byte[] readBuffer = new byte[8000];
+            byte[] readBuffer = new byte[10000];
             int bytesToRead = _stream.Read(readBuffer, 0, readBuffer.Length);
             string message = Encoding.UTF8.GetString(readBuffer, 0, bytesToRead);
             
@@ -44,7 +44,7 @@ namespace DatabaseTier.Protocol
             {
                 reply = new Request("Invalid Request", e.Message);
             }
-
+            Console.WriteLine(reply.Obj);
             string readMessage = JsonSerializer.Serialize(reply, new JsonSerializerOptions()
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
@@ -88,9 +88,8 @@ namespace DatabaseTier.Protocol
                     //Administrator
                     //Get all customers
                     case "GetAllCustomers":
-                        var all = new Request("GetAllCustomers", await RepositoryFactory.GetAdminRepository().
-                            GetAllCustomersAsync());
-                        return all;
+                        return new Request("GetAllCustomers", await RepositoryFactory.GetAdminRepository().
+                            GetAllCustomersAsync());;
                     
                     //Remove customer
                     case "RemoveCustomerByCprNumber":

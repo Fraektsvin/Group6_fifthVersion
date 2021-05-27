@@ -24,14 +24,15 @@ namespace DatabaseTier.Repository.NotificationREPO
             try
             {
                 var toSend = await context.NotificationTable.AddAsync(notification);
-                Console.WriteLine("notification ---------->>>>>>>>" + notification.Message);
+                Console.WriteLine("notification ---------->>>>>>>>" + toSend.Entity.Message);
                 await context.SaveChangesAsync();
                 return toSend.Entity;
                 
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace);
+
+                Console.WriteLine(e.Message);
                 throw new Exception($"Could not send!");
             }
         }

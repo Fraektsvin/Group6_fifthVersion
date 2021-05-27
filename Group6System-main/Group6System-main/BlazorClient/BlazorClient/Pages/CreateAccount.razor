@@ -11,7 +11,7 @@
         <span class="spinner-border spinner-border-sm mr-1"></span>
     }
 </button>
-
+@*
 <h1> Send notification to : @CprNumber </h1>
 <button disabled="@_loading1" class="btn btn-light" @onclick="SendNotificationAsync">Send Notification
     @if (_loading1) 
@@ -19,7 +19,7 @@
         <span class="spinner-border spinner-border-sm mr-1"></span>
     }
 </button>
-
+*@
 @code {
     [Parameter] public int CprNumber { get; set; }
     private bool _loading;
@@ -32,8 +32,8 @@
         _loading = true;
         try
         {
-           String successMessage = await _service.CreateAccount(CprNumber);
-           _errorMessage = successMessage;
+          // String successMessage = await _service.CreateAccount(CprNumber);
+          // _errorMessage = successMessage;
             await _notification.SendNotificationToUserAsync(CprNumber);
             _loading = false;
         }
@@ -43,7 +43,7 @@
         }
     }
 
-    private async Task SendNotificationAsync()
+  /*  private async Task SendNotificationAsync()
     {
         _loading1 = true;
         try
@@ -56,6 +56,6 @@
             _errorMessage = e.Message;
             _loading1 = false;
         }
-    }
+    }*/
 
 }
