@@ -27,21 +27,5 @@ namespace BlazorClient.Data.NotificationService
 
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
-
-        public async Task<string> SendNotificationToUserAsync(string username)
-        {
-            HttpResponseMessage response = await _client.GetAsync($"{path}/sendNotification?username={username}");
-            if (response.IsSuccessStatusCode)
-            {
-                string asJson = await response.Content.ReadAsStringAsync();
-                string message = JsonSerializer.Deserialize<string>(asJson, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
-                return message;
-            }
-
-            throw new Exception(response.Content.ReadAsStringAsync().Result);
-        }
     }
 }

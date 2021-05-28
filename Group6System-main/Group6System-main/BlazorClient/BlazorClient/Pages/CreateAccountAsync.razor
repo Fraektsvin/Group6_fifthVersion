@@ -11,11 +11,11 @@
         <span class="spinner-border spinner-border-sm mr-1"></span>
     }
 </button>
+<div style="color:red">@_errorMessage</div>
 
 @code {
     [Parameter] public string  Username { get; set; }
     private bool _loading;
-    private bool _loading1;
     private string _errorMessage;
 
 
@@ -24,9 +24,9 @@
         _loading = true;
         try
         {
-          String successMessage = await _service.CreateAccountAsync(Username);
-          _errorMessage = successMessage;
-           // await _notification.SendNotificationToUserAsync(Username);
+            String successMessage = await _service.CreateAccountAsync(Username);
+            Console.WriteLine(successMessage);
+            _errorMessage = successMessage;
             _loading = false;
         }
         catch (Exception e)

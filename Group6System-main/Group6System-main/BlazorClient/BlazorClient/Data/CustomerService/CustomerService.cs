@@ -16,9 +16,6 @@ namespace BlazorClient.Data.CustomerService
         
         public async Task<string> AddCustomerAsync(Customer customer)
         {
-            //var hashedpassword = HashString(customer.User.Password);
-            //customer.User.Password.Equals(hashedpassword);
-            //Console.WriteLine(customer.User.Password);
             string asJson = JsonSerializer.Serialize(customer, new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase

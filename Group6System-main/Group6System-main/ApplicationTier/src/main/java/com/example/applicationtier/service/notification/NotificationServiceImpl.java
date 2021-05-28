@@ -22,17 +22,13 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public void sendNotificationToUser(String username) throws Exception {
+    public void sendNotificationToUser(String username, String message) throws Exception {
         User user = adminDAO.checkUser(username);
-
 
         System.out.println("the customer is found" + user);
         Notification toSend = new Notification();
-        toSend.setMessage("Request Approved :)");
+        toSend.setMessage(message);
         toSend.setUser(user);
-        System.out.println("notification ready to be sent to the customer" );
-
-        System.out.println("notification send to" + user.toString());
 
         notificationDAO.sendNotificationToUser(toSend);
     }
