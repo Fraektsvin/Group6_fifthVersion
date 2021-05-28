@@ -21,7 +21,6 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public boolean validateCustomer(Customer customer) {
         boolean customerToValidate = adminDAO.validateCustomer(customer);
-        System.out.println("Service to DAO " + customerToValidate);
         return customerToValidate;
     }
 
@@ -33,9 +32,7 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public String removeCustomer(int cprNumber){
-        System.out.println(cprNumber);
         String customerToRemove = adminDAO.removeCustomer(cprNumber);
-        System.out.println("Inside service --> " + customerToRemove);
         return customerToRemove;
     }
 
@@ -45,14 +42,13 @@ public class AdminServiceImpl implements AdminService{
 
         Date d = new Date(System.currentTimeMillis());
         String date = d.toString();
-        System.out.println(date);
         Account account = new Account();
         account.setAccountNumber(accountNumberGenerator());
         account.setDate(date);
         account.setBalance(10000.00);
         account.setUser(toFind);
 
-        Account acc = adminDAO.CreateAccount(account);
+        Account acc = adminDAO.createAccount(account);
 
         if(acc != null){
             notificationService.sendNotificationToUser(username, "Request Approved :)");
@@ -65,7 +61,6 @@ public class AdminServiceImpl implements AdminService{
         try {
             long lastAccountNumber = adminDAO.getLastAccountNumber();
             long available = lastAccountNumber + 1;
-            System.out.println(lastAccountNumber + " "  + available + " in account number generator");
             return available;
         } catch (Exception e) {
             e.printStackTrace();

@@ -36,15 +36,6 @@ public class Handler implements Runnable {
 
     @Override
     public void run() {
-           /* while(true)
-            {
-                if(!(obj.getObj().equals("Close connection"))){
-                    messageExchange(obj);
-                }
-                else{
-                    break;
-                }
-            }*/
     }
 
     public Request messageExchange(Request objToSend){
@@ -65,10 +56,8 @@ public class Handler implements Runnable {
             int bytesRead = input.read(dataFromClient, 0, dataFromClient.length);
             String readObj = new String(dataFromClient);
             Request finalObj = objectMapper.readValue(readObj, Request.class);
-            System.out.println("Returned message from the db to the handler --> " + readObj);
             return finalObj; }
         catch (IOException e) {
-            System.out.println(e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }

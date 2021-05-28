@@ -21,13 +21,11 @@ namespace DatabaseTier.Repository.CustomerREPO
                         customer.Address.City = checkingCity;
                     }
                     var newAddedCustomer = await context.CustomersTable.AddAsync(customer);
-                    Console.WriteLine("customer repo " + newAddedCustomer);
                     await context.SaveChangesAsync();
                     return newAddedCustomer.Entity;
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
                     throw new Exception(e.Message);
                 }
             }
@@ -41,7 +39,6 @@ namespace DatabaseTier.Repository.CustomerREPO
                     ThenInclude(c=> c.City).FirstOrDefaultAsync(c => c.User.Username.Equals(username));
                 if (customer != null)
                 {
-                    Console.WriteLine(customer);
                     return customer;
                 }
 
@@ -57,7 +54,6 @@ namespace DatabaseTier.Repository.CustomerREPO
                     ThenInclude(c=> c.City).FirstOrDefault(c => c.CprNumber == cprNumber);
                 if (customer != null)
                 {
-                    Console.WriteLine(customer);
                     return customer;
                 }
 
@@ -77,7 +73,6 @@ namespace DatabaseTier.Repository.CustomerREPO
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace);
                 throw new Exception($"User not found!");
             }
         }

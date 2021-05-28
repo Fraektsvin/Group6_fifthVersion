@@ -4,7 +4,7 @@
 @inject INotificationService _service
 
 <p>Notification page</p>
-@if (_notification == null)
+@if (_notifications == null)
 {
     <p>
         <em>No messages!</em>
@@ -13,23 +13,32 @@
 <div class="card">
     <h4> Notifications for: @Username </h4>
     <div class="card-body">
-        <div class="col-5">
-           Id:<br/>
-            <input type="number" placeholder="ID" @bind-value="_notification.Id"/>
-        </div>
-        <div class="col-10">
-            Message:<br/>
-            <input type="text" placeholder="name" @bind-value="_notification.Message"/>
-        </div>
+        <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Message</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var n in _notifications)
+                {
+                    <tr>
+                        <td>@n.Id</td>
+                        <td>@n.Message</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
     </div>
 </div>
 @code { 
     [Parameter] public string Username { get; set; }
-    private Notification _notification = new Notification();
+    private IList<Notification> _notifications = new List<Notification>();
 
     protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("Request form page "  + Username);
-        _notification = await _service.GetNotificationFromAdminAsync(Username);
+        _notifications = await _service.GetNotificationFromAdminAsync(Username);
     }
 }

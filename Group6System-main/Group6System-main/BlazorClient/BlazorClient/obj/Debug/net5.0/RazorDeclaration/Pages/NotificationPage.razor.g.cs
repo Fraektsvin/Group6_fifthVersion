@@ -105,15 +105,15 @@ using BlazorClient.Data.NotificationService;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 26 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\NotificationPage.razor"
+#line 35 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\NotificationPage.razor"
         
     [Parameter] public string Username { get; set; }
-    private Notification _notification = new Notification();
+    private IList<Notification> _notifications = new List<Notification>();
 
     protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("Request form page "  + Username);
-        _notification = await _service.GetNotificationFromAdminAsync(Username);
+        _notifications = await _service.GetNotificationFromAdminAsync(Username);
     }
 
 #line default

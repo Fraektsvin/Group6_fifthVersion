@@ -1,20 +1,15 @@
 package com.example.applicationtier.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import org.springframework.stereotype.Component;
 
 @Component
 public class User {
     @JsonProperty("username")
-    @JsonSetter
     private String username;
-    @JsonProperty("password")
-    @JsonSetter
-    private String password;
 
-    public User() {
-    }
+    @JsonProperty("password")
+    private String password;
 
     public String getUsername() {
         return username;

@@ -34,8 +34,6 @@ namespace DatabaseTier.Protocol
                     WriteIndented = true
                 });
             
-            Console.WriteLine(" --> from the 2nd tier to the handler  " + readRequest.Header + readRequest.Obj);
-
             Request reply;
             try
             {
@@ -135,19 +133,12 @@ namespace DatabaseTier.Protocol
                      case "transferMoney":
                         Transaction transfer = ToObject<Transaction>((JsonElement) request.Obj);
                          return new Request("transferMoney", await RepositoryFactory.
-                             GetTransactionRepository().TransferMoneyAsync(transfer)); 
-                     
-                     //pay bill
-                    case "payBill":
-                        Transaction payment = ToObject<Transaction>((JsonElement) request.Obj);
-                        return new Request("payBill",
-                            await RepositoryFactory.GetTransactionRepository().PayBillAsync(payment));
-                    
+                             GetTransactionRepository().TransferMoneyAsync(transfer));
+
                     //get notification from admin
                     case "getNotification":
-                        string user = ToObject<string>((JsonElement) request.Obj);
                         return new Request("getNotification",
-                            await RepositoryFactory.GetNotificationRepository().GetNotificationAsync(user)); 
+                            await RepositoryFactory.GetNotificationRepository().GetNotificationAsync()); 
                     
                     //send notification to customer
                     case "sendNotificationToUser":

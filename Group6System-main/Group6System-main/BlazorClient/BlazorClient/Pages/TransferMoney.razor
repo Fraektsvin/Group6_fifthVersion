@@ -1,12 +1,12 @@
 ﻿@page "/Send_Money"
 
 @using BlazorClient.Data.CustomerService
-@using BlazorClient.Data.SendMoney
 @using BlazorClient.Models
 @using BlazorClient.Authentication
+@using BlazorClient.Data.Transactions
 @inject AuthenticationStateProvider _authStat
 @inject ICustomerService _service
-@inject ISendMoneyService _transactionService
+@inject ITransactionService _transactionService
 
 <div class="card">
     <h4 class="card-header">Send Money</h4>

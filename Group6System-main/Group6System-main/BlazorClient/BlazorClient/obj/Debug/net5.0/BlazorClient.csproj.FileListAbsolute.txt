@@ -480,7 +480,6 @@ C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\Bla
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\BlazorClient.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\BlazorClient.RazorComponent.input.cache
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
-C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\Customers.razor.g.cs
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
@@ -492,7 +491,6 @@ C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\Bla
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\BlazorClient.TagHelpers.output.cache
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\BlazorClient.RazorCoreGenerate.cache
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\App.razor.g.cs
-C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\Customers.razor.g.cs
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
@@ -628,8 +626,6 @@ C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorCli
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\BlazorClient.pdb
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\BlazorClient.genruntimeconfig.cache
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\BlazorClient.csproj.CopyComplete
-C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\PayBill.razor.g.cs
-C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\PayBill.razor.g.cs
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\PayBill.razor.g.cs
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\PayBill.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\PayBill.razor.g.cs
@@ -638,8 +634,6 @@ C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorCli
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\AdminValidation.razor.g.cs
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\AdminValidation.razor.g.cs
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\AdminValidation.razor.g.cs
-C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\Send Money.razor.g.cs
-C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\Send Money.razor.g.cs
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\Send Money.razor.g.cs
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\Send Money.razor.g.cs
 C:\Users\fatem\Documents\GitHub\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\AdminValidation.razor.g.cs
@@ -656,3 +650,7 @@ C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorCli
 C:\Users\const\Group6_fifthVersion\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\CreateAccountAsync.razor.g.cs
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\CreateAccountAsync.razor.g.cs
 C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\CreateAccountAsync.razor.g.cs
+C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\RegisterCustomer.razor.g.cs
+C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\RazorDeclaration\Pages\TransferMoney.razor.g.cs
+C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\RegisterCustomer.razor.g.cs
+C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\obj\Debug\net5.0\Razor\Pages\TransferMoney.razor.g.cs
