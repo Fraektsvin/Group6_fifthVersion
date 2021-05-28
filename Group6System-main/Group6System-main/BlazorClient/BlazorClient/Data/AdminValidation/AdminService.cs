@@ -68,7 +68,7 @@ namespace BlazorClient.Data.AdminValidation
                 {
                     PropertyNameCaseInsensitive = true
                 });
-                return status;
+                return response.Content.ReadAsStringAsync().Result;
             }
 
             throw new Exception(response.Content.ReadAsStringAsync().Result);

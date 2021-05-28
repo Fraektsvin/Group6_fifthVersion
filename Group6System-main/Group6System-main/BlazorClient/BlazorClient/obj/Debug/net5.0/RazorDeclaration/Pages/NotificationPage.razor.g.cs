@@ -113,9 +113,8 @@ using BlazorClient.Data.NotificationService;
     protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("Request form page "  + Username);
-        _notification = await _service.GetNotificationFromAdminAsync(Username); 
+        _notification = await _service.GetNotificationFromAdminAsync(Username);
     }
-    
 
 #line default
 #line hidden

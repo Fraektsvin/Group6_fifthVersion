@@ -37,7 +37,6 @@ public class AdminController {
     @GetMapping("/CreateAccount")
     public ResponseEntity createAccount(@RequestParam String username) {
         try {
-            System.out.println("controller----->>>>>" + username);
             String message = service.createAccount(username);
             return new ResponseEntity<>(message, HttpStatus.OK);
         } catch (Exception exception) {

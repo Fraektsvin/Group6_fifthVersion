@@ -105,11 +105,10 @@ using BlazorClient.Data.NotificationService;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 15 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\CreateAccountAsync.razor"
+#line 16 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\CreateAccountAsync.razor"
        
     [Parameter] public string  Username { get; set; }
     private bool _loading;
-    private bool _loading1;
     private string _errorMessage;
 
 
@@ -118,9 +117,8 @@ using BlazorClient.Data.NotificationService;
         _loading = true;
         try
         {
-          String successMessage = await _service.CreateAccountAsync(Username);
-          _errorMessage = successMessage;
-           // await _notification.SendNotificationToUserAsync(Username);
+            String successMessage = await _service.CreateAccountAsync(Username);
+            _errorMessage = successMessage;
             _loading = false;
         }
         catch (Exception e)

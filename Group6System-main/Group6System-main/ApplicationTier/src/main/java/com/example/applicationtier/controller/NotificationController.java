@@ -18,19 +18,10 @@ public class NotificationController {
         try {
             System.out.println("requesting notification from" + username);
             Notification message = service.getNotification(username);
+            System.out.println(message + " for the notification controller");
             return new ResponseEntity<>(message, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
-        }
-    }
-    @GetMapping("/sendNotification")
-    public ResponseEntity sendNotificationToUser(@RequestParam String username){
-        try {
-            System.out.println(username + " ////////////////////*******************");
-            service.sendNotificationToUser(username);
-            return new ResponseEntity<>("Successfully sent",HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 }

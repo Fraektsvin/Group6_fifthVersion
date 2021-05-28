@@ -41,9 +41,8 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public String createAccount(String username) throws Exception {
-        System.out.println("username--------->>>>>>>>>>>>>>" + username);
         User toFind = adminDAO.checkUser(username);
-        System.out.println("in service before adding ------->>>>>>>> " + toFind);
+
         Date d = new Date(System.currentTimeMillis());
         String date = d.toString();
         System.out.println(date);
@@ -54,10 +53,9 @@ public class AdminServiceImpl implements AdminService{
         account.setUser(toFind);
 
         Account acc = adminDAO.CreateAccount(account);
-        notificationService.sendNotificationToUser(username);
 
-        System.out.println("service+account----->>>>>> " + acc);
         if(acc != null){
+            notificationService.sendNotificationToUser(username, "Request Approved :)");
             return "Successful!!";
         }
         else return "Not Successful!!!!!";
