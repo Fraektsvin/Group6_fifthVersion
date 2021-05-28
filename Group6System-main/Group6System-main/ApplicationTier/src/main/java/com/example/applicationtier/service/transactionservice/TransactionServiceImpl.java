@@ -45,10 +45,4 @@ public class TransactionServiceImpl implements TransactionService{
         Account account = transDAO.getAccount(username);
         return account;
     }
-
-    @Override
-    public String payBill(Transaction transaction) {
-        //String payBill = transDAO.payBill(transaction);
-        return null;
-    }
 }

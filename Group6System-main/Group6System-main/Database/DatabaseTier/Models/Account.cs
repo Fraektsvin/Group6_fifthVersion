@@ -14,10 +14,7 @@ namespace DatabaseTier.Models
         
         [JsonPropertyName("user")]
         public User User { get; set; }
-        
-        // [JsonPropertyName("transactions")] 
-        // public IList<Transaction> Transactions { get; set; }
-        
+
         [JsonPropertyName("date")]
         public string Date{ get; set; }
         

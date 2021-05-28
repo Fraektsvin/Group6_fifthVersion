@@ -118,6 +118,7 @@ using BlazorClient.Data.NotificationService;
         try
         {
             String successMessage = await _service.CreateAccountAsync(Username);
+            Console.WriteLine(successMessage);
             _errorMessage = successMessage;
             _loading = false;
         }

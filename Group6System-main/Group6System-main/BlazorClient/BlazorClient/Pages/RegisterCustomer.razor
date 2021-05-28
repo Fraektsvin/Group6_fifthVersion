@@ -4,7 +4,7 @@
 @inject NavigationManager _navigationManager
 @inject AuthenticationStateProvider _service
 
-<EditForm Model="@_addNewCustomer" OnValidSubmit="@RegisterCustomer">
+<EditForm Model="@_addNewCustomer" OnValidSubmit="@RegisterNewCustomer">
     <ValidationSummary/>
     <DataAnnotationsValidator/>
     <div class="card">
@@ -92,7 +92,7 @@
     private string ErrorMessage { get; set; }
     private bool _loading;
 
-    private async Task RegisterCustomer()
+    private async Task RegisterNewCustomer()
     {
         _loading = true;
         try
@@ -100,7 +100,6 @@
             _newAddressToAdd.City = _newCityToAdd;
             _addNewCustomer.Address = _newAddressToAdd;
             _addNewCustomer.User = _newUserToAdd;
-           // string successMessage = await service.AddCustomerAsync(_addNewCustomer);
             string successMessage = await ((CustomAuthenticationStateProvider)_service).ValidateRegisterAsync(_addNewCustomer);
                 ErrorMessage = successMessage;
             _loading = false;

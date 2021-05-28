@@ -23,7 +23,5 @@ namespace DatabaseTier.Models
         [JsonPropertyName("user")] public User User { get; set; }
 
         [JsonPropertyName("isvalid")] public bool IsValid { get; set; }
-
-        [JsonPropertyName("savedaccounts")] public IList<SavedAccounts> SavedAccountsList { get; set; }
     }
 }

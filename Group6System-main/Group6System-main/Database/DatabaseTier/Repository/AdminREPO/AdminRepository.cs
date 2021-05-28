@@ -24,7 +24,6 @@ namespace DatabaseTier.Repository.AdminREPO
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace);
                 throw new Exception($"Customer not found!");
             }
         }
@@ -41,7 +40,6 @@ namespace DatabaseTier.Repository.AdminREPO
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
                     throw new Exception(e.Message);
                 }
             }
@@ -65,7 +63,6 @@ namespace DatabaseTier.Repository.AdminREPO
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace);
                 throw new Exception(e.Message);
             }
 
@@ -77,9 +74,7 @@ namespace DatabaseTier.Repository.AdminREPO
             await using CloudContext context = new CloudContext();
             try
             {
-                Console.WriteLine("inside account----->>>>" + account);
                 var checkUser = await context.UsersTable.FirstOrDefaultAsync(t=> t.Username.Equals(account.User.Username));
-                Console.WriteLine("check username equals account " + checkUser);
                 if (checkUser != null)
                 {
                     account.User = checkUser;
@@ -90,7 +85,6 @@ namespace DatabaseTier.Repository.AdminREPO
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace);
                 throw new Exception(e.Message);
             }
         }
@@ -107,7 +101,6 @@ namespace DatabaseTier.Repository.AdminREPO
                 {
                     lastAccountNumber = lastAccount.AccountNumber;
                 }
-                Console.WriteLine(lastAccountNumber);
                 return lastAccountNumber;
             }
         }
@@ -117,22 +110,15 @@ namespace DatabaseTier.Repository.AdminREPO
             using (CloudContext context = new CloudContext())
             {
                 IQueryable<User> users = context.UsersTable.Where(a => a.Username.Equals(username));
-                Console.WriteLine(username);
                     foreach (User user in users)
                     {
                         if (user.Username.Equals(username))
                         {
-                            Console.WriteLine("username !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + user.Password);
                             return user;
                         }
                     }
 
-                    Console.WriteLine("user not found!");
                     throw new Exception("user not found");
-                    
-                    // User userToFind = await context.UsersTable.FirstOrDefaultAsync(a => a.Username.Equals(username));
-
-                    //return toFind;
             }
         }
     }

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class NotificationController {
 
@@ -16,10 +18,8 @@ public class NotificationController {
     @GetMapping("/getNotification")
     public ResponseEntity getNotificationFromAdmin(@RequestParam String username) {
         try {
-            System.out.println("requesting notification from" + username);
-            Notification message = service.getNotification(username);
-            System.out.println(message + " for the notification controller");
-            return new ResponseEntity<>(message, HttpStatus.OK);
+            List<Notification> notifications = service.getNotification(username);
+            return new ResponseEntity<>(notifications, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
         }

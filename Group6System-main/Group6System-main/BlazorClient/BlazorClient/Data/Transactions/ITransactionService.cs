@@ -2,12 +2,10 @@
 using System.Threading.Tasks;
 using BlazorClient.Models;
 
-namespace BlazorClient.Data.SendMoney
+namespace BlazorClient.Data.Transactions
 {
-    public interface ISendMoneyService
+    public interface ITransactionService
     {
-        Task<String> PayBillAsync(Transaction transaction);
-
         Task<String> SendMoney(Transaction transaction);
     }
 }

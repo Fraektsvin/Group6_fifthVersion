@@ -83,35 +83,21 @@ using BlazorClient.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\PayBill.razor"
+#line 2 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\RegisterCustomer.razor"
 using BlazorClient.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\PayBill.razor"
-using BlazorClient.Data.CustomerService;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\PayBill.razor"
+#line 3 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\RegisterCustomer.razor"
 using BlazorClient.Authentication;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 5 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\PayBill.razor"
-using BlazorClient.Data.SendMoney;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/PayBill")]
-    public partial class PayBill : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Customers")]
+    public partial class RegisterCustomer : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -119,46 +105,40 @@ using BlazorClient.Data.SendMoney;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 47 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\PayBill.razor"
+#line 87 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\RegisterCustomer.razor"
        
-    private long AccountNumber;
-    private double Amount;
-    private String AccountName;
-    private long InvoiceNumber;
-    private String Message;
-    private bool _loading;
-    private bool Save;
+    private readonly Customer _addNewCustomer = new Customer();
+    private readonly Address _newAddressToAdd = new Address();
+    private readonly City _newCityToAdd = new City();
+    private readonly User _newUserToAdd = new User();
     private string ErrorMessage { get; set; }
+    private bool _loading;
 
-    private async Task PayBillAsync()
+    private async Task RegisterNewCustomer()
     {
-        /*_loading = true;
-        User user = AuthStat._cachedUser;
-        Models.Account Sender = await Service.GetAccount(user.Username, user.Password);
-        Models.Account Receiver = new Models.Account(AccountNumber, AccountName);
-
-        Transaction transaction = new Transaction(Sender, Receiver, Amount, Message, DateTime.Now, Save);
-        
-        //Send money
+        _loading = true;
         try
         {
-            String successMessage = await TransactionService.PayBillAsync(transaction);
-            ErrorMessage = successMessage;
+            _newAddressToAdd.City = _newCityToAdd;
+            _addNewCustomer.Address = _newAddressToAdd;
+            _addNewCustomer.User = _newUserToAdd;
+            string successMessage = await ((CustomAuthenticationStateProvider)_service).ValidateRegisterAsync(_addNewCustomer);
+                ErrorMessage = successMessage;
             _loading = false;
         }
         catch (Exception e)
         {
-            _loading = false;
+            Console.WriteLine(e.Message);
             ErrorMessage = e.Message;
-        }*/
+            _loading = false;
+        }
     }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ISendMoneyService TransactionService { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICustomerService Service { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private CustomAuthenticationStateProvider AuthStat { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _service { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

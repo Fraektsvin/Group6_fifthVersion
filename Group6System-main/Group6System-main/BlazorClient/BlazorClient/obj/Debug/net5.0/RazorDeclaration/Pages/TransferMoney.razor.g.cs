@@ -83,21 +83,35 @@ using BlazorClient.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\Customers.razor"
+#line 3 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\TransferMoney.razor"
+using BlazorClient.Data.CustomerService;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\TransferMoney.razor"
 using BlazorClient.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\Customers.razor"
+#line 5 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\TransferMoney.razor"
 using BlazorClient.Authentication;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Customers")]
-    public partial class Customers : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 6 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\TransferMoney.razor"
+using BlazorClient.Data.Transactions;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Send_Money")]
+    public partial class TransferMoney : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,41 +119,45 @@ using BlazorClient.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 87 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\Customers.razor"
+#line 43 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\TransferMoney.razor"
        
-    private readonly Customer _addNewCustomer = new Customer();
-    private readonly Address _newAddressToAdd = new Address();
-    private readonly City _newCityToAdd = new City();
-    private readonly User _newUserToAdd = new User();
-    private string ErrorMessage { get; set; }
+    private long _accountNumber;
+    private double _amount;
+    private string _accountName;
+    private string _message;
     private bool _loading;
+    private bool _save;
+    private string ErrorMessage { get; set; }
 
-    private async Task RegisterCustomer()
+    private async Task SendMoneyAsync()
     {
-        _loading = true;
         try
         {
-            _newAddressToAdd.City = _newCityToAdd;
-            _addNewCustomer.Address = _newAddressToAdd;
-            _addNewCustomer.User = _newUserToAdd;
-           // string successMessage = await service.AddCustomerAsync(_addNewCustomer);
-            string successMessage = await ((CustomAuthenticationStateProvider)_service).ValidateRegisterAsync(_addNewCustomer);
-                ErrorMessage = successMessage;
+            _loading = true;
+            User user = CustomAuthenticationStateProvider.storedUser;
+            Account sender = await _service.GetAccount(user.Username);
+            //ToDo get the receiver from the customer's input
+            Account receiver = await _service.GetAccount(_accountName);
+
+            Transaction transaction = new Transaction(sender, receiver, _amount, _message, DateTime.Now.ToString(), _save);
+            string successMessage = await _transactionService.SendMoney(transaction);
+            
+            ErrorMessage = successMessage;
             _loading = false;
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
-            ErrorMessage = e.Message;
             _loading = false;
+            ErrorMessage = e.Message;
         }
     }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _service { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ITransactionService _transactionService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICustomerService _service { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _authStat { get; set; }
     }
 }
 #pragma warning restore 1591

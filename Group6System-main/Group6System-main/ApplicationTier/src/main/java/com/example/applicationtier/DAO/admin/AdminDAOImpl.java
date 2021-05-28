@@ -37,7 +37,6 @@ public class AdminDAOImpl implements AdminDAO {
         if(response.getHeader().equals("GetAllCustomers")) {
             List<Customer> customers = mapper.convertValue(response.getObj(), new TypeReference<>() {
             });
-            System.out.println(customers);
             return customers;
         }
         throw new Exception((String)response.getObj());
@@ -47,18 +46,16 @@ public class AdminDAOImpl implements AdminDAO {
     public String removeCustomer(int cprNumber){
         Request obj = new Request("RemoveCustomerByCprNumber", cprNumber);
         handler.setObj(obj);
-        System.out.println("Inside dao send request -->  " + obj);
 
         Request response = handler.messageExchange(obj);
        if(response.getHeader().equals("RemoveCustomerByCprNumber")){
-           System.out.println("Inside dao response " + response.getObj());
            return (String) response.getObj();
        }
        else return "Customer not found!";
     }
 
     @Override
-    public Account CreateAccount(Account account) throws Exception {
+    public Account createAccount(Account account) throws Exception {
 
         Request account1 = new Request("CreateAccount", account);
         handler.setObj(account1);
@@ -80,7 +77,6 @@ public class AdminDAOImpl implements AdminDAO {
         Request response = handler.messageExchange(lastUsedAccountNumber);
 
         if(response.getHeader().equals("LastUsedAccountNumber")) {
-            System.out.println(response.getObj());
             long lastNumber = mapper.convertValue(response.getObj(), long.class);
             return lastNumber;
         }

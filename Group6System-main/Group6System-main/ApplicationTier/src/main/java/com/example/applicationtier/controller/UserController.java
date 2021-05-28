@@ -13,13 +13,9 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @GetMapping("/users")
-    public ResponseEntity validateLogin(@RequestParam String username, @RequestParam String password) {
-        User toValidate = new User();
-        toValidate.setUsername(username);
-        toValidate.setPassword(password);
-
-        System.out.println( "step 1 controller to service -->  " +  toValidate);
+    @PostMapping("/users")
+    public ResponseEntity validateLogin(@RequestBody User user) {
+        User toValidate = user;
 
         try {
             User returnObj = service.validateUser(toValidate);
@@ -27,7 +23,6 @@ public class UserController {
             if (returnObj != null) return new ResponseEntity<>(returnObj, HttpStatus.OK);
         }
         catch (Exception e){
-            System.out.println(HttpStatus.NOT_FOUND);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
         return null;

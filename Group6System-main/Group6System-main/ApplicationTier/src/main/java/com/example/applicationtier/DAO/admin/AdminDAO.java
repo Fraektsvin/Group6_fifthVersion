@@ -12,7 +12,7 @@ public interface AdminDAO {
     boolean validateCustomer(Customer customer);
     List<Customer> getAllCustomers() throws Exception;
     String removeCustomer(int cprNumber);
-    Account CreateAccount(Account account) throws Exception;
+    Account createAccount(Account account) throws Exception;
     long getLastAccountNumber() throws Exception;
     User checkUser(String username) throws Exception;
 }

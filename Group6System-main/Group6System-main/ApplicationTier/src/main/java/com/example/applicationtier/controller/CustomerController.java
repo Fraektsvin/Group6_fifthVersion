@@ -15,7 +15,7 @@ public class CustomerController {
 
 
     @PostMapping("/createNewCustomer")
-    public ResponseEntity RegisterCustomer(@RequestBody Customer customer) {
+    public ResponseEntity registerCustomer(@RequestBody Customer customer) {
         String returnMessage = null;
         try {
             returnMessage = service.registerCustomer(customer);

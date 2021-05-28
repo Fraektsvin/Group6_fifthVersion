@@ -64,11 +64,8 @@ namespace BlazorClient.Data.AdminValidation
             if (response.IsSuccessStatusCode)
             {
                 string result = await response.Content.ReadAsStringAsync();
-                string status = JsonSerializer.Deserialize<string>(result, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
-                return response.Content.ReadAsStringAsync().Result;
+
+                return result;
             }
 
             throw new Exception(response.Content.ReadAsStringAsync().Result);

@@ -6,6 +6,5 @@ namespace BlazorClient.Data.UserService
     public interface IUserService
     {
         Task<User> ValidateUserAsync(string username, string password);
-         Task<User> GetUser(string username, string password);
     }
 }

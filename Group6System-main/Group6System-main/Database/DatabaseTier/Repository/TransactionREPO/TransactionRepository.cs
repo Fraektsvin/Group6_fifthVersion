@@ -36,7 +36,6 @@ namespace DatabaseTier.Repository.TransactionREPO
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
                 throw new Exception($"FAILED!!!!");
             }
             
@@ -57,7 +56,6 @@ namespace DatabaseTier.Repository.TransactionREPO
         private static async Task UpdateSenderAsync(Account sender)
         {
             await using CloudContext context = new CloudContext();
-           // User user = await context.UsersTable.FirstOrDefaultAsync(a=> a.Username.Equals(transaction.Sender.User.Username));
                 
             Account s = await context.AccountTable.Include(u => u.User).FirstOrDefaultAsync(t =>
                     t.AccountNumber == sender.AccountNumber);
@@ -65,8 +63,6 @@ namespace DatabaseTier.Repository.TransactionREPO
             s.Balance = sender.Balance;
             context.Update(s); 
             await context.SaveChangesAsync();
-          
-         
         }
 
         public async Task<Account> GetCustomerAccountAsync(string username)
@@ -77,24 +73,14 @@ namespace DatabaseTier.Repository.TransactionREPO
             {
                 User user = await context.UsersTable.FirstOrDefaultAsync(c => c.Username.Equals(username));
                 
-                
                 Account account = await context.AccountTable.FirstOrDefaultAsync(c => c.User.Equals(user));
-                Console.WriteLine(account.ToString());
                 return account;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace);
                 throw new Exception($"Not found!");
             }
            
-        }
-        
-        public async Task<Transaction> PayBillAsync(Transaction transaction)
-        {
-            await using CloudContext context = new CloudContext();
-            
-            throw new System.NotImplementedException();
         }
     }
 }

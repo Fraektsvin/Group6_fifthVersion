@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatabaseTier.Models;
@@ -10,11 +12,22 @@ namespace DatabaseTier.Repository.NotificationREPO
 {
     public class NotificationRepository:INotificationRepository
     {
-        public async Task<Notification> GetNotificationAsync(string username)
+        public async Task<IList<Notification>> GetNotificationAsync()
         {
-            await using CloudContext context = new CloudContext();
-            Notification newNotification = await context.NotificationTable.Include(a => a.User).FirstOrDefaultAsync(a => a.User.Username.Equals(username));
-            return newNotification;
+            using (CloudContext context = new CloudContext())
+            {
+                try
+                {
+                    IList<Notification> notifications = await context.NotificationTable
+                        .Include(u => u.User).ToListAsync();
+
+                    return notifications;
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+            }
         }
 
         public async Task<Notification> SendNotificationToUserAsync(Notification notification)
@@ -29,7 +42,6 @@ namespace DatabaseTier.Repository.NotificationREPO
                     notification.User = user;
                 }
                 var toSend = await context.NotificationTable.AddAsync(notification);
-                Console.WriteLine("notification ---------->>>>>>>>" + toSend.Entity.Message);
                 await context.SaveChangesAsync();
                 return toSend.Entity;
                 
@@ -37,7 +49,6 @@ namespace DatabaseTier.Repository.NotificationREPO
             catch (Exception e)
             {
 
-                Console.WriteLine(e.Message);
                 throw new Exception($"Could not send!");
             }
         }

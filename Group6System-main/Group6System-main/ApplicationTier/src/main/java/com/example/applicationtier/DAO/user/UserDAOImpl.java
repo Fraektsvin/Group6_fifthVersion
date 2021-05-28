@@ -19,10 +19,8 @@ public class UserDAOImpl implements UserDAO{
         handler.setObj(login);
 
         Request response = handler.messageExchange(login);
-        System.out.println("--> from the dao up to the service " + response);
 
         if(response.getHeader().equals("CheckLogin")) {
-            System.out.println("Successfully logged in");
             return (User) login.getObj();
         }
         else throw new Exception((String) response.getObj());

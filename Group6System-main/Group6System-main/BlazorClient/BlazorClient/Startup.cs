@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using System.Transactions;
 using BlazorClient.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using BlazorClient.Data.AdminValidation;
 using BlazorClient.Data.CustomerService;
 using BlazorClient.Data.NotificationService;
-using BlazorClient.Data.SendMoney;
+using BlazorClient.Data.Transactions;
 using BlazorClient.Data.UserService;
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -33,7 +34,7 @@ namespace BlazorClient
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
-            services.AddScoped<ISendMoneyService, SendMoneyService>();
+            services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddAuthorization(options =>
             {

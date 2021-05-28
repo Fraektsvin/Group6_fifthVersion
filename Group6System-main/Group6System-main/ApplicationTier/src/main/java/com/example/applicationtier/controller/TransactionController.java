@@ -32,14 +32,4 @@ public class TransactionController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-
-    @PostMapping("/payBill")
-    public ResponseEntity payBills(@RequestBody Transaction transaction){
-        try {
-            String message = service.payBill(transaction);
-            return new ResponseEntity<>(message, HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
-        }
-    }
 }

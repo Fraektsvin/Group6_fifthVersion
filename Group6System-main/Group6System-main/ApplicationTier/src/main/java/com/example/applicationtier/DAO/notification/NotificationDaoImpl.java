@@ -3,9 +3,12 @@ package com.example.applicationtier.DAO.notification;
 import com.example.applicationtier.DAO.Handler;
 import com.example.applicationtier.models.Notification;
 import com.example.applicationtier.models.Request;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class NotificationDaoImpl implements NotificationDAO{
@@ -13,14 +16,14 @@ public class NotificationDaoImpl implements NotificationDAO{
     Handler handler;
     ObjectMapper mapper = new ObjectMapper();
     @Override
-    public Notification getNotification(String username) throws Exception {
-        System.out.println("request for notification" + username);
-        Request obj = new Request("getNotification", username);
+    public List<Notification> getNotification() throws Exception {
+        Request obj = new Request("getNotification", null);
         handler.setObj(obj);
 
         Request response = handler.messageExchange(obj);
         if(response.getHeader().equals("getNotification")){
-            return mapper.convertValue(response.getObj(), Notification.class);
+            return mapper.convertValue(response.getObj(), new TypeReference<>() {
+            });
         }
         throw new Exception((String) response.getObj());
     }
@@ -31,7 +34,6 @@ public class NotificationDaoImpl implements NotificationDAO{
         handler.setObj(obj);
 
         Request response = handler.messageExchange(obj);
-        System.out.println(obj);
         if(response.getHeader().equals("sendNotificationToUser")){
             return mapper.convertValue(response.getObj(), Notification.class);
         }
