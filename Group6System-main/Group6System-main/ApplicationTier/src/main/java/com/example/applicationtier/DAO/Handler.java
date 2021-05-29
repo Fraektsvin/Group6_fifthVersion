@@ -40,7 +40,7 @@ public class Handler implements Runnable {
 
     public Request messageExchange(Request objToSend){
         byte[] toClient;
-        byte[] dataFromClient = new byte[10000];
+        byte[] dataFromClient = new byte[15000];
 
         //Sending an object
         try {

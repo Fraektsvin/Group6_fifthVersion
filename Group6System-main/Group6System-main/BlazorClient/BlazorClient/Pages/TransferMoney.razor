@@ -1,4 +1,4 @@
-﻿@page "/Send_Money"
+﻿@page "/SendMoney"
 
 @using BlazorClient.Data.CustomerService
 @using BlazorClient.Models
@@ -8,37 +8,42 @@
 @inject ICustomerService _service
 @inject ITransactionService _transactionService
 
-<div class="card">
-    <h4 class="card-header">Send Money</h4>
-    <div class="card-body">
-        <div class="form-group row">
-            <label class="col-form-label">Account number:</label>
-            <input type="number" placeholder="account number" @bind-value="_accountNumber"/>
-        </div>
-        <div class="form-group row">
-            <label class="col-form-label">Account Holder's Name:</label>
-            <input type="text" placeholder="name" @bind-value="_accountName"/>
-        </div>
-        <div class="form-group row">
-            <label class="col-form-label">Amount:</label>
-            <input type="number" placeholder="amount" @bind-value="_amount"/>
-        </div>
-        <div class="form-group row">
-            <label class="col-form-label">Message:</label>
-            <input type="text" placeholder="message" @bind-value="_message"/>
-        </div>
+<AuthorizeView>
+    <Authorized>
+        <div class="card">
+            <h4 class="card-header">Send Money</h4>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-form-label">Account number:</label>
+                    <input type="number" placeholder="account number" @bind-value="_accountNumber"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label">Account Holder's Name:</label>
+                    <input type="text" placeholder="name" @bind-value="_accountName"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label">Amount:</label>
+                    <input type="number" placeholder="amount" @bind-value="_amount"/>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label">Message:</label>
+                    <input type="text" placeholder="message" @bind-value="_message"/>
+                </div>
         
-        <input type="checkbox" checked=@_save>
+                <input type="checkbox" checked=@_save>
 
-        <div style="color:red">@ErrorMessage</div>
-        <button disabled="@_loading" class="btn btn-light" @onclick="SendMoneyAsync">Submit
-            @if (_loading) 
-            {
-                <span class="spinner-border spinner-border-sm mr-1"></span>
-            }
-        </button>
-    </div>
-</div>
+                <div style="color:red">@ErrorMessage</div>
+                <button disabled="@_loading" class="btn btn-light" @onclick="SendMoneyAsync">Submit
+                    @if (_loading) 
+                    {
+                        <span class="spinner-border spinner-border-sm mr-1"></span>
+                    }
+                </button>
+            </div>
+        </div>
+    </Authorized>
+</AuthorizeView>
+
 
 @code {
     private long _accountNumber;

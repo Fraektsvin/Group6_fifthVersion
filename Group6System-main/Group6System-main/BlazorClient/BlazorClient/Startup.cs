@@ -38,8 +38,8 @@ namespace BlazorClient
             services.AddScoped<INotificationService, NotificationService>();
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Admin", policy => 
-                    policy.RequireAuthenticatedUser().RequireClaim("Role", "admin"));
+                options.AddPolicy("AdminRole", policy => 
+                    policy.RequireAuthenticatedUser().RequireClaim("Username", "Admin"));
             });
 
 

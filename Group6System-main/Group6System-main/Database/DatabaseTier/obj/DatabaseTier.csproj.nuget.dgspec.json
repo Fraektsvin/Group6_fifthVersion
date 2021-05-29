@@ -13,9 +13,6 @@
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\Database\\DatabaseTier\\obj\\",
         "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
-        ],
         "originalTargetFrameworks": [
           "net5.0"
         ],

@@ -1,44 +1,48 @@
-﻿@page "/NotificationPage/{Username}"
+﻿@page "/NotificationPage"
 @using BlazorClient.Models
 @using BlazorClient.Data.NotificationService
+@using BlazorClient.Authentication
 @inject INotificationService _service
 
-<p>Notification page</p>
-@if (_notifications == null)
-{
-    <p>
-        <em>No messages!</em>
-    </p>
-}
-<div class="card">
-    <h4> Notifications for: @Username </h4>
-    <div class="card-body">
-        <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Message</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (var n in _notifications)
-                {
+<AuthorizeView>
+    <Authorized>
+        <p>Notification page</p>
+        @if (_notifications == null)
+        {
+            <p>
+                <em>No messages!</em>
+            </p>
+        }
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td>@n.Id</td>
-                        <td>@n.Message</td>
+                        <th scope="col">Message</th>
                     </tr>
-                }
-                </tbody>
-            </table>
-    </div>
-</div>
-@code { 
-    [Parameter] public string Username { get; set; }
+                    </thead>
+                    <tbody>
+                    @foreach (var n in _notifications)
+                    {
+                        <tr>
+                            <td>@n.Message</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    
     private IList<Notification> _notifications = new List<Notification>();
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("Request form page "  + Username);
-        _notifications = await _service.GetNotificationFromAdminAsync(Username);
+         string un = CustomAuthenticationStateProvider.storedUser.Username;
+        Console.WriteLine(un);
+        _notifications = await _service.GetNotificationFromAdminAsync(un);
     }
 }

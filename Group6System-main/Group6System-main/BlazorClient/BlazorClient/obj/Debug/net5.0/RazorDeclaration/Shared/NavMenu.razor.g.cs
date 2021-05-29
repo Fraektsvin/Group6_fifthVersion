@@ -97,7 +97,7 @@ using BlazorClient.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 36 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Shared\NavMenu.razor"
+#line 42 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

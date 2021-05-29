@@ -83,15 +83,22 @@ using BlazorClient.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\CreateAccountAsync.razor"
+#line 3 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\CreateAccountAsync.razor"
 using BlazorClient.Data.AdminValidation;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\CreateAccountAsync.razor"
+#line 4 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\CreateAccountAsync.razor"
 using BlazorClient.Data.NotificationService;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\CreateAccountAsync.razor"
+           [Authorize(Policy = "AdminRole")]
 
 #line default
 #line hidden
@@ -105,7 +112,7 @@ using BlazorClient.Data.NotificationService;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 16 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\CreateAccountAsync.razor"
+#line 17 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\CreateAccountAsync.razor"
        
     [Parameter] public string  Username { get; set; }
     private bool _loading;
@@ -118,7 +125,6 @@ using BlazorClient.Data.NotificationService;
         try
         {
             String successMessage = await _service.CreateAccountAsync(Username);
-            Console.WriteLine(successMessage);
             _errorMessage = successMessage;
             _loading = false;
         }

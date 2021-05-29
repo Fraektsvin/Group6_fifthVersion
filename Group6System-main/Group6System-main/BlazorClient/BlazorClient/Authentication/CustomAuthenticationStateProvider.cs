@@ -96,7 +96,7 @@ namespace BlazorClient.Authentication
         private ClaimsIdentity SetupClaimsForUser(User user)
         {
             List<Claim> claims = new List<Claim>();
-            claims.Add(new Claim("Role", "admin" ));
+            claims.Add(new Claim(ClaimTypes.Name, user.Username ));
             ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
             return identity;
        }

@@ -111,7 +111,7 @@ using BlazorClient.Authentication;
         try
         {
             await ((CustomAuthenticationStateProvider) _authenticationStateProvider).ValidateLoginAsync(_username, _password);
-            _navMgr.NavigateTo($"/NotificationPage/{_username}");
+            _navMgr.NavigateTo($"/NotificationPage");
         }
         catch (Exception e)
         {

@@ -1,13 +1,12 @@
 ﻿@page "/AdminValidation"
 @using BlazorClient.Models
-@*@attribute [Authorize(Policy = "admin")]*@
+@attribute [Authorize(Policy = "AdminRole")]
 @using BlazorClient.Data.AdminValidation
 @inject IAdminService _service
 @inject NavigationManager _navigationManager
 
 <h3>Admin Page</h3>
 
-@*<Authorized>*@
     
     <p>
         Filter by active status:
@@ -74,8 +73,6 @@
         }
         </tbody>
     </table>
-
-@*</Authorized>*@
 
 @code {
     private IList<Customer> _customers = new List<Customer>();

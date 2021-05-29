@@ -10,10 +10,16 @@
     <div class="@NavMenuCssClass mr-auto" @onclick="ToggleNavMenu">
         <div class="nav nav-tabs">
             <a class="nav-item nav-link" href="">Home</a>
-            <a class="nav-item nav-link" href="Notification">Notification</a>
-            <a class="nav-item nav-link" href="Customers">Register</a>
-            <a class="nav-item nav-link" href="AdminValidation">Admin View</a>
-            <a class="nav-item nav-link" href="SendMoney">Transfer Money</a>
+            <a class="nav-item nav-link" href="RegisterCustomer">Register</a>
+            <AuthorizeView>
+                <Authorized>
+                    <a class="nav-item nav-link" href="NotificationPage">Notification</a>
+                    <a class="nav-item nav-link" href="SendMoney">Transfer Money</a>
+                </Authorized>
+            </AuthorizeView>
+            <AuthorizeView Policy="AdminRole">
+                <a class="nav-item nav-link" href="AdminValidation">Admin View</a>
+            </AuthorizeView>
         </div>
     </div>
     

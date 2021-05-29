@@ -96,7 +96,14 @@ using BlazorClient.Data.NotificationService;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/NotificationPage/{Username}")]
+#nullable restore
+#line 4 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\NotificationPage.razor"
+using BlazorClient.Authentication;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/NotificationPage")]
     public partial class NotificationPage : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,15 +112,16 @@ using BlazorClient.Data.NotificationService;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 35 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\NotificationPage.razor"
-        
-    [Parameter] public string Username { get; set; }
+#line 40 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\NotificationPage.razor"
+       
+    
     private IList<Notification> _notifications = new List<Notification>();
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("Request form page "  + Username);
-        _notifications = await _service.GetNotificationFromAdminAsync(Username);
+         string un = CustomAuthenticationStateProvider.storedUser.Username;
+        Console.WriteLine(un);
+        _notifications = await _service.GetNotificationFromAdminAsync(un);
     }
 
 #line default

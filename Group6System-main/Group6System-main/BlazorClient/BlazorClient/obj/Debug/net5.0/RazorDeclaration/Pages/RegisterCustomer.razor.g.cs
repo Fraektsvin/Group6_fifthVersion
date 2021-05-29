@@ -96,7 +96,7 @@ using BlazorClient.Authentication;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Customers")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/RegisterCustomer")]
     public partial class RegisterCustomer : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
