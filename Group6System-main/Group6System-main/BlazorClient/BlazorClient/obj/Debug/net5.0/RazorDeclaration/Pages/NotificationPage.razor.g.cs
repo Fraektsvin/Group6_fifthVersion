@@ -112,7 +112,7 @@ using BlazorClient.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 40 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\NotificationPage.razor"
+#line 38 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\NotificationPage.razor"
        
     
     private IList<Notification> _notifications = new List<Notification>();
