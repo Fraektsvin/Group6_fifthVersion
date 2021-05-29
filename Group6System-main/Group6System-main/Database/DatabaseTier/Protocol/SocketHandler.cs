@@ -23,7 +23,7 @@ namespace DatabaseTier.Protocol
         public async Task ExchangeMessages()
         {
              //read 
-            byte[] readBuffer = new byte[10000];
+            byte[] readBuffer = new byte[15000];
             int bytesToRead = _stream.Read(readBuffer, 0, readBuffer.Length);
             string message = Encoding.UTF8.GetString(readBuffer, 0, bytesToRead);
             

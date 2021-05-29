@@ -110,7 +110,7 @@ using BlazorClient.Data.Transactions;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Send_Money")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/SendMoney")]
     public partial class TransferMoney : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -119,7 +119,7 @@ using BlazorClient.Data.Transactions;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\TransferMoney.razor"
+#line 48 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\TransferMoney.razor"
        
     private long _accountNumber;
     private double _amount;

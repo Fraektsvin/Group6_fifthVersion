@@ -1,4 +1,5 @@
 ﻿@page "/CreateAccount/{Username}"
+@attribute [Authorize(Policy = "AdminRole")]
 @using BlazorClient.Data.AdminValidation
 @using BlazorClient.Data.NotificationService
 @inject INotificationService _notification

@@ -96,6 +96,13 @@ using BlazorClient.Data.AdminValidation;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\AdminValidation.razor"
+           [Authorize(Policy = "AdminRole")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/AdminValidation")]
     public partial class AdminValidation : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -105,7 +112,7 @@ using BlazorClient.Data.AdminValidation;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 80 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\AdminValidation.razor"
+#line 77 "C:\Users\HP\SEP3\Group6_Git\Group6System-main\Group6System-main\BlazorClient\BlazorClient\Pages\AdminValidation.razor"
        
     private IList<Customer> _customers = new List<Customer>();
     private IList<Customer> _customersToShow = new List<Customer>();
