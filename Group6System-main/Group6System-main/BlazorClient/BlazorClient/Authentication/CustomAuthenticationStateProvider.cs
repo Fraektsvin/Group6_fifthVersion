@@ -97,8 +97,10 @@ namespace BlazorClient.Authentication
         {
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Name, user.Username ));
+            claims.Add(new Claim("Username",user.Username));
             ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
             return identity;
+            
        }
         
         private string HashString(string input)
