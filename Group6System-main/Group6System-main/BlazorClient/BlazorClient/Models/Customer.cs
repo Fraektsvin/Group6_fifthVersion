@@ -1,29 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace BlazorClient.Models
 {
     public class Customer 
     {
-        [JsonPropertyName("name")]
+        [JsonPropertyName("name"), Required]
         public string Name { get; set; }
         
-        [JsonPropertyName("cprnumber")]
-        public int CprNumber { get; set; }
+       
+        //[Range(1000000000,9999999999,  ErrorMessage = "CPR number must contain 10 numbers")]
+        [JsonPropertyName("cprnumber"),Required]
+        public long CprNumber { get; set; }
         
         [JsonPropertyName("address")]
         public Address Address { get; set; }
 
-        [JsonPropertyName("phonenumber")]
+        [JsonPropertyName("phonenumber"),Required]
         public string PhoneNumber { get; set; }
         
-        [JsonPropertyName("email")]
+        [JsonPropertyName("email"), Required]
         public string Email { get; set; }
         
-        [JsonPropertyName("nationality")]
+        [JsonPropertyName("nationality"), Required]
         public string Nationality { get; set; }
         
-        [JsonPropertyName("countryofresidence")]
+        [JsonPropertyName("countryofresidence"),Required]
         public string CountryOfResidence { get; set; }
         [JsonPropertyName("isvalid")]
         public bool IsValid { get; set; }

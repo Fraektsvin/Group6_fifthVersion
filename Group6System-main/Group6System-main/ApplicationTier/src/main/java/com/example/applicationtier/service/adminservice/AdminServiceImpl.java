@@ -31,7 +31,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public String removeCustomer(int cprNumber){
+    public String removeCustomer(long cprNumber){
         String customerToRemove = adminDAO.removeCustomer(cprNumber);
         return customerToRemove;
     }

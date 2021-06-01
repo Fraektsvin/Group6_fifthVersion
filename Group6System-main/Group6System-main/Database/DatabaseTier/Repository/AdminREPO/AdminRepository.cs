@@ -45,7 +45,7 @@ namespace DatabaseTier.Repository.AdminREPO
             }
         }
 
-        public async Task<string> RemoveCustomerAsync(int cprNumber)
+        public async Task<string> RemoveCustomerAsync(long cprNumber)
         {
             await using CloudContext context = new CloudContext();
 
@@ -54,15 +54,15 @@ namespace DatabaseTier.Repository.AdminREPO
                 var customerToRemove = await context.CustomersTable.Include(a=> a.Address).
                     ThenInclude(a=> a.City).Include(a=> a.User).FirstOrDefaultAsync(a=> a.CprNumber == cprNumber);
                 
-                var toRemove = await context.CustomersTable.FirstOrDefaultAsync(c => c.CprNumber == cprNumber);
-                context.CustomersTable.Remove(customerToRemove);
-                context.AddressTable.Remove(toRemove.Address);
-                context.CityTable.Remove(toRemove.Address.City); 
-                context.UsersTable.Remove(toRemove.User);
-                await context.SaveChangesAsync();
+              context.Remove(customerToRemove);
+              context.UsersTable.Remove(customerToRemove.User);
+              context.CityTable.Remove(customerToRemove.Address.City);
+              context.AddressTable.Remove(customerToRemove.Address);
+              await context.SaveChangesAsync();
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.StackTrace);
                 throw new Exception(e.Message);
             }
 

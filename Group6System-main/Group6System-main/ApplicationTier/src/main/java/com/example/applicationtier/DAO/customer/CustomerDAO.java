@@ -9,5 +9,5 @@ public interface CustomerDAO {
     Customer addCustomer(Customer customer) throws Exception;
     String updateCustomer(Customer customer);
     Customer getCustomer(String username);
-    Customer getCustomer(int cprNumber);
+    Customer getCustomer(long cprNumber);
 }

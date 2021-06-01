@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {}
+    "C:\\Users\\fatem\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
+      "projectUniqueName": "C:\\Users\\fatem\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
       "projectName": "BlazorClient",
-      "projectPath": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\SEP3\\Group6_Git\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\obj\\",
+      "projectPath": "C:\\Users\\fatem\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\BlazorClient.csproj",
+      "packagesPath": "C:\\Users\\fatem\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\fatem\\Documents\\GitHub\\Group6_fifthVersion\\Group6System-main\\Group6System-main\\BlazorClient\\BlazorClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\fatem\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
