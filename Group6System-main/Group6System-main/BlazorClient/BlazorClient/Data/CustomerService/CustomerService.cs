@@ -9,7 +9,7 @@ using BlazorClient.Models;
 
 namespace BlazorClient.Data.CustomerService
 {
-    public class CustomerService:ICustomerService
+    public class CustomerService : ICustomerService
     {
         private readonly HttpClient _client = new HttpClient();
         private string path = "http://localhost:8080";
@@ -65,7 +65,20 @@ namespace BlazorClient.Data.CustomerService
 
             throw new Exception(response.Content.ReadAsStringAsync().Result);
         }
-        
-     
+
+        public async Task<Account> GetAccount(string username, long accountNumber)
+        {
+            HttpResponseMessage response = await _client.GetAsync($"{path}/getReceiverAccount?username={username}&accountNumber={accountNumber}");
+            string result = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                Account account = JsonSerializer.Deserialize<Account>(result, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+                return account;
+            }
+            throw new Exception(result);
+        }
     }
 }

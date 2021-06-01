@@ -53,4 +53,13 @@ public class TransactionServiceImpl implements TransactionService{
         Account account = transDAO.getAccount(username);
         return account;
     }
+
+    @Override
+    public Account getAccount(String username, long accountNumber) throws Exception {
+        Account account = getAccount(username);
+        if(account.getAccountNumber() == accountNumber){
+            return account;
+        }
+        throw new Exception("Username and Account number didn't match");
+    }
 }
