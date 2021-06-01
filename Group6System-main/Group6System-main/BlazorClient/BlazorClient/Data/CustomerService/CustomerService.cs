@@ -51,19 +51,16 @@ namespace BlazorClient.Data.CustomerService
         public async Task<Account> GetAccount(string username)
         {
             HttpResponseMessage response = await _client.GetAsync($"{path}/getAccount?username={username}");
-            Console.WriteLine(response.Content);
+            string result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                string result = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(result);
                 Account account = JsonSerializer.Deserialize<Account>(result, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 });
                 return account;
             }
-
-            throw new Exception(response.Content.ReadAsStringAsync().Result);
+            throw new Exception(result);
         }
 
         public async Task<Account> GetAccount(string username, long accountNumber)
