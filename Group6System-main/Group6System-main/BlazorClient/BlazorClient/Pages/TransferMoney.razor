@@ -61,8 +61,8 @@
             _loading = true;
             User user = CustomAuthenticationStateProvider.storedUser;
             Account sender = await _service.GetAccount(user.Username);
-            //ToDo get the receiver from the customer's input
-            Account receiver = await _service.GetAccount(_accountName);
+            
+            Account receiver = await _service.GetAccount(_accountName, _accountNumber);
 
             Transaction transaction = new Transaction(sender, receiver, _amount, _message, DateTime.Now.ToString(), _save);
             string successMessage = await _transactionService.SendMoney(transaction);

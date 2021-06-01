@@ -32,4 +32,15 @@ public class TransactionController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/getReceiverAccount")
+    public ResponseEntity getReceiverAccount(@RequestParam String username, @RequestParam long accountNumber){
+        try {
+            Account account = service.getAccount(username, accountNumber);
+            return new ResponseEntity<>(account, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 }
