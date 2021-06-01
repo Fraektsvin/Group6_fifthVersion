@@ -9,6 +9,7 @@ namespace BlazorClient.Data.CustomerService
     {
         Task<string> AddCustomerAsync(Customer customer);
         Task UpdateCustomerAsync(Customer customer);
+//2412962418
 
         Task<Account> GetAccount(string username);
     }

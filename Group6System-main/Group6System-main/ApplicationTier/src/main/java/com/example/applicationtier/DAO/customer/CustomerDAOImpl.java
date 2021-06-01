@@ -52,7 +52,7 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
     @Override
-    public Customer getCustomer(int cprNumber) {
+    public Customer getCustomer(long cprNumber) {
         Request obj = new Request("GetCustomerWithCpr", cprNumber);
         handler.setObj(obj);
 

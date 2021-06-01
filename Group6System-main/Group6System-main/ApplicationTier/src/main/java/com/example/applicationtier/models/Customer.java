@@ -12,7 +12,7 @@ public class Customer {
     private String name;
 
     @JsonProperty("cprnumber")
-    private int cprNumber;
+    private long cprNumber;
 
     @JsonProperty("address")
     private Address address;
@@ -49,11 +49,11 @@ public class Customer {
         this.name = name;
     }
 
-    public int getCprNumber() {
+    public long getCprNumber() {
         return cprNumber;
     }
 
-    public void setCprNumber(int cprNumber) {
+    public void setCprNumber(long cprNumber) {
         this.cprNumber = cprNumber;
     }
 

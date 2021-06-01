@@ -11,7 +11,7 @@ import java.util.List;
 public interface AdminDAO {
     boolean validateCustomer(Customer customer);
     List<Customer> getAllCustomers() throws Exception;
-    String removeCustomer(int cprNumber);
+    String removeCustomer(long cprNumber);
     Account createAccount(Account account) throws Exception;
     long getLastAccountNumber() throws Exception;
     User checkUser(String username) throws Exception;

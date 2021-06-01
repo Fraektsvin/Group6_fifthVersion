@@ -29,7 +29,7 @@ namespace BlazorClient.Data.AdminValidation
             }
         }
         
-        public async Task RemoveCustomerAsync(int cprNumber)
+        public async Task RemoveCustomerAsync(long cprNumber)
         {
             HttpResponseMessage response = await client.DeleteAsync($"{path}/removeCustomer/{cprNumber}");
             if (response.IsSuccessStatusCode)
@@ -39,6 +39,7 @@ namespace BlazorClient.Data.AdminValidation
             else
             {
                 throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
+                
             }
         }
 

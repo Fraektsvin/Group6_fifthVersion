@@ -23,7 +23,7 @@ namespace DatabaseTier.Protocol
         public async Task ExchangeMessages()
         {
              //read 
-            byte[] readBuffer = new byte[15000];
+            byte[] readBuffer = new byte[35000];
             int bytesToRead = _stream.Read(readBuffer, 0, readBuffer.Length);
             string message = Encoding.UTF8.GetString(readBuffer, 0, bytesToRead);
             
@@ -73,7 +73,7 @@ namespace DatabaseTier.Protocol
                     //get customer with cprNumber
                     case "GetCustomerWithCpr":
                         return new Request("GetCustomerWithCpr", await RepositoryFactory.GetCustomerRepository().
-                            GetCustomerAsync(ToObject<int>((JsonElement) request.Obj)));
+                            GetCustomerAsync(ToObject<long>((JsonElement) request.Obj)));
                     
                     //Add customer
                     case "AddCustomer":
@@ -93,7 +93,7 @@ namespace DatabaseTier.Protocol
                     //Remove customer
                     case "RemoveCustomerByCprNumber":
                         var removeCustomer = await RepositoryFactory.GetAdminRepository().
-                            RemoveCustomerAsync(ToObject<int>((JsonElement) request.Obj));
+                            RemoveCustomerAsync(ToObject<long>((JsonElement) request.Obj));
                         return new Request("RemoveCustomerByCprNumber", removeCustomer);
                     
                     //Validate Customer

@@ -10,8 +10,9 @@ namespace BlazorClient.Models
         public string Name { get; set; }
         
        
-        [JsonPropertyName("cprnumber"),Required, Range(000000000,9999999999,  ErrorMessage = "CPR number must contain 10 numbers")]
-        public int CprNumber { get; set; }
+        //[Range(1000000000,9999999999,  ErrorMessage = "CPR number must contain 10 numbers")]
+        [JsonPropertyName("cprnumber"),Required]
+        public long CprNumber { get; set; }
         
         [JsonPropertyName("address")]
         public Address Address { get; set; }

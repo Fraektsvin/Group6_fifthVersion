@@ -46,12 +46,12 @@ namespace DatabaseTier.Repository.CustomerREPO
             }
         }
         
-        public async Task<Customer> GetCustomerAsync(int cprNumber)
+        public async Task<Customer> GetCustomerAsync(long cprNumber)
         {
             await using CloudContext context = new CloudContext();
             {
-                Customer customer = context.CustomersTable.Include(c=>c.Address).
-                    ThenInclude(c=> c.City).FirstOrDefault(c => c.CprNumber == cprNumber);
+                Customer customer = await context.CustomersTable.Include(c=>c.Address).
+                    ThenInclude(c=> c.City).Include(a=>a.User).FirstOrDefaultAsync(c => c.CprNumber == cprNumber);
                 if (customer != null)
                 {
                     return customer;

@@ -9,7 +9,7 @@ namespace BlazorClient.Models
         [JsonPropertyName("zipcode")]
         public int ZipCode { get; set; }
         
-        [JsonPropertyName("cityname")]
+        [JsonPropertyName("cityname"), Required]
         public String CityName { get; set; }
     }
 }

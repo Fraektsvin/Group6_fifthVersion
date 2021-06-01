@@ -124,7 +124,7 @@ using BlazorClient.Data.AdminValidation;
         _customersToShow = _customers;
     }
 
-    private async Task RemoveCustomerAsync(int cprNumber)
+    private async Task RemoveCustomerAsync(long cprNumber)
     {
         await _service.RemoveCustomerAsync(cprNumber);
         var customerToRemove = _customers.First(c => c.CprNumber == cprNumber);

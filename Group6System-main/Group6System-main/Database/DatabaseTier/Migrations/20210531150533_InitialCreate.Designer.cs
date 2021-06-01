@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatabaseTier.Migrations
 {
     [DbContext(typeof(CloudContext))]
-    [Migration("20210527211424_InitialCreate")]
+    [Migration("20210531150533_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,9 +79,9 @@ namespace DatabaseTier.Migrations
 
             modelBuilder.Entity("DatabaseTier.Models.Customer", b =>
                 {
-                    b.Property<int>("CprNumber")
+                    b.Property<long>("CprNumber")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("AddressStreetName")
@@ -127,15 +127,15 @@ namespace DatabaseTier.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CustomerCprNumber")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerCprNumber");
+                    b.HasIndex("Username");
 
                     b.ToTable("NotificationTable");
                 });
@@ -153,15 +153,10 @@ namespace DatabaseTier.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("double precision");
 
-                    b.Property<int?>("CustomerCprNumber")
-                        .HasColumnType("integer");
-
                     b.Property<long?>("SaveAccountAccountNumber")
                         .HasColumnType("bigint");
 
                     b.HasKey("AccountId");
-
-                    b.HasIndex("CustomerCprNumber");
 
                     b.HasIndex("SaveAccountAccountNumber");
 
@@ -251,19 +246,15 @@ namespace DatabaseTier.Migrations
 
             modelBuilder.Entity("DatabaseTier.Models.Notification", b =>
                 {
-                    b.HasOne("DatabaseTier.Models.Customer", "Customer")
+                    b.HasOne("DatabaseTier.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("CustomerCprNumber");
+                        .HasForeignKey("Username");
 
-                    b.Navigation("Customer");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DatabaseTier.Models.SavedAccounts", b =>
                 {
-                    b.HasOne("DatabaseTier.Models.Customer", null)
-                        .WithMany("SavedAccountsList")
-                        .HasForeignKey("CustomerCprNumber");
-
                     b.HasOne("DatabaseTier.Models.Account", "SaveAccount")
                         .WithMany()
                         .HasForeignKey("SaveAccountAccountNumber");
@@ -284,11 +275,6 @@ namespace DatabaseTier.Migrations
                     b.Navigation("Receiver");
 
                     b.Navigation("Sender");
-                });
-
-            modelBuilder.Entity("DatabaseTier.Models.Customer", b =>
-                {
-                    b.Navigation("SavedAccountsList");
                 });
 #pragma warning restore 612, 618
         }

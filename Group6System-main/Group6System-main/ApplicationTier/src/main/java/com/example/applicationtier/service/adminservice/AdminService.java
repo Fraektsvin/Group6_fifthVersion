@@ -6,6 +6,6 @@ import java.util.List;
 public interface AdminService {
     boolean validateCustomer(Customer customer);
     List<Customer> getAllCustomers() throws Exception;
-    String removeCustomer(int cprNumber);
+    String removeCustomer(long cprNumber);
     String createAccount(String username) throws Exception;
 }
