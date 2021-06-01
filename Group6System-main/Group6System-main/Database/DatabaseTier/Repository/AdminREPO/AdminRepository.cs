@@ -56,8 +56,6 @@ namespace DatabaseTier.Repository.AdminREPO
                 
               context.Remove(customerToRemove);
               context.UsersTable.Remove(customerToRemove.User);
-              context.CityTable.Remove(customerToRemove.Address.City);
-              context.AddressTable.Remove(customerToRemove.Address);
               await context.SaveChangesAsync();
             }
             catch (Exception e)

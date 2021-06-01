@@ -15,7 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public String registerCustomer(Customer newCustomer) throws Exception {
-       /* if(newCustomer.getCprNumber() >= 1000000000L && newCustomer.getCprNumber() <= 9999999999L) {
+       if(newCustomer.getCprNumber() >= 1000000000L && newCustomer.getCprNumber() <= 9999999999L) {
             Customer checkCustomer = customerDAO.getCustomer(newCustomer.getUser().getUsername());
             if (checkCustomer == null) {
                 Customer checkCpr = customerDAO.getCustomer(newCustomer.getCprNumber());
@@ -29,23 +29,6 @@ public class CustomerServiceImpl implements CustomerService {
             return "The username is already in use!";
         }
        return "Cpr number is not valid!";
-       */
-
-        Customer checkCustomer = customerDAO.getCustomer(newCustomer.getUser().getUsername());
-        if(checkCustomer == null)
-        {
-            Customer checkCpr = customerDAO.getCustomer(newCustomer.getCprNumber());
-            if(checkCpr == null) {
-                Customer c = customerDAO.addCustomer(newCustomer);
-                return "Successfully registered!";
-            }
-
-            return "The Cpr Number is already registered!";
-        }
-
-        return "The username is already in use!";
-
-
     }
 
     @Override
