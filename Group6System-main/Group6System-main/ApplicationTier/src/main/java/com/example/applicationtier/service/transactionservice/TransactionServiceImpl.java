@@ -36,7 +36,8 @@ public class TransactionServiceImpl implements TransactionService{
         double getReceiverBalance = transaction.getReceiver().getBalance();
         double newReceiverBalance = getReceiverBalance + transaction.getAmount();
         transaction.getReceiver().setBalance(newReceiverBalance);
-        notificationService.sendNotificationToUser(transaction.getReceiver().getUser().getUsername(), transaction.getAmount() + "kr received from " +
+        notificationService.sendNotificationToUser(transaction.getReceiver().getUser().getUsername(),
+                transaction.getAmount() + "kr received from " +
                 transaction.getSender().getUser().getUsername() + " Message: " + transaction.getMessage());
     }
 
@@ -44,7 +45,8 @@ public class TransactionServiceImpl implements TransactionService{
         double getSenderBalance = transaction.getSender().getBalance();
         double newSenderBalance = getSenderBalance - transaction.getAmount();
         transaction.getSender().setBalance(newSenderBalance);
-        notificationService.sendNotificationToUser(transaction.getSender().getUser().getUsername(), transaction.getAmount() + "kr transfered to " +
+        notificationService.sendNotificationToUser(transaction.getSender().getUser().getUsername(),
+                transaction.getAmount() + "kr transfered to " +
                 transaction.getReceiver().getUser().getUsername() + " Message: " + transaction.getMessage());
 
     }
