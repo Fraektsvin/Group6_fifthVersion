@@ -20,7 +20,7 @@ public class CustomerDAOImpl implements CustomerDAO{
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public Customer addCustomer(Customer customer) throws Exception {
+    public Customer registerCustomer(Customer customer) throws Exception {
         Request obj = new Request("AddCustomer", customer);
         handler.setObj(obj);
 

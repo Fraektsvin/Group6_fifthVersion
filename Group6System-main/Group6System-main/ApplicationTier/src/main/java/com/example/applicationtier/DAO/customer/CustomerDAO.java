@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CustomerDAO {
-    Customer addCustomer(Customer customer) throws Exception;
+    Customer registerCustomer(Customer customer) throws Exception;
     String updateCustomer(Customer customer);
     Customer getCustomer(String username);
     Customer getCustomer(long cprNumber);

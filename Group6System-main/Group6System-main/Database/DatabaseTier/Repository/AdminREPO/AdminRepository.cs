@@ -53,9 +53,7 @@ namespace DatabaseTier.Repository.AdminREPO
             {
                 var customerToRemove = await context.CustomersTable.Include(a=> a.Address).
                     ThenInclude(a=> a.City).Include(a=> a.User).FirstOrDefaultAsync(a=> a.CprNumber == cprNumber);
-                
-              context.Remove(customerToRemove);
-              context.UsersTable.Remove(customerToRemove.User);
+                context.CustomersTable.Remove(customerToRemove);
               await context.SaveChangesAsync();
             }
             catch (Exception e)

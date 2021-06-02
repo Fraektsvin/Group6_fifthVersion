@@ -20,7 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
             if (checkCustomer == null) {
                 Customer checkCpr = customerDAO.getCustomer(newCustomer.getCprNumber());
                 if (checkCpr == null) {
-                    Customer c = customerDAO.addCustomer(newCustomer);
+                    Customer c = customerDAO.registerCustomer(newCustomer);
                     return "Successfully registered!";
                 }
 
