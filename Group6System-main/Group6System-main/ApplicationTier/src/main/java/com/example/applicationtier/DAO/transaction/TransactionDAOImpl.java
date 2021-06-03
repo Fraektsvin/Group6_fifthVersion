@@ -35,15 +35,4 @@ public class TransactionDAOImpl implements TransactionDAO{
         throw new Exception((String) accountObj.getObj());
     }
 
-    @Override
-    public String payBill(Transaction transaction) {
-        Request obj = new Request("payBill", transaction);
-        handler.setObj(obj);
-
-        Request response = handler.messageExchange(obj);
-        if(response.getHeader().equals("payBill")){
-            return mapper.convertValue(response.getObj(), String.class);
-        }
-        else return "Payment could not complete!";
-    }
 }

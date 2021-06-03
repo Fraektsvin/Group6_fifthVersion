@@ -78,7 +78,7 @@ namespace DatabaseTier.Repository.TransactionREPO
             }
             catch (Exception e)
             {
-                throw new Exception($"Not found!");
+                throw new Exception($"Account name not correct!");
             }
            
         }
